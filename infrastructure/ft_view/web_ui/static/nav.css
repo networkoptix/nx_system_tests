@@ -1,0 +1,37 @@
+main nav > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+main nav > ul > li {
+    display: inline;
+}
+
+main nav > ul > li:after {
+    content: " | ";
+}
+
+main nav > ul > li:last-child:after {
+    content: "";
+}
+
+.page-action-block {
+    float: left;
+    margin-bottom: 0.5em;
+    margin-right: 0.5em;
+    padding-top: 0;
+    line-height: 1.5;
+}
+
+.page-action-block-right {
+    float: right;
+    margin-bottom: 0.5em;
+    margin-left: 0.5em;
+    padding-top: 0;
+    line-height: 1.5;
+}
+
+.page-action-clear {
+    clear: left;
+}

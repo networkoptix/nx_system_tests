@@ -1,0 +1,34 @@
+<td>
+    {%- if 'opt.--test-cloud-host' in data -%}
+        <a href="https://{{ data['opt.--test-cloud-host'] }}" class="accent-cloud-host">
+            {{- data['opt.--test-cloud-host'] -}}
+        </a>
+        <script>putAccentOnCloudHost(document.currentScript.previousElementSibling);</script>
+        {{- filter.filter('opt.--test-cloud-host', data['opt.--test-cloud-host']) -}}
+        {%- if 'opt.--cloud-state' in data -%}
+            <span title="A random icon to visually distinguish cloud state: {{ data['opt.--cloud-state'] }}" style="margin-left: 0.5em">
+            {%- if data['opt.--cloud-state'].startswith(('http://', 'https://')) -%}
+                <a href="{{ data['opt.--cloud-state'] }}">
+                    {{- unique_random_icon(data['opt.--cloud-state']) | e -}}
+                </a>
+            {%- else -%}
+                {{- unique_random_icon(data['opt.--cloud-state']) | e -}}
+            {%- endif -%}
+            {{- filter.filter('opt.--cloud-state', data['opt.--cloud-state']) -}}
+            </span>
+        {%- endif -%}
+    {%- endif -%}
+    {%- if 'opt.--webadmin-url' in data -%}
+        {%- if data['opt.--webadmin-url'].startswith(('http:', 'https:')) -%}
+            <a href="{{ data['opt.--webadmin-url'] }}" class="accent-web-admin-url">
+                {{- data['opt.--webadmin-url'] -}}
+            </a>
+        {%- else -%}
+            <span class="accent-web-admin-url">
+                {{- data['opt.--webadmin-url'] -}}
+            </span>
+        {%- endif -%}
+        <script>putAccentOnWebAdminURL(document.currentScript.previousElementSibling);</script>
+        {{- filter.filter('opt.--webadmin-url', data['opt.--webadmin-url']) -}}
+    {%- endif -%}
+</td>

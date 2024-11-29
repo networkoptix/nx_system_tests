@@ -1,0 +1,34 @@
+<tr>
+    <th>Created at</th>
+    <th>Tag</th>
+    <th>Revision</th>
+    {% include "vms_th.inc.html" %}
+    <th>Cloud / WebAdmin</th>
+    <th class="pending" style="width: 2.5em">
+        <abbr title="Pending &mdash; not started yet, waiting in a queue">
+            PEND
+        </abbr>
+    </th>
+    <th class="running" style="width: 2.5em">
+        <abbr title="Running &mdash; has started but not finished">
+            RUNN
+        </abbr>
+    </th>
+    <th class="failed" style="width: 2.5em">
+        <abbr title="Failed &mdash; application under test failed a check or crashed, or testing error occurred">
+            FAIL
+        </abbr>
+    </th>
+    <th class="skipped" style="width: 2.5em">
+        <abbr title="Skipped &mdash; not applicable to the given version of application under test">
+            SKIP
+        </abbr>
+    </th>
+    <th class="passed" style="width: 2.5em">
+        <abbr title="Passed &mdash; test finished successfully">
+            PASS
+        </abbr>
+    </th>
+    <th></th>
+    <th></th>
+</tr>

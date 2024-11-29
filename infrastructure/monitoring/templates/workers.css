@@ -1,0 +1,12 @@
+.gone {
+  color: #656565;
+}
+.dead {
+  color: #8e0000;
+}
+.stuck {
+  color: #ab6b0c;
+}
+.alive {
+  color: #0b6327;
+}

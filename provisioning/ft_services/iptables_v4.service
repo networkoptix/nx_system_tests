@@ -1,0 +1,9 @@
+[Unit]
+Description=Setup iptables (IPv4) rules
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/iptables-restore %h/iptables_v4
+
+[Install]
+WantedBy=default.target

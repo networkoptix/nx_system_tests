@@ -1,0 +1,11 @@
+table {
+  padding-left: 5%;
+  width: 90%;
+}
+th, td {
+  white-space: nowrap;
+  padding: 0 0.4em;
+}
+tr:nth-child(odd) {
+  background-color: #e8e8e8;
+}

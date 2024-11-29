@@ -1,0 +1,17 @@
+{% macro sha(data, sha_key, url_key) -%}
+{%- if sha_key in data -%}
+    <code style="white-space: nowrap">
+        {%- if url_key in data -%}
+            <a href="{{ data[url_key] }}">
+                {{- data[sha_key][:6] -}}
+                <span style="font-size: 1px">{{ data[sha_key][6:-2] }}</span>
+                {{- data[sha_key][-2:] -}}
+            </a>
+        {%- else -%}
+            {{- data[sha_key][:6] -}}
+            <span style="font-size: 1px">{{ data[sha_key][6:-2] }}</span>
+            {{- data[sha_key][-2:] -}}
+        {%- endif -%}
+    </code>
+{%- endif -%}
+{%- endmacro %}

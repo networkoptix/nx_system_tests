@@ -1,0 +1,282 @@
+# =========================== WARNING ===================================
+# By unknown reason, a Mikrotik switch port may start capping traffic
+# on 100Mbit/s while having successfully negotiated 1GB/s. POE status
+# doesn't affect this behavior. Enabling\disabling port doesn't help,
+# the issue is gone after reboot. In attempt to mitigate that issue, all
+# unused speed modes were stripped. Jetson Nano requires 100Mbit/s on
+# the boot stage, so it is left untouched for these boards. RPI3 does
+# not experiencing a huge traffic, so default port setting are left
+# for it as well.
+# =========================== WARNING ===================================
+
+# software id = 665W-QZLU
+#
+# model = CRS354-48P-4S+2Q+
+# serial number = HE508H98NP1
+/interface bridge
+add admin-mac=48:A9:8A:63:60:EB auto-mac=no comment=defconf \
+    ingress-filtering=no name=bridge port-cost-mode=short protocol-mode=none \
+    vlan-filtering=yes
+/interface ethernet
+set [ find default-name=ether1 ] advertise=1G-baseT-full comment=RPI4-1 \
+    poe-out=off
+set [ find default-name=ether2 ] advertise=100M-baseT-full,1G-baseT-full \
+    comment=Jetsonnano-1 poe-out=off
+set [ find default-name=ether3 ] advertise=1G-baseT-full comment=RPI5-1 \
+    poe-out=off
+set [ find default-name=ether4 ] advertise=1G-baseT-full comment=RPI4-2 \
+    poe-out=off
+set [ find default-name=ether5 ] advertise=1G-baseT-full comment=RPI5-2 \
+    poe-out=off
+set [ find default-name=ether6 ] advertise=1G-baseT-full comment=RPI4-3 \
+    poe-out=off
+set [ find default-name=ether7 ] poe-out=off
+set [ find default-name=ether8 ] advertise=1G-baseT-full comment=RPI4-4 \
+    poe-out=off
+set [ find default-name=ether9 ] advertise=1G-baseT-full comment=RPI5-4 \
+    poe-out=off
+set [ find default-name=ether10 ] advertise=1G-baseT-full comment=RPI4-5 \
+    poe-out=off
+set [ find default-name=ether11 ] advertise=1G-baseT-full comment=RPI5-5 \
+    poe-out=off
+set [ find default-name=ether12 ] advertise=1G-baseT-full comment=RPI4-6 \
+    poe-out=off
+set [ find default-name=ether13 ] advertise=100M-baseT-full,1G-baseT-full \
+    comment=Jetsonnano-2 poe-out=off
+set [ find default-name=ether14 ] advertise=1G-baseT-full comment=RPI4-7 \
+    poe-out=off
+set [ find default-name=ether15 ] advertise=1G-baseT-full comment=RPI4-8 \
+    poe-out=off
+set [ find default-name=ether16 ] advertise=1G-baseT-full comment=RPI5-6 \
+    poe-out=off
+set [ find default-name=ether17 ] advertise=1G-baseT-full comment=RPI5-3 \
+    poe-out=off
+set [ find default-name=ether18 ] advertise=1G-baseT-full comment=RPI5-7 \
+    poe-out=off
+set [ find default-name=ether19 ] advertise=1G-baseT-full comment=RPI4-9 \
+    poe-out=off
+set [ find default-name=ether21 ] advertise=1G-baseT-full comment=orin-nano-1 \
+    poe-out=off
+set [ find default-name=ether46 ] comment=RPI3b-COM
+set [ find default-name=ether47 ] advertise=1G-baseT-full comment=\
+    "Downlink to CRS112-8P-4S"
+set [ find default-name=ether48 ] advertise=1G-baseT-full comment=\
+    "ARMs server" poe-out=off
+/interface lte apn
+set [ find default=yes ] ip-type=ipv4 use-network-apn=no
+/interface wireless security-profiles
+set [ find default=yes ] supplicant-identity=MikroTik
+/ip smb users
+set [ find default=yes ] disabled=yes
+/port
+set 0 name=serial0
+/routing bgp template
+set default disabled=yes output.network=bgp-networks
+/routing ospf instance
+add disabled=yes name=default-v2
+/routing ospf area
+add disabled=yes instance=default-v2 name=backbone-v2
+/snmp community
+set [ find default=yes ] disabled=yes
+add addresses=::/0 comment="NX read community" name=nx
+/interface bridge port
+add bridge=bridge comment=RPI4-1 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether1 \
+    internal-path-cost=10 path-cost=10 pvid=3
+add bridge=bridge comment=Jetsonnano-1 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether2 \
+    internal-path-cost=10 path-cost=10 pvid=4
+add bridge=bridge comment=RPI5-1 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether3 \
+    internal-path-cost=10 path-cost=10 pvid=5
+add bridge=bridge comment=RPI4-2 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether4 \
+    internal-path-cost=10 path-cost=10 pvid=6
+add bridge=bridge comment=RPI5-2 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether5 \
+    internal-path-cost=10 path-cost=10 pvid=7
+add bridge=bridge comment=RPI4-3 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether6 \
+    internal-path-cost=10 path-cost=10 pvid=8
+add bridge=bridge comment=Low-speed-port frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether7 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=RPI4-4 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether8 \
+    internal-path-cost=10 path-cost=10 pvid=10
+add bridge=bridge comment=RPI5-4 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether9 \
+    internal-path-cost=10 path-cost=10 pvid=11
+add bridge=bridge comment=RPI4-5 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether10 \
+    internal-path-cost=10 path-cost=10 pvid=12
+add bridge=bridge comment=RPI5-5 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether11 \
+    internal-path-cost=10 path-cost=10 pvid=13
+add bridge=bridge comment=RPI4-6 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether12 \
+    internal-path-cost=10 path-cost=10 pvid=14
+add bridge=bridge comment=Jetsonnano-2 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether13 \
+    internal-path-cost=10 path-cost=10 pvid=15
+add bridge=bridge comment=RPI4-7 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether14 \
+    internal-path-cost=10 path-cost=10 pvid=16
+add bridge=bridge comment=RPI4-8 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether15 \
+    internal-path-cost=10 path-cost=10 pvid=17
+add bridge=bridge comment=RPI5-6 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether16 \
+    internal-path-cost=10 path-cost=10 pvid=18
+add bridge=bridge comment=RPI5-3 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether17 \
+    internal-path-cost=10 path-cost=10 pvid=9
+add bridge=bridge comment=RPI5-7 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether18 \
+    internal-path-cost=10 path-cost=10 pvid=19
+add bridge=bridge comment=RPI4-9 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether19 \
+    internal-path-cost=10 path-cost=10 pvid=20
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether20 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=orin-nano-1 frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether21 \
+    internal-path-cost=10 path-cost=10 pvid=22
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether22 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether23 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether24 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether25 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether26 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether27 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether28 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether29 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether30 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether31 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether32 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether33 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether34 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether35 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether36 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether37 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether38 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether39 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether40 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether41 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether42 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether43 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether44 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether45 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=RPI3b-COM frame-types=\
+    admit-only-untagged-and-priority-tagged interface=ether46 \
+    internal-path-cost=10 path-cost=10 pvid=100
+add bridge=bridge comment="Downlink to CRS112-8P-4S" ingress-filtering=no \
+    interface=ether47 internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether48 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=ether49 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=qsfpplus1-1 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=qsfpplus1-2 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=qsfpplus1-3 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=qsfpplus1-4 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=qsfpplus2-1 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=qsfpplus2-2 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=qsfpplus2-3 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=qsfpplus2-4 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=sfp-sfpplus1 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=sfp-sfpplus2 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=sfp-sfpplus3 \
+    internal-path-cost=10 path-cost=10
+add bridge=bridge comment=defconf ingress-filtering=no interface=sfp-sfpplus4 \
+    internal-path-cost=10 path-cost=10
+/ip firewall connection tracking
+set udp-timeout=10s
+/ip settings
+set max-neighbor-entries=8192
+/ipv6 settings
+set disable-ipv6=yes max-neighbor-entries=8192
+/interface bridge vlan
+add bridge=bridge comment=RPI4-1 tagged=ether48 untagged=ether1 vlan-ids=3
+add bridge=bridge comment=Jetsonnano-1 tagged=ether48 untagged=ether2 \
+    vlan-ids=4
+add bridge=bridge comment=RPI5-1 tagged=ether48 untagged=ether3 vlan-ids=5
+add bridge=bridge comment=RPI4-2 tagged=ether48 untagged=ether4 vlan-ids=6
+add bridge=bridge comment=RPI5-2 tagged=ether48 untagged=ether5 vlan-ids=7
+add bridge=bridge comment=RPI4-3 tagged=ether48 untagged=ether6 vlan-ids=8
+add bridge=bridge comment=RPI3b-com tagged=ether48 untagged=ether46 vlan-ids=100
+add bridge=bridge comment=RPI5-3 tagged=ether48 untagged=ether17 vlan-ids=9
+add bridge=bridge comment=RPI4-4 tagged=ether48 untagged=ether8 vlan-ids=10
+add bridge=bridge comment=RPI5-4 tagged=ether48 untagged=ether9 vlan-ids=11
+add bridge=bridge comment=RPI4-5 tagged=ether48 untagged=ether10 vlan-ids=12
+add bridge=bridge comment=RPI5-5 tagged=ether48 untagged=ether11 vlan-ids=13
+add bridge=bridge comment=RPI4-6 tagged=ether48 untagged=ether12 vlan-ids=14
+add bridge=bridge comment=Jetsonnano-2 tagged=ether48 untagged=ether13 vlan-ids=15
+add bridge=bridge comment=RPI4-7 tagged=ether48 untagged=ether14 vlan-ids=16
+add bridge=bridge comment=RPI4-8 tagged=ether48 untagged=ether15 vlan-ids=17
+add bridge=bridge comment=RPI5-6 tagged=ether48 untagged=ether16 vlan-ids=18
+add bridge=bridge comment=RPI5-7 tagged=ether48 untagged=ether18 vlan-ids=19
+add bridge=bridge comment=RPI4-9 tagged=ether48 untagged=ether19 vlan-ids=20
+add bridge=bridge comment=orin-nano-1 tagged=ether48 untagged=ether21 vlan-ids=22
+add bridge=bridge comment=ReComputer tagged=ether48,ether47 vlan-ids=501
+/interface ovpn-server server
+set auth=sha1,md5
+/ip address
+add address=192.168.10.4/24 interface=bridge network=192.168.10.0
+/ip dns
+set servers=10.2.51.253
+/ip route
+add disabled=no distance=1 dst-address=0.0.0.0/0 gateway=192.168.10.2 \
+    routing-table=main suppress-hw-offload=no
+/ip service
+set telnet disabled=yes
+set ftp disabled=yes
+/ip smb shares
+set [ find default=yes ] directory=/flash/pub
+/routing bfd configuration
+add disabled=yes interfaces=all min-rx=200ms min-tx=200ms multiplier=5
+/snmp
+set enabled=yes location=Belgrade trap-community=nx trap-interfaces=bridge
+/system clock
+set time-zone-name=Europe/Belgrade
+/system note
+set show-at-login=no
+/system ntp client
+set enabled=yes
+/system ntp client servers
+add address=10.2.48.1
+/system routerboard settings
+set boot-os=router-os

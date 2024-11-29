@@ -1,0 +1,23 @@
+<component name="ProjectDictionaryState">
+  <dictionary name="kvm">
+    <words>
+      <w>addrs</w>
+      <w>dstipaddr</w>
+      <w>dstipmask</w>
+      <w>filterref</w>
+      <w>genkey</w>
+      <w>hotplug</w>
+      <w>hwaddr</w>
+      <w>libvirt</w>
+      <w>libvirtd</w>
+      <w>netkvm</w>
+      <w>nwfilter</w>
+      <w>nwfilters</w>
+      <w>qcow</w>
+      <w>srcipaddr</w>
+      <w>srcipmask</w>
+      <w>undefine</w>
+      <w>virsh</w>
+    </words>
+  </dictionary>
+</component>

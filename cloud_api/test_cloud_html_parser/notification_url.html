@@ -1,0 +1,587 @@
+
+<html lang="en-us" dir="ltr">
+<head>
+<title>FirstCaption | View push notification | Cloud Administration</title>
+<link rel="stylesheet" href="/static/admin/css/base.css">
+
+  <link rel="stylesheet" href="/static/admin/css/dark_mode.css">
+
+
+  <link rel="stylesheet" href="/static/admin/css/nav_sidebar.css">
+  <script src="/static/admin/js/nav_sidebar.js" defer></script>
+
+
+
+
+<link rel="stylesheet" href="/static/admin_tools/css/menu.css" type="text/css" media="screen, projection"/>
+<!--[if lt IE 8]>
+<link rel="stylesheet" href="/static/admin_tools/css/menu-ie.css" type="text/css" media="screen, projection"/>
+<![endif]-->
+
+
+<link rel="stylesheet" href="/static/admin/css/forms.css">
+
+
+    <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+    <script>window.$ = django.jQuery;
+    window.jQuery = django.jQuery;</script>
+    <script type="text/javascript" src="/static/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/static/css/darkFix.css">
+
+<script src="/admin/jsi18n/"></script>
+<script src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script src="/static/admin/js/jquery.init.js"></script>
+<script src="/static/admin/js/core.js"></script>
+<script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script src="/static/admin/js/actions.js"></script>
+<script src="/static/admin/js/urlify.js"></script>
+<script src="/static/admin/js/prepopulate.js"></script>
+<script src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="/static/admin/css/responsive.css">
+
+
+
+    <meta name="robots" content="NONE,NOARCHIVE">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/admin_tools/css/theming.css" />
+
+</head>
+
+<body class=" app-notifications model-pushnotification change-form"
+  data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+
+    <!-- Header -->
+
+    <div id="header">
+        <div id="branding">
+
+<h1 id="site-name"><a href="/admin/">Cloud Administration</a></h1>
+
+        </div>
+
+
+        <div id="user-tools">
+
+                Welcome,
+                <strong>Push Notifications</strong>.
+
+
+
+                    <a href="/">View site</a> /
+
+
+
+
+
+
+                <a href="/admin/password_change/">Change password</a> /
+
+                <form id="logout-form" method="post" action="/admin/logout/">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="DndWAMMxgNqX8dkSo9jg1iX7YIdzAHlrRum5D1jJKRwZk7hLOHVGQMUWbo51iWFg">
+                    <button type="submit">Log out</button>
+                </form>
+
+        </div>
+
+
+
+
+
+
+<script type="text/javascript" src="/static/admin_tools/js/utils.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+    // Load js files syncronously and conditionally
+    var js_files = [
+        {
+            src : '/static/admin_tools/js/jquery/jquery.min.js',
+            test: function() { return typeof(jQuery) == 'undefined'; }
+        },
+        {
+            src : '/static/admin_tools/js/json.min.js',
+            test: function() { return typeof(JSON.stringify) == 'undefined'; }
+        },
+        {
+            src : '/static/admin_tools/js/menu.js',
+            test: function() { return true; }
+        }
+    ];
+
+    loadScripts(js_files, function(){
+        jQuery(function($) {
+
+                process_bookmarks(
+                   "/admin/notifications/pushnotification/40067/change/?_changelist_filters=raw_system_id__exact%3D596447c9-de2a-4cb1-8949-15474a37fcf1",
+                   "View push notification",
+                   "Please enter a name for the bookmark"
+                );
+
+        });
+    });
+
+</script>
+<!--[if IE 6]>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    jQuery('#navigation-menu').children('li').hover(
+        function() { jQuery(this).addClass('over'); },
+        function() { jQuery(this).removeClass('over'); }
+    );
+});
+</script>
+<![endif]-->
+
+
+
+
+
+
+<form id="bookmark-form" action="/admin_tools/menu/add_bookmark/" method="POST">
+    <input type="hidden" name="next" value="/admin/notifications/pushnotification/40067/change/%3F_changelist_filters%3Draw_system_id__exact%253D596447c9-de2a-4cb1-8949-15474a37fcf1" />
+    <input type="hidden" name="url" value="/admin/notifications/pushnotification/40067/change/%3F_changelist_filters%3Draw_system_id__exact%253D596447c9-de2a-4cb1-8949-15474a37fcf1" />
+    <input type="hidden" name="title" value="View push notification" />
+    <button id="bookmark-button" type="submit">Add</button>
+</form>
+
+
+
+
+
+<ul id="navigation-menu">
+
+<li class="menu-item first"><a href="/admin/">Dashboard</a></li>
+
+<li class="menu-item disabled bookmark"><a href="#">Bookmarks</a></li>
+
+
+
+<li class="menu-item"><a href="#" class="has-icon">Internal</a><ul><li class="menu-item"><a href="/admin/cms/qa_settings">QA Settings</a></li><li class="menu-item"><a href="/admin/notifications/" class="has-icon">Notifications</a><ul><li class="menu-item"><a href="/admin/notifications/pushnotification/">Push notifications</a></li></ul></li></ul></li>
+
+<li class="menu-item"><a href="/static/help/cms/">Help</a></li>
+
+</ul>
+
+
+
+    </div>
+
+    <!-- END Header -->
+
+<div class="breadcrumbs">
+<a href="/admin/">Home</a>
+&rsaquo; <a href="/admin/notifications/">Notifications</a>
+&rsaquo; <a href="/admin/notifications/pushnotification/">Push notifications</a>
+&rsaquo; FirstCaption
+</div>
+
+
+
+    <div class="main" id="main">
+
+
+
+<button class="sticky toggle-nav-sidebar" id="toggle-nav-sidebar" aria-label="Toggle navigation"></button>
+<nav class="sticky" id="nav-sidebar">
+  <input type="search" id="nav-filter"
+         placeholder="Start typing to filter…"
+         aria-label="Filter navigation items">
+
+
+
+
+    <div class="app-notifications module current-app">
+      <table>
+        <caption>
+          <a href="/admin/notifications/" class="section" title="Models in the Notifications application">Notifications</a>
+        </caption>
+
+          <tr class="model-pushnotification current-model">
+
+              <th scope="row"><a href="/admin/notifications/pushnotification/" aria-current="page">Push notifications</a></th>
+
+
+
+              <td></td>
+
+
+
+          </tr>
+
+      </table>
+    </div>
+
+
+
+</nav>
+
+
+
+      <div class="content">
+
+
+
+        <!-- Content -->
+        <div id="content" class="colM">
+
+          <h1>View push notification</h1>
+          <h2>FirstCaption</h2>
+          <div id="content-main">
+
+
+  <ul class="object-tools">
+
+
+
+<li>
+
+    <a href="/admin/notifications/pushnotification/40067/history/?_changelist_filters=raw_system_id__exact%3D596447c9-de2a-4cb1-8949-15474a37fcf1" class="historylink">History</a>
+</li>
+
+
+
+
+  </ul>
+
+
+<form action="?_changelist_filters=raw_system_id__exact%3D596447c9-de2a-4cb1-8949-15474a37fcf1" method="post" id="pushnotification_form" novalidate><input type="hidden" name="csrfmiddlewaretoken" value="DndWAMMxgNqX8dkSo9jg1iX7YIdzAHlrRum5D1jJKRwZk7hLOHVGQMUWbo51iWFg">
+<div>
+
+
+
+
+
+
+
+  <fieldset class="module aligned ">
+
+
+
+        <div class="form-row field-id">
+
+
+                <div>
+
+
+                        <label>ID:</label>
+
+                            <div class="readonly">40067</div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-send_date">
+
+
+                <div>
+
+
+                        <label>Send date:</label>
+
+                            <div class="readonly">-</div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-state">
+
+
+                <div>
+
+
+                        <label>State:</label>
+
+                            <div class="readonly">Open</div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-result_data">
+
+
+                <div>
+
+
+                        <label>Result data:</label>
+
+                            <div class="readonly">-</div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-customization">
+
+
+                <div>
+
+
+                        <label>Customization:</label>
+
+                            <div class="readonly"><a href="/admin/cms/customization/1/change/">default</a></div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-count">
+
+
+                <div>
+
+
+                        <label>Count:</label>
+
+                            <div class="readonly">0</div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-raw_targets">
+
+
+                <div>
+
+
+                        <label>Raw targets:</label>
+
+                            <div class="readonly">[&quot;service+cloud-account-test-default-1@networkoptix.com&quot;]</div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-devices">
+
+
+                <div>
+
+
+                        <label>Devices:</label>
+
+                            <div class="readonly"></div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-payload">
+
+
+                <div>
+
+
+                        <label>Payload:</label>
+
+                            <div class="readonly">{&quot;imageUrl&quot;: &quot;https://596447c9-de2a-4cb1-8949-15474a37fcf1/ec2/cameraThumbnail?height=480&amp;streamSelectionMode=forcedSecondary&amp;method=precise&amp;cameraId=e3e9a385-7fe0-3ba5-5482-a86cde7faf48&amp;time=1674170133481&quot;, &quot;url&quot;: &quot;nx-vms://test.ft-cloud.hdw.mx/client/596447c9-de2a-4cb1-8949-15474a37fcf1/view?timestamp=1674170133481&amp;resources=e3e9a385-7fe0-3ba5-5482-a86cde7faf48&quot;}</div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-title">
+
+
+                <div>
+
+
+                        <label>Title:</label>
+
+                            <div class="readonly">FirstCaption</div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-options">
+
+
+                <div>
+
+
+                        <label>Options:</label>
+
+                            <div class="readonly">{&quot;mutable_content&quot;: true, &quot;priority&quot;: &quot;high&quot;}</div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-created_date">
+
+
+                <div>
+
+
+                        <label>Created date:</label>
+
+                            <div class="readonly">Jan. 19, 2023, 11:15 p.m.</div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-body">
+
+
+                <div>
+
+
+                        <label>Body:</label>
+
+                            <div class="readonly"></div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-raw_system_id">
+
+
+                <div>
+
+
+                        <label>Raw system id:</label>
+
+                            <div class="readonly">596447c9-de2a-4cb1-8949-15474a37fcf1</div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-log">
+
+
+                <div>
+
+
+                        <label>Log:</label>
+
+                            <div class="readonly"></div>
+
+
+
+                </div>
+
+        </div>
+
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="submit-row">
+
+
+
+
+
+
+    <div id="inlineErrorHelper"><strong>Warning:</strong> Stucture contains errors and might not display correctly.</div>
+</div>
+<script>
+    window.errorWatcher = {
+        _value: false,
+        _listener: function(val) {
+            const inlineErrorHelper = document.getElementById('inlineErrorHelper');
+            inlineErrorHelper.className = val ? 'errorHelperText' : ''
+        },
+        set value(val) {
+          this._value = val;
+          this._listener(val);
+        },
+        get value() {
+          return this._value;
+        },
+        registerListener: function(listener) {
+          this._listener = listener;
+        }
+    }
+    document.querySelectorAll('.submit-row button.btn').forEach(btn => btn.addEventListener('click', () => window.localStorage.setItem('forceRefresh', Date.now())))
+</script>
+
+
+
+
+    <script id="django-admin-form-add-constants"
+            src="/static/admin/js/change_form.js"
+
+            async>
+    </script>
+
+
+
+
+<script id="django-admin-prepopulated-fields-constants"
+        src="/static/admin/js/prepopulate_init.js"
+        data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form></div>
+
+          
+          <br class="clear">
+        </div>
+        <!-- END Content -->
+        <div id="footer"></div>
+      </div>
+    </div>
+</div>
+<!-- END Container -->
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchValue = new URLSearchParams(window.location.search).get('query');
+      if (searchValue !== null) {
+        document.getElementById('id-search-field').value = searchValue;
+      }
+    })
+  </script>
+</head>
+<body>
+  <form action="" method="get">
+    <input type="text" id="id-search-field" name="query">
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

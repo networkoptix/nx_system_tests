@@ -1,0 +1,27 @@
+[Unit]
+Description=Target service for batch creation and polling
+After=syslog.target
+After=network.target
+Upholds=worker_batch_poll@001.service
+Upholds=worker_batch_poll@002.service
+Upholds=worker_batch_poll@003.service
+Upholds=worker_batch_poll@004.service
+Upholds=worker_batch_poll@005.service
+Upholds=worker_batch_poll@006.service
+Upholds=worker_batch_poll@007.service
+Upholds=worker_batch_poll@008.service
+Upholds=worker_batch_poll@009.service
+Upholds=worker_batch_poll@010.service
+Upholds=worker_batch_poll@011.service
+Upholds=worker_batch_poll@012.service
+Upholds=worker_batch_poll@013.service
+Upholds=worker_batch_poll@014.service
+Upholds=worker_batch_poll@015.service
+Upholds=worker_batch_poll@016.service
+Upholds=worker_batch_poll@017.service
+Upholds=worker_batch_poll@018.service
+Upholds=worker_batch_poll@019.service
+Upholds=worker_batch_poll@020.service
+
+[Install]
+WantedBy=default.target

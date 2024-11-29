@@ -1,0 +1,16 @@
+[Unit]
+Description=Control panel for comparison tests
+After=syslog.target
+After=network.target
+StartLimitBurst=10
+StartLimitIntervalSec=1
+
+[Service]
+WorkingDirectory=%h/comparison_tests_control_panel/ft
+Environment=PYTHONPATH=%h/comparison_tests_control_panel/ft
+ExecStart=%h/comparison_tests_control_panel/ft/venv/bin/python3 -m make_venv -m long_tests.control_panel
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

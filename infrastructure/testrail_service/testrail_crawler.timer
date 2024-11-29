@@ -1,0 +1,10 @@
+[Unit]
+Description=Launch TestRail crawler
+
+[Timer]
+Unit=testrail_crawler.service
+OnCalendar=hourly
+Persistent=false
+
+[Install]
+WantedBy=timers.target

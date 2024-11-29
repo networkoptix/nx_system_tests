@@ -1,0 +1,10 @@
+[Unit]
+Description=Launch RCT for vms_5.1_patch
+
+[Timer]
+Unit=rct_nightly@vms_5.1_patch.service
+OnCalendar=*-*-* 04:00:00
+Persistent=false
+
+[Install]
+WantedBy=timers.target

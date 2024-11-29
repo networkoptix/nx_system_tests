@@ -1,0 +1,62 @@
+; J9778A Configuration Editor; Created on release #YA.16.11.0016
+; Ver #14:41.44.00.04.19.02.13.98.82.34.61.18.28.f3.84.9c.63.ff.37.27:05
+hostname "HP-2530-48-PoEP"
+no cdp run
+cdp mode pass-through
+no cdp enable 1-52
+rest-interface session-idle-timeout 120
+timesync ntp
+ntp unicast
+ntp server 192.168.10.1
+ntp enable
+no stack
+no telnet-server
+web-management ssl
+web-management idle-timeout 120
+ip route 0.0.0.0 0.0.0.0 192.168.10.1
+interface 46
+   name "ARM-jetson-nano-1"
+   exit
+interface 48
+   name "ARM-rasp-4-1"
+   exit
+interface 49
+   name "RCT_server"
+   exit
+interface 50
+   name "ARM_server"
+   exit
+snmp-server community "public" operator
+no snmp-server enable
+no lldp run
+vlan 1
+   name "Management"
+   no untagged 1-36,46,48
+   untagged 37-45,47,49-52
+   ip address 192.168.10.3 255.255.255.0
+   exit
+vlan 2
+   name "RCT"
+   untagged 1-36
+   tagged 49
+   no ip address
+   exit
+vlan 3
+   name "ARM-rasp4-1"
+   untagged 48
+   tagged 50
+   no ip address
+   exit
+vlan 4
+   name "ARM-jetson-nano-1"
+   untagged 46
+   tagged 50
+   no ip address
+   exit
+management-vlan 1
+spanning-tree vlan 1 disable
+no tftp server
+no dhcp config-file-update
+no dhcp image-file-update
+no dhcp tr69-acs-url
+password manager

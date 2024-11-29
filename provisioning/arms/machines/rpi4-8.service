@@ -1,0 +1,11 @@
+[Unit]
+Description=RPI4-8 worker
+
+[Install]
+WantedBy=default.target
+
+[Service]
+WorkingDirectory=%h/machines/rpi4_8
+ExecStart=%h/machines/rpi4_8/arms/.venv/bin/python3 -m arms.beg_ft002.rpi4_8
+Restart=on-failure
+RestartSec=10

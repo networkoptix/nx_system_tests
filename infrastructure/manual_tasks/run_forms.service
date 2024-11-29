@@ -1,0 +1,11 @@
+[Unit]
+Description=Run forms
+After=syslog.target
+After=network.target
+
+[Service]
+WorkingDirectory=%h/run_forms/ft
+ExecStart=%h/run_forms/ft/infrastructure/.venv/bin/python3 -m infrastructure.manual_tasks
+
+[Install]
+WantedBy=default.target

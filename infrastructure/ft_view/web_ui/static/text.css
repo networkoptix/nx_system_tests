@@ -1,0 +1,90 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+
+main {
+    margin: 8px;
+}
+
+code {
+    white-space: pre-wrap;
+    line-height: initial;
+}
+
+.passed, .passed a {
+    color: #3A911E;
+}
+
+.failed {
+    background-color: #D70000;
+    color: white;
+}
+
+.failed a {
+    color: white;
+}
+
+.failed-message {
+    color: #C22626;
+}
+
+.pending {
+    background-color: #ea8100;
+}
+.pending, .pending a {
+    color: white;
+}
+
+.running {
+    background-color: #6495ED;
+}
+.running, .running a {
+    color: white;
+}
+
+.skipped, .skipped a {
+    color: grey;
+}
+
+.unknown {
+    background-color: #AAAA00;
+}
+.unknown, .unknown a {
+    color: white;
+}
+
+.warning-message {
+    color: red;
+    font-size: x-large;
+}
+
+.text-icon {
+    height: 1em;
+    width: 1em;
+    vertical-align: text-bottom;
+    padding-left: 0.1em;
+}
+
+input[type=image].text-icon {
+    font-size: inherit;
+}
+
+.run-vms-mr::before {
+    content: "!";
+}
+
+a .order-icon {
+    height: 1em;
+    width: 1em;
+    vertical-align: text-bottom;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+a.current .order-icon {
+    margin: -1px;
+    border: 1px solid currentColor;
+    padding-right: 2px;
+    padding-left: 2px;
+}

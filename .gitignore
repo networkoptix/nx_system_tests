@@ -1,0 +1,9 @@
+.*
+!.gitignore
+!.gitattributes
+!.gitlab-ci.yml
+!.idea/
+.idea/*
+!.idea/dictionaries/
+__pycache__/
+venv/

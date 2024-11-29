@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+</head>
+<body>
+<div style="margin:25px">
+    <div>
+        <div><h1>PC3</h1></div>
+    </div>
+
+    <div>
+        <div>Image from local folder</div>
+        <!--
+        Local image is a link to external resource as initial index.html used to work like this.
+        New page has to be created to check hyperlinks. After this hyperlink has to be removed from here.
+        -->
+            <div class="image">
+                <div>
+                    <img src="local.svg" title="local image" alt="local image">
+                </div>
+            </div>
+    </div>
+
+
+    <div style="margin-top:50px">
+        <div>Image from the Internet</div>
+        <div id="ext"></div>
+    </div>
+
+</div>
+<script>
+    var img = document.createElement("img");
+    img.src = "{server_base_url}";
+    img.alt = "external image";
+    img.title = "external image";
+    var src = document.getElementById("ext");
+    src.appendChild(img);
+</script>
+
+</body>
+</html>

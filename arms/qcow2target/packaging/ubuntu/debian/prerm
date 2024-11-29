@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# this is templated
+CURRENT_SERVICE_NAME=$SERVICE_NAME
+INSTALLED_SERVICE_PATH=$SERVICE_PATH
+
+
+export SERVICE_PRESENT="false"
+systemctl list-units --full -all | grep "${CURRENT_SERVICE_NAME}"
+
+# shellcheck disable=SC2181
+if [ "$?" == 0 ]; then
+  SERVICE_PRESENT="true"
+fi
+
+if systemctl is-active --quiet "${CURRENT_SERVICE_NAME}"; then
+  systemctl stop "${CURRENT_SERVICE_NAME}"
+fi
+
+if [ $SERVICE_PRESENT == "true" ]; then
+  systemctl disable "${CURRENT_SERVICE_NAME}"
+  rm -rf "${INSTALLED_SERVICE_PATH}" ||  echo "Error while removing service file"
+fi

@@ -1,0 +1,27 @@
+[Unit]
+Description=Target service for worker fast
+After=syslog.target
+After=network.target
+Upholds=worker_fast@001.service
+Upholds=worker_fast@002.service
+Upholds=worker_fast@003.service
+Upholds=worker_fast@004.service
+Upholds=worker_fast@005.service
+Upholds=worker_fast@006.service
+Upholds=worker_fast@007.service
+Upholds=worker_fast@008.service
+Upholds=worker_fast@009.service
+Upholds=worker_fast@010.service
+Upholds=worker_fast@011.service
+Upholds=worker_fast@012.service
+Upholds=worker_fast@013.service
+Upholds=worker_fast@014.service
+Upholds=worker_fast@015.service
+Upholds=worker_fast@016.service
+Upholds=worker_fast@017.service
+Upholds=worker_fast@018.service
+Upholds=worker_fast@019.service
+Upholds=worker_fast@020.service
+
+[Install]
+WantedBy=default.target

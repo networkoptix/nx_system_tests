@@ -1,0 +1,45 @@
+{% import "filter.macros.html" as filter %}
+<fieldset class="page-action-block">
+    <legend>VMS Builds</legend>
+    {%- set url_without_vms = request_params().removed('opt.--installers-url').removed('url.opt.--installers-url.*') -%}
+    {% set urls = [
+        {"url": url_without_vms.href(), "label": "All"},
+        {"url": url_without_vms.added('url.opt.--installers-url.https://artifactory.us.nxteam.dev/artifactory/', '').href(), "label": "CI builds"},
+        {"url": url_without_vms.added('url.opt.--installers-url.https://artifactory.us.nxteam.dev/artifactory/build-vms-release/', '').href(), "label": "Releases"},
+        {"url": url_without_vms.added('url.opt.--installers-url.https://artifactory.us.nxteam.dev/artifactory/build-vms-gitlab/', '').href(), "label": "dev/nx MR"},
+        {"url": url_without_vms.added('url.opt.--installers-url.https://artifactory.us.nxteam.dev/artifactory/build-vms-develop/', '').href(), "label": "dev/nx post-merge"}
+    ] %}
+    <nav>
+        <ul>
+            {% for item in urls %}
+                <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+            {% endfor %}
+        </ul>
+        <script>highlightCurrentLink(document.currentScript.parentElement)</script>
+    </nav>
+    {% if 'opt.--installers-url' in request_params().params() %}
+        <span>
+        {{- filter.filter_data_key('accent-vms-url', request_params().params(), 'opt.--installers-url', url_field='opt.--installers-url') -}}
+        <script>putAccentOnVMSURL(document.currentScript.parentElement);</script>
+        </span>
+    {% else %}
+        <form>
+            {% for field, value in request_params().removed('opt.--installers-url').removed('url.opt.--installers-url.*').to_flask().items() %}
+                <input type="hidden" name="{{ field }}" value="{{ value }}">
+            {% endfor %}
+            <label>
+                Distrib URL:
+                <input
+                    type="text"
+                    name="opt.--installers-url"
+                    size="32"
+                    value="{{ request_params().params().get('opt.--installers-url', '') }}"
+                    required
+                    pattern="^https://.*/distrib/$"
+                    title="must start with 'https://' and end with '/distrib/'"
+                >
+            </label>
+            <button type="submit">Filter</button>
+        </form>
+    {% endif %}
+</fieldset>

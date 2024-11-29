@@ -1,0 +1,23 @@
+[Unit]
+Description=Target service for ARM snapshot workers
+After=syslog.target
+After=network.target
+Upholds=worker_snapshot_jetsonnano@001.service
+Upholds=worker_snapshot_orinnano@001.service
+Upholds=worker_snapshot_rpi4@001.service
+Upholds=worker_snapshot_rpi4@002.service
+Upholds=worker_snapshot_rpi4@003.service
+Upholds=worker_snapshot_rpi4@004.service
+Upholds=worker_snapshot_rpi4@005.service
+Upholds=worker_snapshot_rpi4@006.service
+Upholds=worker_snapshot_rpi4@007.service
+Upholds=worker_snapshot_rpi4@008.service
+Upholds=worker_snapshot_rpi5@001.service
+Upholds=worker_snapshot_rpi5@002.service
+Upholds=worker_snapshot_rpi5@003.service
+Upholds=worker_snapshot_rpi5@004.service
+Upholds=worker_snapshot_rpi5@005.service
+Upholds=worker_snapshot_rpi5@006.service
+
+[Install]
+WantedBy=default.target

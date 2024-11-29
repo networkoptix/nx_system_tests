@@ -1,0 +1,10 @@
+[Unit]
+Description=TestRail crawler that caches all the needed information
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/testrail_service/ft
+ExecStart=/usr/bin/python3 -m infrastructure.testrail_service.crawler
+
+[Install]
+WantedBy=default.target

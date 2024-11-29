@@ -1,0 +1,25 @@
+<fieldset class="page-action-block">
+    <legend>My work</legend>
+    <nav>
+        <ul>
+            <li>
+                My VMS builds
+                {%- if 'user' in request.headers -%}
+                    {{- filter.filter('git.build_info.opt.--installers-url.changeSet.author_email', request.headers.user) -}}
+                {%- else -%}
+                    {{- filter.filter_unavailable("No current user information") -}}
+                {%- endif -%}
+            </li>
+        </ul>
+        <ul>
+            <li>
+                My FT commits
+                {%- if 'user' in request.headers -%}
+                    {{- filter.filter('git.env.COMMIT.author_email', request.headers.user) -}}
+                {%- else -%}
+                    {{- filter.filter_unavailable("No current user information") -}}
+                {%- endif -%}
+            </li>
+        </ul>
+    </nav>
+</fieldset>

@@ -1,0 +1,134 @@
+{
+    "base_url": "https://networkoptix.testrail.net/",
+    "/api/v2/get_run/8531": {
+        "id": 8531,
+        "suite_id": 11,
+        "name": "Merge Systems",
+        "config": "Any OS",
+        "config_ids": [
+            16
+        ],
+        "project_id": 1,
+        "plan_id": 8436,
+        "url": "https://networkoptix.testrail.net/index.php?/runs/view/8531"
+    },
+    "/api/v2/get_tests/8531&offset=0&limit=250": {
+        "offset": 0,
+        "limit": 250,
+        "size": 13,
+        "_links": {
+            "next": null,
+            "prev": null
+        },
+        "tests": [
+            {
+                "id": 371895,
+                "case_id": 1561,
+                "run_id": 8531,
+                "title": "Merge system to current system (check password and system name)",
+                "custom_autotest_status": 2,
+                "custom_gui_autotest_status": 4,
+                "custom_auto_tests": "https://networkoptix.atlassian.net/wiki/spaces/SD/pages/71467018/Merge+systems+test\r\n\r\ntests/test_merge.py/test_servers_backed_up_before_merge"
+            },
+            {
+                "id": 371896,
+                "case_id": 1562,
+                "run_id": 8531,
+                "title": "Merge system to remote system (check password and system name)",
+                "custom_autotest_status": 4,
+                "custom_gui_autotest_status": 4,
+                "custom_auto_tests": "https://networkoptix.atlassian.net/wiki/spaces/SD/pages/71467018/Merge+systems+test"
+            },
+            {
+                "id": 371898,
+                "case_id": 1593,
+                "run_id": 8531,
+                "title": "Check licenses after merge",
+                "custom_autotest_status": 2,
+                "custom_gui_autotest_status": 5,
+                "custom_auto_tests": "tests/test_merge.py/test_license_after_merge"
+            },
+            {
+                "id": 371899,
+                "case_id": 1594,
+                "run_id": 8531,
+                "title": "Check users, layouts, servers and cameras after merge",
+                "custom_autotest_status": 4,
+                "custom_gui_autotest_status": 5
+            },
+            {
+                "id": 371906,
+                "case_id": 46950,
+                "run_id": 8531,
+                "title": "Check archive after merge",
+                "custom_autotest_status": 4,
+                "custom_gui_autotest_status": 5
+            },
+            {
+                "id": 371897,
+                "case_id": 1590,
+                "run_id": 8531,
+                "title": "Add single server, merge the main server (check system's password and systems' changes)",
+                "custom_autotest_status": 2,
+                "custom_gui_autotest_status": 4,
+                "custom_auto_tests": "not actual tests/test_merge.py/test_simplest_merge"
+            },
+            {
+                "id": 371907,
+                "case_id": 81206,
+                "run_id": 8531,
+                "title": "Add single server, merge not the main server (check system's password and systems' changes)",
+                "custom_autotest_status": 4,
+                "custom_gui_autotest_status": 5,
+                "custom_auto_tests": "not actual tests/test_merge.py/test_simplest_merge"
+            },
+            {
+                "id": 371900,
+                "case_id": 1673,
+                "run_id": 8531,
+                "title": "Restore factory defaults for server on PC",
+                "custom_autotest_status": 3
+            },
+            {
+                "id": 371905,
+                "case_id": 30425,
+                "run_id": 8531,
+                "title": "Detach server with internet from the system",
+                "custom_autotest_status": 3,
+                "custom_auto_tests": "Unit test - Detach from system"
+            },
+            {
+                "id": 371901,
+                "case_id": 6322,
+                "run_id": 8531,
+                "title": "Cloud system cannot be merge to local system",
+                "custom_autotest_status": 3,
+                "custom_gui_autotest_status": 4
+            },
+            {
+                "id": 371902,
+                "case_id": 6323,
+                "run_id": 8531,
+                "title": "Merge is successfull if merge local system to cloud system",
+                "custom_autotest_status": 3,
+                "custom_gui_autotest_status": 4
+            },
+            {
+                "id": 371903,
+                "case_id": 6720,
+                "run_id": 8531,
+                "title": "Cannot merge system to a new system",
+                "custom_autotest_status": 3,
+                "custom_gui_autotest_status": 4
+            },
+            {
+                "id": 371904,
+                "case_id": 6721,
+                "run_id": 8531,
+                "title": "Can merge new system to currently connected system",
+                "custom_autotest_status": 3,
+                "custom_gui_autotest_status": 4
+            }
+        ]
+    }
+}

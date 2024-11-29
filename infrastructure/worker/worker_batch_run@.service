@@ -1,0 +1,8 @@
+[Unit]
+Description=Worker %i for batch job tasks
+
+[Service]
+WorkingDirectory=%h/worker_batch_run@/ft
+Environment=FT_UNIT_NAME=%N
+Environment=PREFERRED_USER_NAME=%i
+ExecStart=%h/worker_batch_run@/ft/infrastructure/.venv/bin/python3 -m infrastructure.worker ft:tasks_batch_run ft:ft_view_job_updates

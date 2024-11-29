@@ -1,0 +1,22 @@
+{%- if warning is defined and warning -%}
+    <div class="failed">{{ warning }}</div>
+{%- endif -%}
+<table style="width: 100%">
+    <thead>
+    {% include "run_head_tr.inc.html" %}
+    </thead>
+    <tbody>
+    <script>
+        let testNameSequence = new StaircaseSequence((stageName) => {
+            let pathMatch = /^(?<dir>.+\.|)(?<file>.+)$/.exec(stageName);
+            return [pathMatch.groups['dir'], pathMatch.groups['file']];
+        })
+    </script>
+    {% for run in runs %}
+        {% include "run_tr.inc.html" %}
+    {% endfor %}
+    </tbody>
+</table>
+{%- if warning is defined and warning -%}
+    <div class="failed">{{ warning }}</div>
+{%- endif -%}

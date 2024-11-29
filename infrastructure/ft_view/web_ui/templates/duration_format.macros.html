@@ -1,0 +1,5 @@
+{% macro normal(duration_sec) -%}
+    {% if duration_sec is not none -%}
+        {{ '%.0f' | format(duration_sec) }}<small> s</small>
+    {%- endif %}
+{%- endmacro %}

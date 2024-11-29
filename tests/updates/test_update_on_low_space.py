@@ -1,0 +1,73 @@
+# Copyright 2018-present Network Optix, Inc. Licensed under MPL 2.0: www.mozilla.org/MPL/2.0/
+import sys
+
+from directories import get_run_dir
+from installation import ClassicInstallerSupplier
+from installation import UpdateServer
+from mediaserver_scenarios.merging import setup_system
+from mediaserver_scenarios.provisioned_mediaservers import FTMachinePool
+from runner.ft_test import run_ft_test
+from tests.base_test import VMSTest
+from tests.updates.common import platforms
+
+
+class test_triangle(VMSTest):
+    """Test update low space.
+
+    Selection-Tag: gitlab
+    TestRail: https://networkoptix.testrail.net/index.php?/cases/view/57922
+    """
+
+    def _run(self, args, exit_stack):
+        _test_update_low_space(args.distrib_url, 'v0', exit_stack)
+
+
+def _test_update_low_space(distrib_url, api_version, exit_stack):
+    installer_supplier = ClassicInstallerSupplier(distrib_url)
+    distrib = installer_supplier.distrib()
+    distrib.assert_branch_not_mobile()
+    distrib.assert_not_older_than('vms_6.0', "Update tests only supported by VMS 6.0 and newer")
+    distrib.assert_updates_support("Update testing is not supported for release builds")
+    updates_supplier = installer_supplier.update_supplier()
+    pool = FTMachinePool(installer_supplier, get_run_dir(), api_version)
+    [system, _, _] = exit_stack.enter_context(pool.system({
+        'machines': [
+            {'alias': 'first', 'type': 'ubuntu22'},
+            {'alias': 'second', 'type': 'ubuntu22'},
+            {'alias': 'proxy-1', 'type': 'ubuntu22'},
+            ],
+        'mergers': [],
+        'networks': {
+            '10.254.1.0/24': {'first': None, 'proxy-1': None},
+            '10.254.2.0/24': {'proxy-1': None, 'second': None},
+            '10.254.3.0/24': {'first': None, 'second': None},
+            },
+        }))
+    setup_system(system, [
+        {'local': 'proxy-1', 'network': '10.254.1.0/24', 'remote': 'first', 'take_remote_settings': True},
+        {'local': 'second', 'network': '10.254.2.0/24', 'remote': 'proxy-1', 'take_remote_settings': True},
+        ])
+    for mediaserver in system.values():
+        # Available space must be less than installer size plus additional 100
+        # Mb for the Linux update packages to cause the noFreeSpaceToDownload
+        # error. I use the average value here until the logic will be changed.
+        mediaserver.os_access.maintain_free_disk_space(120 * 1024 * 1024)
+    update_archive = updates_supplier.fetch_server_updates(platforms['ubuntu22'])
+    [first, second, proxy] = system.values()
+    update_server = UpdateServer(update_archive, first.os_access.source_address())
+    exit_stack.enter_context(update_server.serving())
+    first.api.start_update(update_server.update_info())
+    update_status = first.api.get_update_status()
+    first_server_id = first.api.get_server_id()
+    assert update_status[first_server_id]['code'] == 'error'
+    assert update_status[first_server_id]['errorCode'] == 'noFreeSpaceToDownload'
+    second_server_id = second.api.get_server_id()
+    assert update_status[second_server_id]['code'] == 'error'
+    assert update_status[second_server_id]['errorCode'] == 'noFreeSpaceToDownload'
+    proxy_server_id = proxy.api.get_server_id()
+    assert update_status[proxy_server_id]['code'] == 'error'
+    assert update_status[proxy_server_id]['errorCode'] == 'noFreeSpaceToDownload'
+
+
+if __name__ == '__main__':
+    exit(run_ft_test(sys.argv, [test_triangle()]))

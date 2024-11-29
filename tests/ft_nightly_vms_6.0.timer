@@ -1,0 +1,10 @@
+[Unit]
+Description=Launch all FT tests for vms_6.0
+
+[Timer]
+Unit=ft_nightly@vms_6.0.service
+OnCalendar=00:45:00 Europe/Moscow
+Persistent=false
+
+[Install]
+WantedBy=timers.target

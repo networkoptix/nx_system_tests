@@ -1,0 +1,6 @@
+{% macro coarse(value) -%}
+    {{ strftime(value, "%a %b %d %H:%M") }}
+{%- endmacro %}
+{% macro precise(value) -%}
+    {{ strftime(value, "%H:%M:%S") }}<small>.{{ strftime(value, "%f")[:3] }}</small>
+{%- endmacro %}

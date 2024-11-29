@@ -1,0 +1,102 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <option name="RIGHT_MARGIN" value="200" />
+    <Markdown>
+      <option name="KEEP_LINE_BREAKS_INSIDE_TEXT_BLOCKS" value="false" />
+    </Markdown>
+    <Python>
+      <option name="SPACE_AROUND_POWER_OPERATOR" value="false" />
+      <option name="BLANK_LINES_BEFORE_FIRST_METHOD" value="1" />
+      <option name="NEW_LINE_AFTER_COLON" value="true" />
+      <option name="DICT_WRAPPING" value="5" />
+      <option name="DICT_NEW_LINE_AFTER_LEFT_BRACE" value="true" />
+      <option name="OPTIMIZE_IMPORTS_SORT_NAMES_IN_FROM_IMPORTS" value="true" />
+      <option name="OPTIMIZE_IMPORTS_ALWAYS_SPLIT_FROM_IMPORTS" value="true" />
+      <option name="FROM_IMPORT_WRAPPING" value="5" />
+      <option name="FROM_IMPORT_NEW_LINE_AFTER_LEFT_PARENTHESIS" value="true" />
+      <option name="FROM_IMPORT_NEW_LINE_BEFORE_RIGHT_PARENTHESIS" value="true" />
+      <option name="FROM_IMPORT_PARENTHESES_FORCE_IF_MULTILINE" value="true" />
+      <option name="FROM_IMPORT_TRAILING_COMMA_IF_MULTILINE" value="true" />
+      <option name="HANG_CLOSING_BRACKETS" value="true" />
+    </Python>
+    <SqlCodeStyleSettings version="7">
+      <option name="KEYWORD_CASE" value="2" />
+      <option name="IDENTIFIER_CASE" value="1" />
+      <option name="TYPE_CASE" value="4" />
+      <option name="ALIAS_CASE" value="4" />
+      <option name="BUILT_IN_CASE" value="4" />
+      <option name="QUOTED_IDENTIFIER_CASE" value="1" />
+      <option name="QUOTE_IDENTIFIER" value="1" />
+      <option name="QUERY_EL_LINE" value="0" />
+      <option name="QUERY_EL_COMMA" value="2" />
+      <option name="QUERY_IN_ONE_STRING" value="3" />
+      <option name="QUERY_TRUE_INDENT" value="false" />
+      <option name="QUERY_ALIGN_ELEMENTS" value="false" />
+      <option name="QUERY_ALIGN_LINE_COMMENTS" value="false" />
+      <option name="SUBQUERY_OPENING" value="3" />
+      <option name="SUBQUERY_CONTENT" value="2" />
+      <option name="SUBQUERY_CLOSING" value="6" />
+      <option name="INSERT_INTO_NL" value="2" />
+      <option name="INSERT_CONTENT" value="2" />
+      <option name="INSERT_CLOSING" value="6" />
+      <option name="INSERT_TABLE_EL_LINE" value="1" />
+      <option name="INSERT_VALUES_EL_LINE" value="1" />
+      <option name="INSERT_EL_WRAP" value="1" />
+      <option name="INSERT_EL_COMMA" value="2" />
+      <option name="SET_EL_LINE" value="101" />
+      <option name="SET_EL_COMMA" value="2" />
+      <option name="SET_ALIGN_EQUAL_SIGN" value="false" />
+      <option name="SELECT_EL_LINE" value="0" />
+      <option name="SELECT_EL_WRAP" value="2" />
+      <option name="SELECT_EL_COMMA" value="2" />
+      <option name="SELECT_KEEP_N_ITEMS_IN_LINE" value="3" />
+      <option name="SELECT_ALIGN_AS" value="false" />
+      <option name="SELECT_ASTERISK_REGULAR" value="true" />
+      <option name="FROM_EL_WRAP" value="2" />
+      <option name="FROM_EL_COMMA" value="2" />
+      <option name="FROM_ONLY_JOIN_INDENT" value="1" />
+      <option name="FROM_PLACE_ON" value="10" />
+      <option name="WHERE_EL_LINE" value="1" />
+      <option name="ORDER_EL_WRAP" value="2" />
+      <option name="ORDER_EL_COMMA" value="2" />
+      <option name="TABLE_OPENING" value="1" />
+      <option name="TABLE_CONTENT" value="2" />
+      <option name="TABLE_CLOSING" value="6" />
+      <option name="TABLE_TYPES_ALIGN" value="false" />
+      <option name="TABLE_DEFAULTS_ALIGN" value="false" />
+      <option name="TABLE_NULLABILITIES_ALIGN" value="false" />
+      <option name="POST_OPT_WRAP_1" value="true" />
+      <option name="POST_OPT_INDENT" value="false" />
+      <option name="POST_OPT_ALIGN" value="false" />
+      <option name="ROUTINE_ARG_CONTENT" value="2" />
+      <option name="ROUTINE_ARG_CLOSING" value="1" />
+      <option name="ROUTINE_ARG_WRAP" value="1" />
+      <option name="ROUTINE_ARG_COMMA" value="2" />
+      <option name="ROUTINE_AS_WRAP" value="true" />
+      <option name="ROUTINE_PG_L_QUOTE_WRAP_BEFORE" value="false" />
+      <option name="ROUTINE_PG_R_QUOTE_WRAP_AFTER" value="true" />
+      <option name="SCRIPT_STMT_SEMICOLON_WRAP" value="2" />
+      <option name="SCRIPT_STMT_FOLLOWS_BLANK_LINE" value="1" />
+      <option name="IMP_COMMON_KEEP_BLANK_LINES_IN_CODE" value="1" />
+      <option name="IMP_DECLARE_EL_WRAP" value="1" />
+      <option name="IMP_DECLARE_ALIGN_TYPE" value="false" />
+      <option name="IMP_DECLARE_ALIGN_EQ" value="false" />
+      <option name="EXPR_BINARY_OP_ALIGN" value="false" />
+    </SqlCodeStyleSettings>
+    <codeStyleSettings language="JSON">
+      <indentOptions>
+        <option name="INDENT_SIZE" value="4" />
+      </indentOptions>
+    </codeStyleSettings>
+    <codeStyleSettings language="Markdown">
+      <option name="RIGHT_MARGIN" value="72" />
+      <option name="WRAP_ON_TYPING" value="1" />
+    </codeStyleSettings>
+    <codeStyleSettings language="Python">
+      <option name="SOFT_MARGINS" value="79,99" />
+    </codeStyleSettings>
+    <codeStyleSettings language="SQL">
+      <option name="KEEP_FIRST_COLUMN_COMMENT" value="false" />
+    </codeStyleSettings>
+  </code_scheme>
+</component>

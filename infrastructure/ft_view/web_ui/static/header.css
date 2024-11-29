@@ -1,0 +1,66 @@
+header {
+    color: white;
+    background: #1c252b;
+    line-height: 3;
+    padding: 0.25em 0.75em;
+}
+
+header a {
+    color: white;
+}
+
+header a:hover {
+    background: rgba(118, 118, 119, 0.6);
+}
+
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+header ul > li {
+    display: inline;
+}
+
+header ul > li > a {
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+header ul > li > a, header ul > li > span {
+    padding: 0.5em;
+    white-space: nowrap;
+}
+
+aside {
+    color: white;
+    background-color: #1c252b;
+    float: right;
+    margin: 0.33em;
+    font-size: small;
+    text-align: right;
+}
+
+aside a {
+    color: white;
+}
+
+aside ul {
+    margin: 0;
+    padding: 0;
+}
+
+aside ul > li {
+    display: inline-block;
+    white-space: nowrap;
+    /*padding-left: 1em;*/
+}
+
+aside ul > li:before {
+    content: "\00A0\25AA\00A0";
+}
+
+aside ul > li:first-child:before {
+    content: "";
+}

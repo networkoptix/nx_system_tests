@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<VirtualBox xmlns="http://www.virtualbox.org/" version="1.15-linux">
+    <Machine uuid="{FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF}" name="trusty" OSType="Ubuntu_64" snapshotFolder="Snapshots">
+        <ExtraData>
+            <ExtraDataItem name="GUI/LastGuestSizeHint" value="1024,768"/>
+            <ExtraDataItem name="VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled" value="1"/>
+        </ExtraData>
+        <Hardware>
+            <CPU count="{cpu_count}">
+                <PAE enabled="true"/>
+                <LongMode enabled="true"/>
+                <HardwareVirtExLargePages enabled="true"/>
+            </CPU>
+            <Memory RAMSize="{ram_mb}"/>
+            <Paravirt provider="KVM"/>
+            <Boot>
+                <Order position="1" device="HardDisk"/>
+                <Order position="2" device="DVD"/>
+                <Order position="3" device="None"/>
+                <Order position="4" device="None"/>
+            </Boot>
+            <Display controller="VMSVGA" VRAMSize="32"/>
+            <RemoteDisplay enabled="false"/>
+            <BIOS>
+                <IOAPIC enabled="true"/>
+            </BIOS>
+            <USB>
+                <Controllers>
+                    <Controller name="xHCI" type="XHCI"/>
+                </Controllers>
+            </USB>
+            <Network>
+                <Adapter slot="0" enabled="true" MACAddress="005300000001" cable="true" type="82540EM">
+                    <NAT network="192.168.254.0/24">
+                        <DNS use-proxy="true"/>
+                    </NAT>
+                </Adapter>
+                <Adapter slot="1" enabled="true" MACAddress="005300000002" cable="false" bandwidthGroup="network2" type="82540EM"/>
+                <Adapter slot="2" enabled="true" MACAddress="005300000003" cable="false" bandwidthGroup="network3" type="82540EM"/>
+                <Adapter slot="3" enabled="true" MACAddress="005300000004" cable="false" bandwidthGroup="network4" type="82540EM"/>
+            </Network>
+            <UART>
+                <Port slot="0" enabled="true" IOBase="0x3f8" IRQ="4" path="ubuntu-boot.log" hostMode="RawFile"/>
+            </UART>
+            <AudioAdapter driver="Null" enabled="false"/>
+            <RTC localOrUTC="UTC"/>
+            <Clipboard mode="Bidirectional"/>
+            <IO>
+                <BandwidthGroups>
+                    <BandwidthGroup name="network2" type="Network" maxBytesPerSec="0"/>
+                    <BandwidthGroup name="network3" type="Network" maxBytesPerSec="0"/>
+                    <BandwidthGroup name="network4" type="Network" maxBytesPerSec="0"/>
+                    <BandwidthGroup name="network5" type="Network" maxBytesPerSec="0"/>
+                    <BandwidthGroup name="network6" type="Network" maxBytesPerSec="0"/>
+                    <BandwidthGroup name="network7" type="Network" maxBytesPerSec="0"/>
+                    <BandwidthGroup name="network8" type="Network" maxBytesPerSec="0"/>
+                </BandwidthGroups>
+            </IO>
+        </Hardware>
+        <StorageControllers>
+            <StorageController name="SATA" type="AHCI" PortCount="4" useHostIOCache="true" Bootable="true"/>
+            <StorageController name="Floppy" type="I82078" PortCount="1" useHostIOCache="false" Bootable="true"/>
+            <StorageController name="USB" type="USB" PortCount="8" useHostIOCache="false" Bootable="true"/>
+        </StorageControllers>
+    </Machine>
+</VirtualBox>

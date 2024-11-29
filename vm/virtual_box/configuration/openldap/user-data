@@ -1,0 +1,33 @@
+#cloud-config
+growpart:
+  mode: auto
+resize_rootfs: true
+users:
+  - name: root
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDEQcKHVzvNSPUk0qtdTmsEMP9iMV+UhW+jUk7JAvl832v9ULDGeh+cl06CmKhCzMAhnqsjouVs/DZTxxsj0yYKYxaChZPyO8IXHroEoQNRjM7jC9EhaZXrymPgsXO4zrwhTT473qEQGK8ljq9p0Kt+deI7askIPN15yNFpnvoqigygi55ig/w9YKu5yVEF0aT201hpd6lh10GspDyTX2yvmJXUkxdtpXwhx8ih1q28WyMPUW1pgnz0YC+8azWDEgdiDtSpTchVfTOUwb0s4bQJkO/v/c4z7U5oSbJE+4J3/PRsTu+6mASLLSN7PKq8dqNKXblhelAMoi106b9ySuIX
+chpasswd:
+  list: |
+    root:WellKnownPassword2
+  expire: False
+ssh_pwauth: True
+timezone: "Etc/UTC"
+write_files:
+- content: ''
+  path: /etc/cloud/cloud-init.disabled
+- content: |
+    [Match]
+    Name=enp0s3
+
+    [Network]
+    DHCP=yes
+
+    [DHCPv4]
+    ClientIdentifier=mac
+  path: /etc/systemd/network/50-enp0s3.network
+runcmd:
+- sed -i '/^#*PermitRootLogin/c PermitRootLogin yes' /etc/ssh/sshd_config
+- rm /etc/netplan/50-cloud-init.yaml
+power_state:
+  mode: poweroff
+  timeout: 120

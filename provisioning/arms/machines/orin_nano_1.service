@@ -1,0 +1,11 @@
+[Unit]
+Description=Orin Nano 1 worker
+
+[Install]
+WantedBy=default.target
+
+[Service]
+WorkingDirectory=%h/machines/orin_nano_1
+ExecStart=%h/machines/orin_nano_1/arms/.venv/bin/python3 -m arms.beg_ft002.orin_nano_1
+Restart=on-failure
+RestartSec=10

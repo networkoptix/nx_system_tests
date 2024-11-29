@@ -1,0 +1,7 @@
+[Unit]
+Description=Worker %i for Orin Nano build tasks
+
+[Service]
+WorkingDirectory=%h/worker_snapshot_arm/ft
+Environment=FT_UNIT_NAME=%N
+ExecStart=%h/worker_snapshot_arm/ft/infrastructure/.venv/bin/python3 -m infrastructure.worker ft:tasks_snapshot_orinnano ft:gitlab_job_updates

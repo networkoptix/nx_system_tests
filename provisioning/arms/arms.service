@@ -1,0 +1,10 @@
+[Install]
+WantedBy=default.target
+
+[Unit]
+Description=ARMS daemon
+
+[Service]
+Type=simple
+WorkingDirectory=%h/arms/ft
+ExecStart=%h/arms/ft/arms/.venv/bin/python3 -m arms.arm_manager

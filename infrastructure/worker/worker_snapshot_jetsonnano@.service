@@ -1,0 +1,8 @@
+
+[Unit]
+Description=Worker %i for Jetson Nano build tasks
+
+[Service]
+WorkingDirectory=%h/worker_snapshot_arm/ft
+Environment=FT_UNIT_NAME=%N
+ExecStart=%h/worker_snapshot_arm/ft/infrastructure/.venv/bin/python3 -m infrastructure.worker ft:tasks_snapshot_jetsonnano ft:gitlab_job_updates

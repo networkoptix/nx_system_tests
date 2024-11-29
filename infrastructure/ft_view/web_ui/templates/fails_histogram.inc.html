@@ -1,0 +1,56 @@
+<fieldset class="page-action-block">
+    <legend>Failure Statistics</legend>
+    {%- if failures_statistics.is_empty() -%}
+    No failures with selected filters
+    {%- else -%}
+        <div style="font-size: x-small;">
+            <div style="display: flex; height: 1em;">
+                {% for failures in failures_statistics.iter_over_failures() %}
+                    <div style="flex: 1; text-align: center;" title="{{ failures.month_abbr() }} {{ failures.date.day }}">
+                        <div style="font-size: 8px; font-weight: bold; vertical-align: sub; color: #D70000;">{{ failures.fails }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+            <svg
+                height="4em"
+                width="60em"
+                preserveAspectRatio="none"
+                shape-rendering="crispEdges"
+            >
+                {% for failures in failures_statistics.iter_over_failures() %}
+                    {% set x = loop.index0 %}
+                    {% set infinitesimal = 1e-6 %}{# Otherwise zero height is accounted in getBBox() #}
+                    <rect x="{{ x }}" y="0" width="1" height="{{ failures.fails + infinitesimal }}" fill="#D70000">
+                        <title>{{ failures.month_abbr() }} {{ failures.date.day }} - {{ failures.fails }} fails</title>
+                    </rect>
+                {% endfor %}
+                <script>
+                    const svg = document.currentScript.parentNode;
+                    const { x, y, width, height } = svg.getBBox();
+                    svg.setAttribute('viewBox', [ x, y, width, Math.max(height, 3) ].join(' '));
+                    svg.setAttribute('transform', 'scale(1, -1)');
+                </script>
+            </svg>
+            <div style="display: flex; height: 3em">
+                {% set ns = namespace(prev_month=None) %}
+                {% for failures in failures_statistics.iter_over_failures() %}
+                    <div style="flex: 1; text-align: center;">
+                        <div title="{{ failures.month_abbr() }} {{ failures.date.day }}">
+                            <a href="{{ request_params().added('day', failures.date.isoformat()).href() }}">
+                                {{ failures.date.day }}
+                            </a>
+                        </div>
+                        {% if failures.date.month != ns.prev_month %}
+                            <div style="font-weight: bold;">{{ failures.month_abbr() }}</div>
+                            {% set ns.prev_month = failures.date.month %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div style="display: flex; justify-content: space-between; height: 1em; font-size: larger">
+                <div>Last {{ failures_statistics | length }} days: {{ failures_statistics.get_failures_total() }}</div>
+                <div>Last week: {{ failures_statistics.get_failures_for_last_days(7) }}</div>
+            </div>
+        </div>
+    {%- endif -%}
+</fieldset>

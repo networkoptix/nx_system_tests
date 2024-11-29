@@ -1,0 +1,247 @@
+[
+    {
+        "id": "{03ff3405-9d33-cc5b-2b15-dcbd73bd5a5a}",
+        "name": "Stub: Video Frames",
+        "parentId": "{5bc608ac-79b7-1fea-fc7f-4952132d3bd3}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{0b1ab8c9-4e46-b4ba-6b15-ea75b618ae0e}",
+        "name": "Stub: Events",
+        "parentId": "{787ccf31-fb0a-f7c0-e092-ed71ed3bb63e}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{0bfb37a3-06bd-3505-47f5-8fb8d2712e7f}",
+        "name": "Stub: Custom Metadata",
+        "parentId": "{9032d2f8-6ede-daf5-9666-e1eef16472bb}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{0effea08-d494-aed7-bc53-beab1f45ce9d}",
+        "name": "Dahua",
+        "parentId": "{d1d72692-d774-affc-3205-3d6424a28ca2}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{177334ce-ee4d-9856-bde8-c212b8c5cd7d}",
+        "name": "VIVOTEK",
+        "parentId": "{9a9c6489-277a-b9f5-f869-e7a64ea91982}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{1c6e620d-5f16-f2a7-8baa-3d9f2e7d9085}",
+        "name": "Uniview",
+        "parentId": "{2a1388d3-a49f-ef11-4337-70538b0e1e48}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{1e5613c4-b7ac-546d-6623-8c179de18114}",
+        "name": "Hikvision",
+        "parentId": "{8c2db6a0-5422-5de4-6477-f4b77a3c474c}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{2be75f42-f76f-3330-18d2-06e446981247}",
+        "name": "E-Vision",
+        "parentId": "{c453f002-5449-103a-306f-05901c55b855}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{3596eadc-0afc-5c80-ddcb-149856119dbc}",
+        "name": "Sample",
+        "parentId": "{b89d0ead-5e67-e02b-8759-a3b649b6ba8e}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{3d851835-5a60-dc09-8971-eb51ff815150}",
+        "name": "Stub: Special Objects",
+        "parentId": "{1cff6ffa-6eaf-3b31-8ae6-fa49008b6718}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{47d21909-d0f5-985a-1756-3451007b1805}",
+        "name": "Stub: HTTP Requests",
+        "parentId": "{c7fbb5da-b900-10a5-9c4b-c862ff97019b}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{570687b4-4876-5841-bfbe-1d24a9914ffa}",
+        "name": "Stub: Object Streamer",
+        "parentId": "{e008ea37-27d8-46a0-bbcc-72588f2874ad}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{5a60ebde-f70f-e7c2-848d-fe18f6937dd0}",
+        "name": "Provision ISR",
+        "parentId": "{81b46aa1-d48c-8526-a726-23f2344eb3fc}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{5d5dc4ea-f9a4-1e6d-6598-a50dd1ee7a0e}",
+        "name": "Stub: Best Shots",
+        "parentId": "{80feb07f-fc41-0aa2-4674-a03e96320f09}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{67bffd70-1ba7-17b3-1c9f-17ca4746660d}",
+        "name": "Milesight",
+        "parentId": "{0fd156c9-d65e-aea3-a7dc-b7af986a4ad3}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{6f326d5d-707b-2352-c33d-cf1c7a73bca3}",
+        "name": "Stub: Plugin Diagnostic Events",
+        "parentId": "{5a9eeb7a-dfa3-540b-c4cb-b31fe5dd0069}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{73b5ba50-146b-520e-49ad-83b96bdec9b1}",
+        "name": "Brickcom",
+        "parentId": "{5b15a644-5cac-0dd5-e955-756cf5096049}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{7a2791db-74af-6259-2d16-dda4a86bebb0}",
+        "name": "VistaCCTV",
+        "parentId": "{c14852f3-ca61-9c2f-a12f-66d28a85b2ae}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{872f6099-ecd0-cda5-6583-090c4ac6352b}",
+        "name": "HYKON",
+        "parentId": "{c70f4948-9bf3-d620-aa3c-4fc8853223dc}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{88bee0fb-9417-2207-fc91-f4a13deb5b9a}",
+        "name": "DW Mx9",
+        "parentId": "{0ce1da24-51aa-6425-2ba7-9014882c2a70}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{8a22bede-2f35-fb70-93ba-4a5b4c3e451c}",
+        "name": "Rhodium",
+        "parentId": "{0d137c38-2997-3098-5d03-b5fc5d45aacd}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{8b58e53f-46d4-407d-b803-684096a068f7}",
+        "name": "Stub: Taxonomy Features",
+        "parentId": "{ba60d7da-d2d6-dd12-e541-b111d150287e}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{a21d9cf8-fe1f-fcce-e218-6bcc0824f5b0}",
+        "name": "Stub: Settings",
+        "parentId": "{1959ea50-f54f-eca3-3aac-3502d14f5906}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{a6f9ed2c-261f-be90-5627-5bac6d0e7110}",
+        "name": "VCA",
+        "parentId": "{82213e2a-b276-e097-cc28-187ab0b0a229}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{aa3369fc-e6ac-c81b-ea60-99b0725585cc}",
+        "name": "Stub: ROI",
+        "parentId": "{945217cf-4b9f-5934-07e8-4bc971a139f0}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{ac6c994d-f479-9d8c-3f8f-b819b851ee9b}",
+        "name": "Stub: SDK Features",
+        "parentId": "{04fd473a-31dd-0419-93f6-3f77ab9a577f}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{ada3c2a7-82cd-c401-bc2f-87543fa627c0}",
+        "name": "Stub: Object Actions",
+        "parentId": "{5b9fdce4-ca54-fe5a-d360-d2480feee6d2}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{b60071a9-92bc-816e-1d99-82f033278c6f}",
+        "name": "Stub: Motion Metadata",
+        "parentId": "{3acebe74-621a-a180-05c8-3b261ddbf995}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{beee013e-d913-8f47-144f-2092371ee118}",
+        "name": "Stub: Object Detection",
+        "parentId": "{4df2998e-c940-c3b2-ad52-3819a5016d15}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{cb4a4ec3-31e4-7fe7-ba2a-e3464b407edc}",
+        "name": "Axis",
+        "parentId": "{eb46f795-9188-e608-6bd3-84b27eaaee3c}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{d018384f-8f08-6a40-70a8-1405ba18b455}",
+        "name": "Hanwha Vision",
+        "parentId": "{8cfba8e8-c681-cf1f-42a6-0fe6737a5058}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{d5654d49-cd34-b4db-0347-f81b18df17c2}",
+        "name": "NYX",
+        "parentId": "{d7c729d7-5273-06b8-1000-f9eade91002f}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{e62f9883-8696-0159-2b6f-2584d9bc52e8}",
+        "name": "ONLY",
+        "parentId": "{3064d321-d168-43f0-8d0c-e4e87580fbd3}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{e6cd6b79-4916-2b83-75e3-5e4fb87a34f5}",
+        "name": "Bosch",
+        "parentId": "{b755edb1-26fa-e846-a2bc-5670d207701f}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    },
+    {
+        "id": "{e9d7203c-6255-a4e9-c91a-d8a439523f4e}",
+        "name": "DW MTT",
+        "parentId": "{90caeb43-c8d5-972e-055c-2aa0b920764d}",
+        "typeId": "{54c0912d-3a2a-5046-39f1-dfb91312fc3a}",
+        "url": ""
+    }
+]

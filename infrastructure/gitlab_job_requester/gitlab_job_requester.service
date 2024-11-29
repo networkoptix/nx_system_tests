@@ -1,0 +1,16 @@
+[Unit]
+Description=Poll GitLab for new jobs and publish them to message broker
+After=syslog.target
+After=network.target
+StartLimitBurst=10
+StartLimitIntervalSec=1
+
+[Service]
+WorkingDirectory=%h/gitlab_job_requester/ft
+Environment=FT_UNIT_NAME=%N
+ExecStart=%h/gitlab_job_requester/ft/infrastructure/.venv/bin/python3 -m infrastructure.gitlab_job_requester
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

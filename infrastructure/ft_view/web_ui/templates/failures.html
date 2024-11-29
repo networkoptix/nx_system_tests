@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% import "sha.macros.html" as sha with context %}
+{% import "time_format.macros.html" as format_time with context %}
+{% if request.args.test_id is defined %}
+    {% set title = "Similar failures of " ~ request.args.test_id ~ " " %}
+{% else %}
+    {% set title = "Similar failures" %}
+{% endif %}
+{% block content %}
+    {% include 'days.block.inc.html' %}
+    {% include 'fails_histogram.inc.html' %}
+    <fieldset class="page-action-block">
+        <legend>Related tickets</legend>
+        {% for ticket in tickets %}
+            <div>
+                <a href="{{ ticket }}">{{ ticket.rsplit('/', 1)[-1] }}</a>
+            </div>
+        {% else %}
+            No tickets linked
+        {% endfor %}
+    </fieldset>
+    <br class="page-action-clear">
+    <fieldset class="page-action-block">
+        <legend>Filters</legend>
+        <form action="">
+            <label>Test: <input type="text" name="test_id" size="100" value="{{ request.args.get('test_id', '') }}"/></label>
+            <br>
+            <label>Error: <input type="text" name="error" size="99" value="{{ request.args.get('error', '') }}"/></label>
+            <br>
+            <button type="submit">Find</button>
+        </form>
+        {% if request.args.name is defined %}
+            <div>
+                <a href="{{ request_params().removed('name').href() }}">Show all runs with similar failures</a>
+            </div>
+        {% endif %}
+    </fieldset>
+    {% include 'builds.inc.html' %}
+    <br class="page-action-clear">
+    {% include "run_table.inc.html" %}
+    {% include 'filters.block.inc.html' %}
+{% endblock %}

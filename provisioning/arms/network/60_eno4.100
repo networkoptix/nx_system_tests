@@ -1,0 +1,4 @@
+auto eno4.100
+iface eno4.100 inet static
+    address 192.168.11.1/24
+    vlan-raw-device eno4

@@ -1,0 +1,13 @@
+[Unit]
+Description=Run RCT for %i
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/rct_nightly/ft
+ExecStart=git fetch origin master
+ExecStart=git checkout origin/master
+ExecStart=/usr/bin/python3 -m make_venv -m real_camera_tests.run_rct --installers-url branch:%i
+TimeoutStartSec=10800
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,15 @@
+[Unit]
+Description=FT View Web UI
+After=syslog.target
+After=network.target
+StartLimitBurst=10
+StartLimitIntervalSec=60
+
+[Service]
+WorkingDirectory=/home/ft/web_ui/ft
+ExecStart=/home/ft/web_ui/ft/infrastructure/ft_view/.venv/bin/waitress-serve --port=8092 infrastructure.ft_view.web_ui.app:app
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

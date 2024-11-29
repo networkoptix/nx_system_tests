@@ -1,0 +1,8 @@
+[Unit]
+Description=Target service for VirtualBox base image workers
+After=syslog.target
+After=network.target
+Upholds=worker_snapshot_vbox_base@ft-141.service
+
+[Install]
+WantedBy=default.target

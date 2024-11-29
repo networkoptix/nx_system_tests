@@ -1,0 +1,12 @@
+server {
+    listen 443 ssl;
+    server_name oidc.nxft.dev;
+    ssl_certificate /home/ft/.config/fullchain.pem;
+    ssl_certificate_key /home/ft/.config/privkey.pem;
+    location /oidc/callback {
+        proxy_pass http://127.0.0.1:8001;
+        proxy_set_header Host $host;
+        proxy_set_header OIDC-Cookie-Domain ".nxft.dev";
+        proxy_set_header OIDC-Cookie "oidc";
+    }
+}

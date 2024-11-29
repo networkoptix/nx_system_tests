@@ -1,0 +1,9 @@
+[Unit]
+Description=Setup iptables (IPv6) rules
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/ip6tables-restore %h/iptables_v6
+
+[Install]
+WantedBy=default.target

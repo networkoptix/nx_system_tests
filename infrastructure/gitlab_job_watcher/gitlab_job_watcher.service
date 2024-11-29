@@ -1,0 +1,15 @@
+[Unit]
+Description=GitLab job watcher
+After=syslog.target
+After=network.target
+StartLimitBurst=5
+StartLimitIntervalSec=3
+
+[Service]
+WorkingDirectory=%h/gitlab_job_watcher/ft
+ExecStart=%h/gitlab_job_watcher/ft/infrastructure/.venv/bin/python3 -m infrastructure.gitlab_job_watcher
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=default.target

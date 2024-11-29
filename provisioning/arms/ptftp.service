@@ -1,0 +1,12 @@
+[Unit]
+Description=tFTp daemon
+
+[Service]
+WorkingDirectory=%h/ptftp/ft
+ExecStartPre=/bin/mkdir -m 777 -p /tmp/ptftp_control
+ExecStart=/usr/bin/authbind python3 -m arms.ptftp -l 0.0.0.0:69 -c /tmp/ptftp_control
+Restart=on-failure
+RestartSec=500ms
+
+[Install]
+WantedBy=default.target

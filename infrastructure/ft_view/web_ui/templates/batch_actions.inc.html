@@ -1,0 +1,10 @@
+<fieldset class="page-action-block">
+    <legend>Send results to TestRail</legend>
+    <form action="http://sc-ft003:8090/" method="get">
+        <input type="hidden" name="revision" value="{{ batch.data['env.COMMIT'] }}" />
+        <input type="hidden" name="tag" value="{{ batch.data['opt.--tag'] }}" />
+        <input type="hidden" name="vms" value="{{ batch.data.get('opt.--installers-url') }}" />
+        <input type="hidden" name="machinery" value="{{ batch.data['opt.--machinery'] }}" />
+        <button type="submit" accesskey="P">P - Preview</button>
+    </form>
+</fieldset>

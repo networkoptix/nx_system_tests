@@ -1,0 +1,196 @@
+<unattend xmlns="urn:schemas-microsoft-com:unattend" xmlns:cpi="urn:schemas-microsoft-com:cpi" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
+    <servicing />
+    <settings pass="windowsPE">
+        <component language="neutral" name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" versionScope="nonSxS">
+            <SetupUILanguage>
+                <UILanguage>en-US</UILanguage>
+                <WillShowUI>Never</WillShowUI>
+            </SetupUILanguage>
+            <InputLocale>0409:00000409</InputLocale>
+            <SystemLocale>en-US</SystemLocale>
+            <UILanguage>en-US</UILanguage>
+            <UILanguageFallback>en-US</UILanguageFallback>
+            <UserLocale>en-US</UserLocale>
+        </component>
+        <component language="neutral" name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" versionScope="nonSxS">
+            <DiskConfiguration>
+                <Disk wcm:action="add">
+                    <CreatePartitions>
+                        <CreatePartition wcm:action="add">
+                            <Order>1</Order>
+                            <Size>32768</Size>
+                            <Type>Primary</Type>
+                        </CreatePartition>
+                    </CreatePartitions>
+                    <DiskID>0</DiskID>
+                    <ModifyPartitions>
+                        <ModifyPartition wcm:action="add">
+                            <Order>1</Order>
+                            <Active>true</Active>
+                            <Extend>false</Extend>
+                            <Format>NTFS</Format>
+                            <Letter>C</Letter>
+                            <PartitionID>1</PartitionID>
+                        </ModifyPartition>
+                    </ModifyPartitions>
+                    <WillWipeDisk>true</WillWipeDisk>
+                </Disk>
+                <WillShowUI>Never</WillShowUI>
+            </DiskConfiguration>
+            <UserData>
+                <AcceptEula>true</AcceptEula>
+            </UserData>
+            <ImageInstall>
+                <OSImage>
+                    <WillShowUI>OnError</WillShowUI>
+                    <InstallToAvailablePartition>true</InstallToAvailablePartition>
+                </OSImage>
+            </ImageInstall>
+            <!-- Apply registry tweaks to Windows PE, skipping the checks in the Windows 11 setup program. This will not make it to the final installation. -->
+            <RunAsynchronous>
+                <RunAsynchronousCommand>
+                    <Order>1</Order>
+                    <Path>reg.exe ADD HKLM\SYSTEM\Setup\LabConfig /v BypassCPUCheck /t REG_DWORD /d 1 /f</Path>
+                    <Description>Windows 11 disable CPU check</Description>
+                </RunAsynchronousCommand>
+                <RunAsynchronousCommand>
+                    <Order>2</Order>
+                    <Path>reg.exe ADD HKLM\SYSTEM\Setup\LabConfig /v BypassRAMCheck /t REG_DWORD /d 1 /f</Path>
+                    <Description>Windows 11 disable RAM check</Description>
+                </RunAsynchronousCommand>
+                <RunAsynchronousCommand>
+                    <Order>3</Order>
+                    <Path>reg.exe ADD HKLM\SYSTEM\Setup\LabConfig /v BypassSecureBootCheck /t REG_DWORD /d 1 /f</Path>
+                    <Description>Windows 11 disable Secure Boot check</Description>
+                </RunAsynchronousCommand>
+                <RunAsynchronousCommand>
+                    <Order>4</Order>
+                    <Path>reg.exe ADD HKLM\SYSTEM\Setup\LabConfig /v BypassStorageCheck /t REG_DWORD /d 1 /f</Path>
+                    <Description>Windows 11 disable Storage check</Description>
+                </RunAsynchronousCommand>
+                <RunAsynchronousCommand>
+                    <Order>5</Order>
+                    <Path>reg.exe ADD HKLM\SYSTEM\Setup\LabConfig /v BypassTPMCheck /t REG_DWORD /d 1 /f</Path>
+                    <Description>Windows 11 disable TPM check</Description>
+                </RunAsynchronousCommand>
+            </RunAsynchronous>
+        </component>
+    </settings>
+    <settings pass="specialize">
+        <component language="neutral" name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" versionScope="nonSxS">
+            <RunSynchronous>
+                <!-- Since "Path is a string with a maximum length of 259 characters", we can bypass it by storing the script inside another tag -->
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>1</Order>
+                    <Path>powershell.exe -NoProfile -WindowStyle Hidden -Command "([xml](Get-Content 'C:\Windows\Panther\unattend.xml')).unattend.FTExtensions.PurgeAppxProvisioning | iex"</Path>
+                    <Description>Remove built-in Windows UWP Apps to prevent their installation during our own setup. Installation of such application may delay Windows shutdown.</Description>
+                </RunSynchronousCommand>
+                <!-- Remove OneDrive to prevent shutdown delays -->
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>2</Order>
+                    <Path>reg.exe unload "HKU\DefaultUser"</Path>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>3</Order>
+                    <Path>cmd.exe /c "del "C:\Windows\System32\OneDriveSetup.exe""</Path>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>4</Order>
+                    <Path>cmd.exe /c "del "C:\Windows\SysWOW64\OneDriveSetup.exe""</Path>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>5</Order>
+                    <Path>reg.exe load "HKU\DefaultUser" "C:\Users\Default\NTUSER.DAT"</Path>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>6</Order>
+                    <Path>reg.exe delete "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Run" /v OneDriveSetup /f</Path>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>7</Order>
+                    <Path>reg.exe unload "HKU\DefaultUser"</Path>
+                </RunSynchronousCommand>
+            </RunSynchronous>
+        </component>
+    </settings>
+    <settings pass="oobeSystem">
+        <component language="neutral" name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" versionScope="nonSxS">
+            <Reseal>
+                <Mode>Audit</Mode>
+            </Reseal>
+        </component>
+    </settings>
+    <settings pass="auditUser">
+        <component language="neutral" name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" versionScope="nonSxS">
+            <Reseal>
+                <Mode>Audit</Mode>
+                <ForceShutdownNow>true</ForceShutdownNow>
+            </Reseal>
+            <RunSynchronous>
+                <!-- Enable autorun script for next stages -->
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>REG ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /v StartupRun /d "D:\StartupRun.cmd 1>>C:\Snapshot.log 2>&amp;1" /f</Path>
+                    <Order>1</Order>
+                </RunSynchronousCommand>
+            </RunSynchronous>
+        </component>
+    </settings>
+    <settings pass="auditSystem">
+        <component language="neutral" name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" versionScope="nonSxS">
+            <Reseal>
+                <Mode>Audit</Mode>
+            </Reseal>
+        </component>
+    </settings>
+    <cpi:offlineImage cpi:source="" />
+    <FTExtensions>
+        <!-- The full list of applications could be obtained via "Get-AppxProvisionedPackage -Online". -->
+        <PurgeAppxProvisioning>
+            <![CDATA[
+Get-AppxProvisionedPackage -Online | Where-Object -Property 'DisplayName' -In -Value @(
+    'Clipchamp.Clipchamp';
+    'Microsoft.BingNews';
+    'Microsoft.BingWeather';
+    'Microsoft.GamingApp';
+    'Microsoft.GetHelp';
+    'Microsoft.Getstarted';
+    'Microsoft.HEIFImageExtension';
+    'Microsoft.HEVCVideoExtension';
+    'Microsoft.MicrosoftOfficeHub';
+    'Microsoft.MicrosoftSolitaireCollection';
+    'Microsoft.MicrosoftStickyNotes';
+    'Microsoft.Paint';
+    'Microsoft.People';
+    'Microsoft.PowerAutomateDesktop';
+    'Microsoft.RawImageExtension';
+    'Microsoft.ScreenSketch';
+    'Microsoft.StorePurchaseApp';
+    'Microsoft.Todos';
+    'Microsoft.VCLibs.140.00';
+    'Microsoft.VP9VideoExtensions';
+    'Microsoft.WebMediaExtensions';
+    'Microsoft.WebpImageExtension';
+    'Microsoft.Windows.Photos';
+    'Microsoft.WindowsAlarms';
+    'Microsoft.WindowsCamera';
+    'microsoft.windowscommunicationsapps';
+    'Microsoft.WindowsFeedbackHub';
+    'Microsoft.WindowsMaps';
+    'Microsoft.WindowsSoundRecorder';
+    'Microsoft.WindowsStore';
+    'Microsoft.WindowsTerminal';
+    'Microsoft.Xbox.TCUI';
+    'Microsoft.XboxGameOverlay';
+    'Microsoft.XboxGamingOverlay';
+    'Microsoft.XboxIdentityProvider';
+    'Microsoft.XboxSpeechToTextOverlay';
+    'Microsoft.YourPhone';
+    'Microsoft.ZuneMusic';
+    'Microsoft.ZuneVideo';
+    'MicrosoftCorporationII.QuickAssist';
+    'MicrosoftWindows.Client.WebExperience';
+) | Remove-AppxProvisionedPackage -AllUsers -Online
+        ]]>
+        </PurgeAppxProvisioning>
+    </FTExtensions>
+</unattend>

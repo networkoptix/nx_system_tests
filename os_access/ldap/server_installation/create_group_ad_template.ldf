@@ -1,0 +1,10 @@
+dn: CN=$group_name,OU=$ou,DC=local,DC=nx
+changetype: add
+objectClass: top
+objectClass: group
+cn: $group_name
+distinguishedName: CN=$group_name,OU=$ou,DC=local,DC=nx
+instanceType: 4
+sAMAccountName: $group_name
+name: $group_name
+objectCategory: CN=Group,CN=Schema,CN=Configuration,DC=local,DC=nx

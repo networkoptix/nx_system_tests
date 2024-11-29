@@ -1,0 +1,8 @@
+[Unit]
+Description=Worker %i for VirtualBox base image tasks
+
+[Service]
+WorkingDirectory=%h/worker_snapshot_vbox_base@/ft
+Environment=FT_UNIT_NAME=%N
+Environment=PREFERRED_USER_NAME=%i
+ExecStart=%h/worker_snapshot_vbox_base@/ft/infrastructure/.venv/bin/python3 -m infrastructure.worker ft:tasks_snapshot_vbox_base ft:ft_view_job_updates

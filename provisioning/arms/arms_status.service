@@ -1,0 +1,9 @@
+[Unit]
+Description=ARMs statistic daemon
+
+[Install]
+WantedBy=default.target
+
+[Service]
+WorkingDirectory=%h/arms_status
+ExecStart=%h/arms_status/arms/.venv/bin/python3 -m arms.status_service

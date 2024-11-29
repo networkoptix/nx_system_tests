@@ -1,0 +1,16 @@
+[Unit]
+Description=Monitoring service for tasks and workers
+After=syslog.target
+After=network.target
+StartLimitBurst=10
+StartLimitIntervalSec=1
+
+[Service]
+WorkingDirectory=%h/monitoring/ft
+Environment=FT_UNIT_NAME=%N
+ExecStart=%h/monitoring/ft/infrastructure/.venv/bin/python3 -m infrastructure.monitoring
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

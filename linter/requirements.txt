@@ -1,0 +1,12 @@
+attrs==22.2.0
+flake8==6.0.0
+flake8-bugbear==23.1.14
+flake8-class-newline==1.6.0
+flake8-commas==2.1.0
+flake8-docstrings==1.6.0
+flake8-import-order==0.18.2
+mccabe==0.7.0
+pycodestyle==2.10.0
+pydocstyle==6.2.3
+pyflakes==3.0.1
+snowballstemmer==2.2.0

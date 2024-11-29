@@ -1,0 +1,27 @@
+{
+    "id": "nx.metadata_api_test_application",
+    "name": "Metadata API test application",
+    "description": "Test application for Nx Metadata API",
+    "vendor": "Network Optix",
+    "version": "0.0.1",
+    "engineSettingsModel":
+    {
+        "type": "Settings",
+        "items":
+        [
+            {
+                "type": "CheckBox",
+                "name": "RegularCheckBox",
+                "caption": "Test Engine's CheckBox",
+                "defaultValue": false
+            },
+            {
+                "type": "CheckBox",
+                "name": "ActiveCheckBox",
+                "caption": "Test Engine's Active Checkbox",
+                "defaultValue": false,
+                "isActive": true
+            }
+        ]
+    }
+}

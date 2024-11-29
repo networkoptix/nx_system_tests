@@ -1,0 +1,11 @@
+[Unit]
+Description=Launch comparison tests for %i
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/comparison_tests/ft
+ExecStart=/usr/bin/python3 long_tests/launch_comparison_tests.py --branch %i
+Environment=PYTHONPATH=%h/comparison_tests/ft
+
+[Install]
+WantedBy=default.target

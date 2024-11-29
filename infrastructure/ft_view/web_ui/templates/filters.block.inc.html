@@ -1,0 +1,41 @@
+{% import "filter.macros.html" as filter %}
+<fieldset class="page-action-block-right" style="font-size: small">
+    <legend>Extra filters</legend>
+    <table style="margin-bottom: auto">
+        <tbody>
+        {% for k, v in request_params().params().items() %}
+            <tr>
+                <td>{{ k }}</td>
+                <td>=</td>
+                <td>{{ v }}</td>
+                <script>
+                    putAccentOnVMSURL(document.currentScript.previousElementSibling);
+                    putAccentOnWebAdminURL(document.currentScript.previousElementSibling);
+                </script>
+                <td>{{- filter.filter(k, v) -}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <script>(() => {
+        let parent = document.currentScript.parentElement;
+        const siblings = new Map();
+        const excluded = new Set();
+        for (const child of parent.querySelector('tbody').children) {
+            const anchor = child.querySelector('a');
+            if (anchor) {
+                siblings.set(anchor.href, child);
+                excluded.add(anchor);
+            }
+        }
+        for (const linkElement of document.querySelectorAll('a')) {
+            if (siblings.has(linkElement.href) && !excluded.has(linkElement)) {
+                siblings.get(linkElement.href).remove();
+                siblings.delete(linkElement.href);
+            }
+        }
+        if (siblings.size === 0) {
+            parent.remove();
+        }
+    })();</script>
+</fieldset>

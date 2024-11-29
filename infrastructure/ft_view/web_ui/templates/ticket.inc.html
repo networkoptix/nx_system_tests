@@ -1,0 +1,20 @@
+{% if run['run_json'].get('report.ticket') %}
+    <div style="white-space: nowrap">
+        <a href="{{ run['run_json']['report.ticket'] }}">{{ run['run_json']['report.ticket'].rsplit('/', 1)[-1] }}</a>
+        {% if run['run_json'].get('stage_status') == 'failed' %}
+            <form action="/tickets/unlink{{ query_string(**_run_id(run['run_json'])) }}" method="post" style="display: inline">
+                <input type="submit" value="&times;">
+            </form>
+        {% endif %}
+        {{- filter.filter('report.ticket', run['run_json']['report.ticket']) -}}
+    </div>
+{% else %}
+    {% if run['run_json'].get('stage_status') == 'failed' %}
+        <form action="/tickets/link{{ query_string(**_run_id(run['run_json'])) }}" method="post" class="debug">
+            <label>
+                <input type="text" name="ticket" pattern="^https://networkoptix.atlassian.net/browse/\w{1,12}-\d{1,6}$" size="5" title="Press enter to submit">
+            </label>
+            <input type="submit" value="&plus;">
+        </form>
+    {% endif %}
+{% endif %}

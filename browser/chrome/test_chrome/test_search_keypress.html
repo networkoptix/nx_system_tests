@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      function submit() {
+        document.getElementById("input-result").innerHTML = document.getElementById("id-search-field").value;
+      }
+    </script>
+  </head>
+  <body>
+    <form action="javascript:submit()">
+      <input id="id-search-field" type="search" placeholder="Search" value=""/>
+      <input type="submit" hidden/>
+    </form>
+    <div id="input-result">
+    </div>
+  </body>
+</html>

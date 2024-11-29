@@ -1,0 +1,23 @@
+html {
+  width: 100%;
+}
+table {
+  padding-left: 5%;
+  width: 90%;
+  border-collapse: collapse;
+}
+th, td {
+  white-space: nowrap;
+  padding: 0 0.4em;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+tr:nth-child(odd) {
+  background-color: #e8e8e8;
+}
+.running {
+  background-color: #fbdeb3;
+}
+.small-text {
+  font-size: 5px;
+}

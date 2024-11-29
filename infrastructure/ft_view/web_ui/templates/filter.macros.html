@@ -1,0 +1,39 @@
+{%- macro filter(field, value) -%}
+    <span style="user-select: none">
+    {%- if field not in request.args or request.args[field] != value -%}
+        <a href="{{ request_params().added(field, value).href() }}"><img src="/static/filter-icon.svg" alt="Y" class="text-icon"></a>
+    {%- else -%}
+        <a href="{{ request_params().removed(field).href() }}"><img src="/static/filter-remove-icon.svg" alt="X" class="text-icon"></a>
+    {%- endif -%}
+    </span>
+{%- endmacro -%}
+{%- macro filter_data_key(css_class, data, field, display_field=none, url_field=none) -%}
+    {%- if data.get(field) -%}
+        {%- if display_field is not none -%}
+            {%- if data.get(display_field) -%}
+                {%- set display = data[display_field] -%}
+            {%- else -%}
+                {%- set display = '???' -%}
+            {%- endif -%}
+        {%- else -%}
+            {%- set display = data[field] -%}
+        {%- endif -%}
+        {%- if field in data -%}
+                {%- if url_field is not none -%}
+                    <a href="{{ data[url_field] }}"><span class="{{ css_class }}">
+                        {{- display -}}
+                    </span></a>
+                {%- else -%}
+                    <span class="{{ css_class }}">
+                        {{- display -}}
+                    </span>
+                {%- endif -%}
+            {{- filter(field, data[field]) -}}
+        {%- endif -%}
+    {%- endif -%}
+{%- endmacro -%}
+{%- macro filter_unavailable(comment) -%}
+    <span style="user-select: none">
+        <abbr title="{{ comment }}"><img src="/static/filter-icon.svg" alt="{{ comment }}" class="text-icon" style="opacity: 25%"></abbr>
+    </span>
+{%- endmacro -%}

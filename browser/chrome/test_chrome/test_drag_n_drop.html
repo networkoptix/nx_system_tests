@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop Example</title>
+    <style>
+        .dropzone {
+            width: 800px;
+            height: 244px;
+            border: 2px dashed black;
+            margin: 10px;
+            position: absolute;
+            z-index: 0;
+        }
+        .draggable {
+            top: 300px;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px;
+            cursor: move;
+            position: relative;
+            z-index: 99;
+        }
+    </style>
+</head>
+<body>
+    <div id="dropzone" class="dropzone" ondrop="drop(event)" ondragover="allowDrop(event)">
+        Drop Here
+    </div>
+    <div id="draggable" class="draggable" draggable="true">
+        Drag Me
+    </div>
+
+    <script>
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            var data = event.dataTransfer.getData("text");
+            var draggableElement = document.getElementById(data);
+            var dropzone = document.getElementById("dropzone");
+
+            // Calculate the position where the element should be dropped.
+            var rect = dropzone.getBoundingClientRect();
+            var x = event.clientX - rect.left; // x position within the element.
+            var y = event.clientY - rect.top; // y position within the element.
+
+            // Adjust the position to be relative to the mouse pointer.
+            var adjustedX = x - draggableElement.offsetWidth / 2;
+            var adjustedY = y - draggableElement.offsetHeight / 2;
+
+            // Set the position of the draggable element.
+            draggableElement.style.left = adjustedX + 'px';
+            draggableElement.style.top = adjustedY + 'px';
+
+        }
+
+        document.getElementById("draggable").addEventListener("dragstart", drag);
+    </script>
+</body>
+</html>

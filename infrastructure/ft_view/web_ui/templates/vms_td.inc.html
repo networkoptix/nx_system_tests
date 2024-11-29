@@ -1,0 +1,14 @@
+{% import "filter.macros.html" as filter with context %}
+<td>
+    {{- filter.filter_data_key('run-vms-branch', data, 'build_info.opt.--installers-url.branch') -}}
+</td>
+<td>
+    {{- filter.filter_data_key('run-vms-mr', data, 'mr.build_info.opt.--installers-url.changeSet.url', 'mr.build_info.opt.--installers-url.changeSet.id', 'mr.build_info.opt.--installers-url.changeSet.url') -}}
+</td>
+<td>
+    {{- filter.filter_data_key('run-vms-version', data, 'opt.--installers-url', 'build_info.opt.--installers-url.version', 'opt.--installers-url') -}}
+</td>
+<td>
+    {{- filter.filter_data_key('run-vms-author', data, 'git.build_info.opt.--installers-url.changeSet.author_email') -}}
+    <script>document.currentScript.parentElement.querySelectorAll('.run-vms-author').forEach((node) => { node.textContent = node.textContent.replace(/@.+/, '') })</script>
+</td>

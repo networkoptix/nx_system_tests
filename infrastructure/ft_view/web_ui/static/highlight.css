@@ -1,0 +1,35 @@
+.staircase-show .highlight-win {
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+    border-bottom-color: #00a2ed;
+}
+
+.staircase-show .highlight-ubuntu {
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+    border-bottom-color: #e95420;
+}
+
+.staircase-show .highlight-v0 {
+    border-bottom-style: dotted;
+    border-bottom-width: 4px;
+    border-bottom-color: gray;
+}
+
+.staircase-show .highlight-v1,
+.staircase-show .highlight-v2,
+.staircase-show .highlight-v3 {
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+    border-bottom-color: gray;
+}
+
+.highlight-\.ERROR\.log::after,
+.highlight-\.backtrace\.txt::after,
+.highlight--log_file_error\.log::after {
+    content: "\1F4A5";
+}
+
+.highlight-\.mp4::after {
+    content: "\1F3AC";
+}

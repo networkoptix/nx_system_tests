@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% import "sha.macros.html" as sha with context %}
+{% import "filter.macros.html" as filter %}
+{% set title = "Statistics" %}
+{% import "time_format.macros.html" as format_time with context %}
+{% block content %}
+    {% set total = failures_statistics.get_total_by_date(date_filter.focus_day().isoformat()) %}
+    {% set failures = failures_statistics.get_failures_by_date(date_filter.focus_day().isoformat()) %}
+    {% include "days.block.inc.html" %}
+    {% include "builds.inc.html" %}
+    <fieldset class="page-action-block">
+        <legend>Order</legend>
+        <nav>
+            <ul>
+                <li><a href="{{ request_params().removed('order').href() }}">Failures</a></li>
+                <li><a href="{{ request_params().added('order', 'name').href() }}">Name</a></li>
+            </ul>
+            <script>highlightCurrentLink(document.currentScript.parentElement)</script>
+        </nav>
+    </fieldset>
+    <br class="page-action-clear">
+    {% include "fails_histogram.inc.html" %}
+    <br class="page-action-clear">
+    <table style="width: 100%">
+        <thead>
+        <tr>
+            <th>Test</th>
+            <th>Total</th>
+            <th>Failures</th>
+        </tr>
+        </thead>
+        <tbody>
+        <script>
+            let testNameSequence = new StaircaseSequence((stageName) => {
+                let nameMatch = /^(?<path>.+?)(?<rest>[\s:].*|)$/.exec(stageName);
+                let pathMatch = /^(?<dir>.+\/|)(?<file>.+)$/.exec(nameMatch.groups['path']);
+                return [pathMatch.groups['dir'], pathMatch.groups['file'] + nameMatch.groups['rest']];
+            })
+        </script>
+        {% for test_id in order %}
+            <tr>
+                <td>
+                    <span>{{ test_id }}</span>
+                    <script>testNameSequence.processElement(document.currentScript.previousElementSibling)</script>
+                    <small>
+                        <a style="padding-left: 0.2em; padding-right: 0.2em"
+                           href="/runs/{{ query_string(username='ft', args=test_id, day=request.args.get('day'), run_vms_url=request.args.get('run_vms_url')) }}">
+                            Runs
+                        </a>
+                    </small>
+                </td>
+                <td class="number-field">
+                    {{ total[test_id] }}
+                </td>
+                <td class="number-field">
+                    <div class="td {{ 'failed' if failures[test_id] > 0 else 'passed' }}">
+                        {{ failures[test_id] }}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

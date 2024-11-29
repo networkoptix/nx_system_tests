@@ -1,0 +1,7 @@
+[Unit]
+Description=Worker %i for fast tasks
+
+[Service]
+WorkingDirectory=%h/worker_fast@/ft
+Environment=FT_UNIT_NAME=%N
+ExecStart=%h/worker_fast@/ft/infrastructure/.venv/bin/python3 -m infrastructure.worker ft:tasks_fast ft:gitlab_job_updates

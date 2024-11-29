@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <script>
+      function toggle() {
+          var button = document.getElementById('deactivable-button')
+          button.disabled = !button.disabled;
+      }
+    </script>
+  </head>
+  <body>
+    <button id="switch" onclick="toggle()">Switch</button>
+    <button id="deactivable-button">Deactivable</button>
+  </body>
+</html>

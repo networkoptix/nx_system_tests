@@ -1,0 +1,19 @@
+server {
+    listen 443 ssl;
+    server_name pg.nxft.dev;
+    ssl_certificate /home/ft/.config/fullchain.pem;
+    ssl_certificate_key /home/ft/.config/privkey.pem;
+    include /etc/nginx/snippets/oidc-validate.conf;
+    location / {
+        include /etc/nginx/snippets/oidc-auth-request.conf;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Port $server_port;
+        proxy_set_header X-Forwarded-User $user;
+        proxy_redirect off;
+        proxy_pass http://sc-ft001:9080/;
+    }
+}

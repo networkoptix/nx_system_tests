@@ -1,0 +1,14 @@
+[Install]
+WantedBy=default.target
+
+[Unit]
+Description=Snapshots build registry
+After=syslog.target
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/build_registry/ft
+ExecStart=%h/build_registry/ft/infrastructure/.venv/bin/python3 -m infrastructure.build_registry
+Restart=always
+RestartSec=3

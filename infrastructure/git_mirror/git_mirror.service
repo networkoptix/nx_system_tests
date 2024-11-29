@@ -1,0 +1,10 @@
+[Unit]
+Description=Git Daemon for fetching repo via git://
+
+[Service]
+ExecStart=/usr/bin/git daemon --reuseaddr --base-path=%h/git_mirror/ %h/git_mirror/
+Restart=on-failure
+RestartSec=500ms
+
+[Install]
+WantedBy=multi-user.target

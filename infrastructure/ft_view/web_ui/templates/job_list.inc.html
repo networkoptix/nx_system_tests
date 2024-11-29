@@ -1,0 +1,136 @@
+<table style="width: 100%">
+    <thead>
+    <tr>
+        <th style="text-align: left">
+            Test
+            <a href="{{ request_params().added('order', 'name').href() }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="order-icon" viewBox="0 -0.5 4 4">
+                    <title>Alphabetical order</title>
+                    <style>
+                        line {
+                            stroke: black;
+                            stroke-width: 0.5;
+                        }
+                    </style>
+                    <line x1="0" y1="1" x2="2" y2="1"></line>
+                    <line x1="0" y1="2" x2="3" y2="2"></line>
+                    <line x1="0" y1="3" x2="4" y2="3"></line>
+                </svg>
+            </a>
+        </th>
+        <th class="debug">Progress</th>
+        <th colspan="2" style="text-align: right">
+            Result
+            <a href="{{ request_params().removed('order').href() }}">
+                {{- '' -}}
+                <svg class="order-icon" viewBox="0 0 3 3" opacity="0.6">
+                    <title>Order:&#10;failed,&#10;pending,&#10;skipped&#10;passed</title>
+                    <rect y="0" width="3" height="1" fill="#D70000"/>
+                    <rect y="1" width="3" height="1" fill="#6495ED"/>
+                    <rect y="2" width="3" height="1" fill="#3A911E"/>
+                </svg>
+                {{- '' -}}
+            </a>
+            <a href="{{ request_params().added('order', 'pending').href() }}">
+                {{- '' -}}
+                <svg class="order-icon" viewBox="0 0 3 3" opacity="0.6">
+                    <title>Order:&#10;pending,&#10;failed,&#10;skipped&#10;passed</title>
+                    <rect y="0" width="3" height="1" fill="#6495ED"/>
+                    <rect y="1" width="3" height="1" fill="#D70000"/>
+                    <rect y="2" width="3" height="1" fill="#3A911E"/>
+                </svg>
+                {{- '' -}}
+            </a>
+        </th>
+        <th colspan="2">Actions</th>
+        <script>highlightCurrentLink(document.currentScript.parentElement)</script>
+    </tr>
+    </thead>
+    <tbody>
+    <script>
+        let jobNameSequence = new StaircaseSequence((stageName) => {
+            let pathMatch = /^(?<dir>.+\.|)(?<file>.+)$/.exec(stageName);
+            return [pathMatch.groups['dir'], pathMatch.groups['file']];
+        })
+    </script>
+    {% for job in jobs %}
+        <tr>
+            <td class="multiline-field ">
+                <span>{{ job.cmdline['args'] }}</span>
+                {{- '' -}}
+                <script>
+                    jobNameSequence.processElement(document.currentScript.previousElementSibling);
+                    highlightWords(document.currentScript.previousElementSibling);
+                </script>
+                {{- '' -}}
+                <small style="user-select: none; padding-left: 0.8em; padding-right: 0.8em">
+                    {%- if job.source -%}
+                        <a style="padding-left: 0.2em; padding-right: 0.2em" href="{{ job.source }}">Source</a>
+                    {%- endif -%}
+                    {% for tag in job.other_tags %}
+                        <span style="white-space: nowrap; padding-left: 0.2em; padding-right: 0.2em">
+                            {% if tag.startswith('testrail-') %}
+                                <a href="https://networkoptix.testrail.net/index.php?/cases/view/{{ tag[9:] }}">C{{ tag[9:] }}</a>
+                            {% elif tag.isdigit() %}
+                                <a href="https://networkoptix.testrail.net/index.php?/cases/view/{{ tag }}">C{{ tag }}</a>
+                            {% else %}
+                                {{ tag }}
+                            {% endif %}
+                            </span>
+                    {% endfor %}
+                </small>
+            </td>
+            <td class="debug" style="text-align: center">
+                {% if job.url is not none %}
+                    <a href="{{ job.url }}">{{ job.progress }}</a>
+                {%- else -%}
+                    {{ job.progress }}
+                {% endif %}
+            </td>
+            <td style="text-align: right">
+                {%- for run in job.runs -%}
+                    <div class="{{ run['report'].get('report.status', 'unknown') }}" style="display: inline-block; padding: 0 0.2em">
+                        {%- if run['report'].get('report.ticket') -%}
+                            <a href="{{ run['report']['report.ticket'] }}">{{ run['report']['report.ticket'].rpartition('/')[-1] }}</a>&nbsp;
+                        {%- endif -%}
+                        <a href="/runs/{{ query_string(**run['proc']) }}">
+                            {{- strftime(run['proc']['proc.started_at'], "%H:%M") -}}
+                        </a>
+                    </div>
+                {%- endfor -%}
+            </td>
+            <td style="text-align: center">
+                <div class="td {{ job.status }}">
+                    <a href="{{ job.history_url }}">
+                        {{ job.status }}
+                    </a>
+                </div>
+            </td>
+            <td>
+                <button
+                        class="debug"
+                        onclick="navigator.clipboard.writeText('{{ job.cmdline_script }}')"
+                        title="Copy cmdline as a terminal command"
+                >
+                    CMD
+                </button>
+                <button
+                        class="debug"
+                        onclick="navigator.clipboard.writeText('{{ job.cmdline | tojson | forceescape }}')"
+                        title="Copy cmdline JSON for Python or SQL scripts"
+                >
+                    JSON
+                </button>
+                {% if job.status != 'passed' %}
+                    <form method="post" action="/batches/jobs/schedule" style="display: inline">
+                        {%- for key, value in job.cmdline.items() -%}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                        {%- endfor -%}
+                        <button type="submit" onclick="return confirm('Re-run only one test. Status will be updated. Are you sure?')">Re-run</button>
+                    </form>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,25 @@
+network:
+  ethernets:
+    eno1:
+      dhcp4: false
+      dhcp6: false
+      addresses:
+        - 10.0.252.10/29
+      routes:
+        - to: default
+          via: 10.0.252.9
+      nameservers:
+          search: [nxlocal]
+          addresses: [10.2.51.253]
+    eno2:
+      dhcp4: true
+    eno3:
+      dhcp4: true
+    eno4:
+      addresses: [192.168.10.1/24]
+  vlans:
+    eno4.2:
+      id: 2
+      link: eno4
+      addresses: [10.1.1.1/24]
+  version: 2

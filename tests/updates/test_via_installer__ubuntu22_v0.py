@@ -1,0 +1,18 @@
+# Copyright 2018-present Network Optix, Inc. Licensed under MPL 2.0: www.mozilla.org/MPL/2.0/
+from tests.base_test import VMSTest
+from tests.updates.test_via_installer__ import _test_backup_of_previous_database_is_created
+
+
+class test_ubuntu22_v0(VMSTest):
+    """Test backup of previous database is created.
+
+    Selection-Tag: gitlab
+    TestRail: https://networkoptix.testrail.net/index.php?/cases/view/47316
+    """
+
+    def _run(self, args, exit_stack):
+        _test_backup_of_previous_database_is_created(args.distrib_url, 'ubuntu22', 'v0', exit_stack)
+
+
+if __name__ == '__main__':
+    exit(test_ubuntu22_v0().main())

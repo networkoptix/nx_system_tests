@@ -1,0 +1,16 @@
+[Unit]
+Description=FT View Run Updates
+After=syslog.target
+After=network.target
+StartLimitBurst=10
+StartLimitIntervalSec=60
+
+[Service]
+WorkingDirectory=/home/ft/run_updates/ft
+Environment=PYTHONPATH=.
+ExecStart=/home/ft/run_updates/ft/infrastructure/ft_view/.venv/bin/python infrastructure/ft_view/run_updates.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

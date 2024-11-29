@@ -1,0 +1,5 @@
+auto eno4.12
+allow-hotplug eno4.12
+iface eno4.12 inet static
+    address 10.1.0.244/31
+    vlan-raw-device eno4

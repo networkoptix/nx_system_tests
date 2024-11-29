@@ -1,0 +1,39 @@
+.staircase-element {
+    line-height: 1.3;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    display: inline;
+    white-space: nowrap;
+}
+
+.staircase-show {
+    white-space: nowrap;
+}
+
+.staircase-show::after {
+    content: '\A';
+    white-space: pre;
+}
+
+.staircase-show:last-of-type::after {
+    content: initial;
+}
+
+.staircase-hide {
+    white-space: nowrap;
+    overflow: clip;
+    font-size: 1px;
+    opacity: 30%;
+    pointer-events: none;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.staircase-show + .staircase-show .staircase-indent, .staircase-hide {
+    width: 20px;
+    display: inline-block;
+}
+
+.staircase-show.staircase-0 {
+    font-size: 80%;
+}

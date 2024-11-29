@@ -1,0 +1,9 @@
+Source: $PACKAGE_NAME
+Section: unknown
+Priority: optional
+Maintainer: Sergei Vorobev <svorobev@networkoptix.com>
+Package: $PACKAGE_NAME
+Architecture: all
+Depends:
+Description: userspace iSCSI server sharing qcow2 disks
+Version: $PACKAGE_VERSION

@@ -1,0 +1,6 @@
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+-A OUTPUT -m owner --gid-owner ft -j REJECT --reject-with icmp6-adm-prohibited
+COMMIT

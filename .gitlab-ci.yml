@@ -1,0 +1,108 @@
+stages: [ 'sync-git-mirror', 'pre-test', 'test', 'installation' ]
+Sync Git Mirror:
+  stage: 'sync-git-mirror'
+  script: [ 'sync-git-mirror' ]
+  tags: [ 'fast' ]
+  timeout: '100m'
+Dry Run:
+  stage: 'pre-test'
+  script: [ 'dry_run' ]
+  tags: [ 'fast' ]
+  needs: [ 'Sync Git Mirror' ]
+  timeout: '5m'
+SSH Job Dry Run:
+  stage: 'pre-test'
+  script: [ 'ssh_job_dry_run' ]
+  tags: [ 'fast' ]
+  needs: [ 'Sync Git Mirror' ]
+  timeout: '5m'
+Code Linter:
+  stage: 'pre-test'
+  script: [ 'code_linter' ]
+  tags: [ 'fast' ]
+  needs: [ 'Sync Git Mirror' ]
+  timeout: '5m'
+doctest:
+  stage: 'pre-test'
+  script: [ 'doctest' ]
+  tags: [ 'fast' ]
+  needs: [ 'Sync Git Mirror' ]
+  timeout: '5m'
+unittest:
+  stage: 'pre-test'
+  script: [ 'unittest' ]
+  tags: [ 'fast' ]
+  needs: [ 'Sync Git Mirror' ]
+  timeout: '5m'
+Message Linter:
+  stage: 'pre-test'
+  script: [ 'message_linter $CI_COMMIT_SHA' ]
+  tags: [ 'fast' ]
+  needs: [ 'Sync Git Mirror' ]
+  timeout: '5m'
+Documentation Generation:
+  stage: 'pre-test'
+  script: [ 'doc_generation' ]
+  tags: [ 'fast' ]
+  needs: [ 'Sync Git Mirror' ]
+  timeout: '5m'
+FT:
+  stage: 'test'
+  script: [ 'server_tests branch:master' ]
+  tags: [ 'batches_ft' ]
+  timeout: '30m'
+  needs: ['Dry Run', 'SSH Job Dry Run', 'Code Linter', 'doctest', 'unittest', 'Message Linter', 'Documentation Generation']
+  when: 'manual'
+  allow_failure: false
+Web Admin:
+  stage: 'test'
+  script: [ 'web_admin_tests builtin: branch:master' ]
+  tags: [ 'batches_web_admin' ]
+  timeout: '30m'
+  needs: ['Dry Run', 'SSH Job Dry Run', 'Code Linter', 'doctest', 'unittest', 'Message Linter', 'Documentation Generation']
+  when: 'manual'
+  allow_failure: false
+GUI:
+  stage: 'test'
+  script: [ 'desktop_client_tests branch:master' ]
+  tags: [ 'batches_gui' ]
+  timeout: '180m'
+  needs: ['Dry Run', 'SSH Job Dry Run', 'Code Linter', 'doctest', 'unittest', 'Message Linter', 'Documentation Generation']
+  when: 'manual'
+  allow_failure: false
+Mobile:
+  stage: 'test'
+  script: [ 'mobile_client_tests branch:master' ]
+  tags: [ 'batches_mobile' ]
+  timeout: '180m'
+  needs: ['Dry Run', 'SSH Job Dry Run', 'Code Linter', 'doctest', 'unittest', 'Message Linter', 'Documentation Generation']
+  when: 'manual'
+  allow_failure: false
+Server Ubuntu 22:
+  stage: 'installation'
+  script: [ 'server_snapshot_ubuntu22 branch:master' ]
+  tags: [ 'ft_installation_mediaserver_ubuntu22' ]
+  timeout: '180m'
+  when: 'manual'
+  needs: []
+Server Windows 10:
+  stage: 'installation'
+  script: [ 'server_snapshot_win10 branch:master' ]
+  tags: [ 'ft_installation_mediaserver_win10' ]
+  timeout: '180m'
+  when: 'manual'
+  needs: []
+Bundle Windows 11:
+  stage: 'installation'
+  script: [ 'bundle_snapshot_win11 branch:master' ]
+  tags: [ 'ft_installation_bundle_win11' ]
+  timeout: '180m'
+  when: 'manual'
+  needs: []
+Client Windows 11:
+  stage: 'installation'
+  script: [ 'desktop_client_snapshot_win11 branch:master' ]
+  tags: [ 'ft_installation_client_win11' ]
+  timeout: '180m'
+  when: 'manual'
+  needs: []

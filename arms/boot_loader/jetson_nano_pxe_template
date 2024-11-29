@@ -1,0 +1,8 @@
+PROMPT 0
+TIMEOUT 5
+DEFAULT primary
+MENU TITLE PXELinux boot options
+LABEL primary
+      MENU LABEL primary kernel on TFTP
+      LINUX /Image-4.9.337-tegra210
+      INITRD /initrd-4.9.337-tegra210

@@ -1,0 +1,33 @@
+<component name="ProjectDictionaryState">
+  <dictionary name="pytest">
+    <words>
+      <w>addhooks</w>
+      <w>addoption</w>
+      <w>addopts</w>
+      <w>fixturedef</w>
+      <w>fixturemanager</w>
+      <w>getfixturevalue</w>
+      <w>instafail</w>
+      <w>itimerspec</w>
+      <w>logreport</w>
+      <w>longrepr</w>
+      <w>makereport</w>
+      <w>markexpr</w>
+      <w>nextitem</w>
+      <w>nodeid</w>
+      <w>norecursedirs</w>
+      <w>pluginmanager</w>
+      <w>pyfunc</w>
+      <w>pyfuncitem</w>
+      <w>pytestconfig</w>
+      <w>reprcrash</w>
+      <w>runtest</w>
+      <w>runtestloop</w>
+      <w>selftest</w>
+      <w>sessionfinish</w>
+      <w>sessionstart</w>
+      <w>terminalreporter</w>
+      <w>xfailed</w>
+    </words>
+  </dictionary>
+</component>

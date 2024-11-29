@@ -1,0 +1,72 @@
+{% import "sha.macros.html" as sha with context %}
+{% import "filter.macros.html" as filter %}
+{% import "time_format.macros.html" as format_time with context %}
+{% import "duration_format.macros.html" as format_duration %}
+<tr>
+    <td class="narrow">
+        <small>
+            {{- format_time.coarse(run['run_json']['proc.started_at']) -}}
+            {{- filter.filter('proc.started_at', run['run_json']['proc.started_at']) -}}
+        </small>
+    </td>
+    <td class="narrow">
+        <small>
+            {{- run['run_json']['proc.username'] -}}
+            {{- filter.filter('proc.username', run['run_json']['proc.username']) -}}
+        </small>
+    </td>
+    <td class="narrow">
+        <small>
+            {{- run['run_json']['proc.hostname'] -}}
+            {{- filter.filter('proc.hostname', run['run_json']['proc.hostname']) -}}
+        </small>
+    </td>
+    <td class="narrow">
+        <small>
+            {{- run['run_json']['proc.pid'] -}}
+            {{- filter.filter('proc.pid', run['run_json']['proc.pid']) -}}
+        </small>
+    </td>
+    <td>
+        {{- sha.sha(run['run_json'], 'env.COMMIT', 'git.env.COMMIT.url') -}}
+        {%- if run['run_json'].get('env.COMMIT') -%}
+            {{- filter.filter('env.COMMIT', run['run_json'].get('env.COMMIT')) -}}
+        {%- endif -%}
+    </td>
+    <td>
+        <span>{{ run['run_json']['args'] }}</span>
+        <script>
+            testNameSequence.processElement(document.currentScript.previousElementSibling);
+            highlightWords(document.currentScript.previousElementSibling);
+        </script>
+        {%- if run['run_json']['args'] -%}
+            {{- filter.filter('args', run['run_json']['args']) -}}
+        {%- endif -%}
+    </td>
+    {% with data=run['run_json'] %}{% include "vms_td.inc.html" %}{% endwith %}
+    {% with data=run['run_json'] %}{% include "cloud_or_web_admin_td.inc.html" %}{% endwith %}
+    <td style="text-align: center">
+        <div class="td {{ run['run_json'].get('stage_status', 'unknown') }}">
+            <a href="/runs/{{ query_string(**_run_id(run['run_json'])) }}">
+                {{- run['run_json'].get('stage_status', 'unknown') -}}
+            </a>
+        </div>
+    </td>
+    <td>
+        {{- filter.filter('report.status', run['run_json'].get('report.status')) -}}
+    </td>
+    <td class="number-field">
+        {{- format_duration.normal(run['run_json'].get('report.duration_sec')) -}}
+    </td>
+    <td>
+        {%- include 'ticket.inc.html' %}
+    </td>
+    <td style="max-width: 32em; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; font-family: monospace;">
+        {{- last_line(run.get('run_message')) -}}
+    </td>
+    <td>
+        {%- if run['run_json'].get('stage_status', 'unknown') == 'failed' -%}
+            {{- filter.filter('error', last_line(run.get('run_message'))) -}}
+        {%- endif -%}
+    </td>
+</tr>

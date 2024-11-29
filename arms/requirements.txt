@@ -1,0 +1,5 @@
+asyncssh==2.14.2
+cffi==1.16.0
+cryptography==42.0.7
+pycparser==2.22
+typing_extensions==4.11.0

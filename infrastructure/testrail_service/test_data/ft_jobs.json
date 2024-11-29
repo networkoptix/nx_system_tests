@@ -1,0 +1,53 @@
+[
+    {
+        "args": {
+            "machinery": "http://sc-ft003:8050/batches-ft/",
+            "revision": "c235b10759c0a5e7286b33c481deab51432d7ab0",
+            "stage": "tests/cameras_and_storages/vms_benchmark/test_manually_added_testcamera.py::test_v0",
+            "vms": "https://artifactory.us.nxteam.dev/artifactory/build-vms-develop/vms_6.0/608/default/distrib/"
+        },
+        "history_url": "/runs/?run_vms_url=https%3A%2F%2Fartifactory.us.nxteam.dev%2Fartifactory%2Fbuild-vms-develop%2Fvms_6.0%2F608%2Fdefault%2Fdistrib%2F&run_ft_revision=c235b10759c0a5e7286b33c481deab51432d7ab0&args=tests%2Fcameras_and_storages%2Fvms_benchmark%2Ftest_manually_added_testcamera.py%3A%3Atest_v0",
+        "other_tags": [
+            "no_testrail"
+        ],
+        "cmdline":{
+            "args": "-m tests.cameras_and_storages.vms_benchmark.test_manually_added_testcamera test_v0"
+        },
+        "source": "https://gitlab.nxvms.dev/ft/ft/-/blob/c235b10759c0a5e7286b33c481deab51432d7ab0/tests/cameras_and_storages/vms_benchmark/test_manually_added_testcamera.py#L21",
+        "status": "failed"
+    },
+    {
+        "args": {
+            "machinery": "http://sc-ft003:8050/batches-ft/",
+            "revision": "c235b10759c0a5e7286b33c481deab51432d7ab0",
+            "stage": "tests/cameras_and_storages/vms_benchmark/test_take_camera_recording_settings.py::test_ubuntu18_win10_v0",
+            "vms": "https://artifactory.us.nxteam.dev/artifactory/build-vms-develop/vms_6.0/608/default/distrib/"
+        },
+        "history_url": "/runs/?run_vms_url=https%3A%2F%2Fartifactory.us.nxteam.dev%2Fartifactory%2Fbuild-vms-develop%2Fvms_6.0%2F608%2Fdefault%2Fdistrib%2F&run_ft_revision=c235b10759c0a5e7286b33c481deab51432d7ab0&args=tests%2Fcameras_and_storages%2Fvms_benchmark%2Ftest_take_camera_recording_settings.py%3A%3Atest_ubuntu18_win10_v0",
+        "other_tags": [
+            "testrail-46950"
+        ],
+        "cmdline": {
+            "args": "-m tests.cameras_and_storages.vms_benchmark.test_take_camera_recording_settings test_ubuntu18_win10_v0"
+        },
+        "source": "https://gitlab.nxvms.dev/ft/ft/-/blob/c235b10759c0a5e7286b33c481deab51432d7ab0/tests/cameras_and_storages/vms_benchmark/test_take_camera_recording_settings.py#L29",
+        "status": "failed"
+    },
+    {
+        "args": {
+            "machinery": "http://sc-ft003:8050/batches-ft/",
+            "revision": "c235b10759c0a5e7286b33c481deab51432d7ab0",
+            "stage": "tests/cameras_and_storages/vms_benchmark/test_take_camera_recording_settings.py::test_ubuntu18_ubuntu18_v0",
+            "vms": "https://artifactory.us.nxteam.dev/artifactory/build-vms-develop/vms_6.0/608/default/distrib/"
+        },
+        "history_url": "/runs/?run_vms_url=https%3A%2F%2Fartifactory.us.nxteam.dev%2Fartifactory%2Fbuild-vms-develop%2Fvms_6.0%2F608%2Fdefault%2Fdistrib%2F&run_ft_revision=c235b10759c0a5e7286b33c481deab51432d7ab0&args=tests%2Fcameras_and_storages%2Fvms_benchmark%2Ftest_take_camera_recording_settings.py%3A%3Atest_ubuntu18_ubuntu18_v0",
+        "other_tags": [
+            "testrail-46950"
+        ],
+        "cmdline": {
+            "args": "-m tests.cameras_and_storages.vms_benchmark.test_take_camera_recording_settings test_ubuntu18_ubuntu18_v0"
+        },
+        "source": "https://gitlab.nxvms.dev/ft/ft/-/blob/c235b10759c0a5e7286b33c481deab51432d7ab0/tests/cameras_and_storages/vms_benchmark/test_take_camera_recording_settings.py#L24",
+        "status": "passed"
+    }
+]

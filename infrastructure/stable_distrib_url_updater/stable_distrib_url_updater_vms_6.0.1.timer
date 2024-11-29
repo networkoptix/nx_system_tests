@@ -1,0 +1,10 @@
+[Unit]
+Description=Launch stable distrib URL service
+
+[Timer]
+Unit=stable_distrib_url_updater@vms_6.0.1.service
+OnCalendar=hourly
+Persistent=false
+
+[Install]
+WantedBy=timers.target

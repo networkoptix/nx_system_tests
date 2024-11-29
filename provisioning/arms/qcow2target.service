@@ -1,0 +1,11 @@
+[Unit]
+Description=Network Optix QCOW2 target
+After=network.target local-fs.target
+
+[Service]
+ExecStart=/usr/local/bin/qcow2target
+Restart=on-failure
+RestartSec=500ms
+
+[Install]
+WantedBy=default.target

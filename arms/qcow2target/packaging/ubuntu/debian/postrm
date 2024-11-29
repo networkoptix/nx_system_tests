@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PACKAGE_USER=$REQUIRED_PACKAGE_USERNAME
+PACKAGE_GROUP=$REQUIRED_GROUP
+
+if id "${PACKAGE_USER}" &>/dev/null; then
+  userdel "${PACKAGE_USER}" || true
+else
+    echo "user: ${PACKAGE_USER} does not exist"
+fi
+
+if [ "$(getent group "${PACKAGE_GROUP}")" ]; then
+  groupdel "${PACKAGE_GROUP}" || true
+else
+    echo "group: ${PACKAGE_GROUP} does not exist"
+fi

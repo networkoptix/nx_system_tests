@@ -1,0 +1,27 @@
+#!/bin/bash
+
+
+# this is templated
+CURRENT_SERVICE_NAME=$SERVICE_NAME
+PACKAGE_USER=$REQUIRED_PACKAGE_USERNAME
+PACKAGE_GROUP=$REQUIRED_GROUP
+
+if [ "$(getent group "${PACKAGE_GROUP}")" ]; then
+  echo 'group exists.'
+else
+    groupadd --system "${PACKAGE_GROUP}" 2> /dev/null
+fi
+
+if id "${PACKAGE_USER}" &>/dev/null; then
+    echo 'user found'
+else
+    useradd \
+      --no-user-group \
+      --system \
+      --gid "${PACKAGE_GROUP}" \
+      "${PACKAGE_USER}" \
+      2>/dev/null
+fi
+
+systemctl enable "${CURRENT_SERVICE_NAME}"
+systemctl start "${CURRENT_SERVICE_NAME}"

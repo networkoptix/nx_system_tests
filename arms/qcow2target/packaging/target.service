@@ -1,0 +1,12 @@
+[Unit]
+Description=Network Optix QCOW2 target
+After=network.target local-fs.target
+
+[Service]
+ExecStart=$BINARY_DESTINATION_PATH
+User=$REQUIRED_PACKAGE_USERNAME
+Group=$REQUIRED_GROUP
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

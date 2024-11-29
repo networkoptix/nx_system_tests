@@ -1,0 +1,22 @@
+dn: CN=$user_name,OU=$ou,DC=local,DC=nx
+changetype: add
+cn: $user_name
+codePage: 0
+countryCode: 0
+displayName: $user_name
+distinguishedName: CN=$user_name,OU=$ou,DC=local,DC=nx
+givenName: Test
+instanceType: 4
+mail: $user_name@example.com
+name: $user_name
+objectCategory: CN=Person,CN=Schema,CN=Configuration,DC=local,DC=nx
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: user
+sAMAccountName: $user_name
+sn: User
+userPrincipalName: $user_name@local.nx
+userAccountControl: 66048
+accountExpires: 0
+unicodePwd::$password

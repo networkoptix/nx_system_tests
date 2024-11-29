@@ -1,0 +1,9 @@
+*nat
+:PREROUTING ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+-A PREROUTING -p tcp -m tcp --dport 8080 -m comment --comment "Mikrotik switch HTTP interface" -j DNAT --to-destination 192.168.10.4:80
+-A PREROUTING -p udp -m udp --dport 161 -m comment --comment "Mikrotik switch SNMP" -j DNAT --to-destination 192.168.10.4:161
+-A POSTROUTING ! -s 10.1.0.0/24 -o eno1 -j MASQUERADE
+COMMIT

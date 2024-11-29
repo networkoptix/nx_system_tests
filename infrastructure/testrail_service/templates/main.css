@@ -1,0 +1,61 @@
+.page-action-block {
+    float: left;
+}
+
+tbody tr:nth-child(even) {
+    background: #F0F0F0;
+}
+
+tbody tr.mismatched {
+    background: rgba(255, 0, 0, 0.15);
+}
+
+dd {
+    margin: auto;
+}
+
+th, td {
+    white-space: nowrap;
+    padding: 0.4em;
+}
+
+td.multiline-field {
+    white-space: normal;
+}
+
+.testrail {
+    font-family: 'Barlow',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+}
+
+.testrail a {
+    outline: 0;
+    color: #5993bc;
+    text-decoration: none;
+}
+
+.testrail a:hover {
+    text-decoration: underline;
+}
+
+.testrail .vms-version {
+	display: block;
+	color: #707070;
+	padding: 0;
+	margin-bottom: 3px;
+}
+
+.testrail .status {
+	padding: 2px 8px;
+	border-radius: 14px;
+	text-transform: capitalize;
+}
+
+.testrail .passed {
+	background: #65bb63;
+	color: #ffffff;
+}
+
+.testrail .failed {
+	background: #d97373;
+	color: #ffffff;
+}

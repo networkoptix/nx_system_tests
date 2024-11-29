@@ -1,0 +1,16 @@
+<fieldset class="page-action-block">
+    <legend>Days</legend>
+    <nav>
+        <ul>
+            <li><a href="{{ request_params().removed('period.*').added('day', date_filter.previous_day().isoformat()).href() }}">Previous day</a></li>
+            <li><a href="{{ request_params().removed('period.*').added('day', date_filter.focus_day().isoformat()).href() }}">{{ date_filter.focus_day().strftime('%a %b %d') }}</a></li>
+            <li><a href="{{ request_params().removed('period.*').added('day', date_filter.next_day().isoformat()).href() }}">Next day</a></li>
+        </ul>
+        <ul>
+            <li><a href="{{ request_params().removed('period.*').added('day', date_filter.today().isoformat()).href() }}">Today</a></li>
+            <li><a href="{{ request_params().removed('day').added(date_filter.current_period(), '').href() }}">Last few weeks</a></li>
+            <li><a href="{{ request_params().removed('day').removed('period.*').href() }}">Everything</a></li>
+        </ul>
+        <script>highlightCurrentLink(document.currentScript.parentElement)</script>
+    </nav>
+</fieldset>

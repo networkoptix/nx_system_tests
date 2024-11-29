@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% set title = "Home" %}
+{% block content %}
+    <div>
+        {% for user, host in locations %}
+            <a href="/runs/{{ query_string(username=user, hostname=host) }}">{{ user }}@{{ host }}</a>
+        {% endfor %}
+    </div>
+{% endblock %}

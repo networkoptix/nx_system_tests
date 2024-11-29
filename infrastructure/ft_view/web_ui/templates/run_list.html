@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% import "sha.macros.html" as sha with context %}
+{% import "filter.macros.html" as filter %}
+{% set title = "Runs" %}
+{% import "time_format.macros.html" as format_time with context %}
+{% block content %}
+    {% include "days.block.inc.html" %}
+    {% include "user_filter.block.inc.html" %}
+    {% include 'builds.inc.html' %}
+    <fieldset class="page-action-block">
+        <legend>Similar Failures</legend>
+        {% for ticket in tickets %}
+            <div>
+                <a href="{{ ticket }}">{{ ticket.rsplit('/', 1)[-1] }}</a>
+            </div>
+        {% else %}
+            No tickets linked
+        {% endfor %}
+        <form>
+            <label><input type="text" name="error" size="99" value="{{ request_params().to_flask().get('error', '') }}" placeholder="Search by error"/></label>
+            <button type="submit">&gt;</button>
+            {%- if 'error' in request_params().to_flask() -%}
+                    {{- filter.filter('error', request_params().to_flask()['error']) -}}
+            {%- endif -%}
+        </form>
+    </fieldset>
+    <br class="page-action-clear">
+    {% include "duration_histogram.inc.html" %}
+    {% include 'fails_histogram.inc.html' %}
+    <br class="page-action-clear">
+    {% include "run_table.inc.html" %}
+    {% include "filters.block.inc.html" %}
+    {%- if (runs | length) == 1 -%}
+    {%- set run = runs[0] -%}
+    <div style="float: left">
+        <h2>Full message</h2>
+        <code>{{ run.get('run_message') or '' }}</code>
+    </div>
+    <div style="float: left">
+        <h2>Artifacts</h2>
+        <script>
+            let artifactSequence = new StaircaseSequence((url) => {
+                let match = /(?<dir>^.+\/run_20\d\d\w+\/)(?<file>.+$)/.exec(url);
+                return [match.groups['dir'], ...match.groups['file'].split(/(?<=\/|$)/)];
+            })
+        </script>
+        {%- for url in run['run_artifacts'] -%}
+        <a href="{{ url }}">{{ url }}</a>
+        {{- '' -}}
+        <script>{
+            artifactSequence.processElement(document.currentScript.previousElementSibling);
+            highlightWords(document.currentScript.previousElementSibling);
+            let href = document.currentScript.previousElementSibling.getAttributeNode('href');
+            href.value = href.value.replace(/^http:\/\/(sc-ft\d{3})(?:\.nxlocal)?\//, 'https://$1.nxft.dev/')
+        }</script>
+        {{- '' -}}
+        <br/>
+        {%- endfor -%}
+    </div>
+    <br style="clear: both;">
+    <h2 class="debug">Raw data</h2>
+    <table class="debug">
+        <thead>
+        <tr>
+            <th>Key</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for key, value in run['run_json'].items() %}
+        <tr>
+            <td>{{ key }}</td>
+            <td class="multiline-field">{{ value or '' }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {%- endif -%}
+{% endblock %}

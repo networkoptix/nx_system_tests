@@ -1,0 +1,10 @@
+[Unit]
+Description=Launch comparison tests for vms_6.0_patch
+
+[Timer]
+Unit=comparison_tests@vms_6.0_patch.service
+OnCalendar=Tue *-*-* 02:00:00 UTC
+Persistent=false
+
+[Install]
+WantedBy=timers.target

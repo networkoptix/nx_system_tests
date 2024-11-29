@@ -1,0 +1,22 @@
+[Unit]
+Description=Target service for batch job workers
+After=syslog.target
+After=network.target
+Upholds=worker_batch_run@ft-110.service
+Upholds=worker_batch_run@ft-111.service
+Upholds=worker_batch_run@ft-112.service
+Upholds=worker_batch_run@ft-113.service
+Upholds=worker_batch_run@ft-114.service
+Upholds=worker_batch_run@ft-115.service
+Upholds=worker_batch_run@ft-116.service
+Upholds=worker_batch_run@ft-117.service
+Upholds=worker_batch_run@ft-118.service
+Upholds=worker_batch_run@ft-119.service
+Upholds=worker_batch_run@ft-120.service
+Upholds=worker_batch_run@ft-121.service
+Upholds=worker_batch_run@ft-122.service
+Upholds=worker_batch_run@ft-123.service
+Upholds=worker_batch_run@ft-124.service
+
+[Install]
+WantedBy=default.target

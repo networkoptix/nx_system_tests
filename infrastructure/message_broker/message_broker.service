@@ -1,0 +1,16 @@
+[Unit]
+Description=Message broker for FT infrastructure
+After=syslog.target
+After=network.target
+StartLimitBurst=10
+StartLimitIntervalSec=60
+
+[Service]
+WorkingDirectory=%h/redis-stable
+ExecStart=%h/redis-stable/src/redis-server redis.conf
+ExecStop=%h/redis-stable/src/redis-cli shutdown
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Launch RCT for vms_6.0
+
+[Timer]
+Unit=rct_nightly@vms_6.0.service
+OnCalendar=*-*-* 02:00:00
+Persistent=false
+
+[Install]
+WantedBy=timers.target

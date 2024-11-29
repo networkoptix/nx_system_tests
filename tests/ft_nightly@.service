@@ -1,0 +1,18 @@
+[Unit]
+Description=Run all FT tests for %i
+StartLimitBurst=10
+StartLimitIntervalSec=3600
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/ft_nightly/ft
+ExecStartPre=git fetch --depth 2 origin master
+ExecStartPre=git checkout FETCH_HEAD
+ExecStart=/usr/bin/python3 -m make_venv -m runner.run_batch --tag dir:tests/ --installers-url branch:%i --priority low
+SuccessExitStatus=10
+# Restarts are mostly intended for git fetch.
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

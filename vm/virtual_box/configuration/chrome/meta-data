@@ -1,0 +1,2 @@
+instance-id: iid-local01
+echo local-hostname: cloudimg

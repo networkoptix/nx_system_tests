@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>IO</title>
+    <script>
+        function _logPost(json, xhr) {
+            const request = xhr.responseURL + " :: " + json;
+            const response = xhr.status + " " + xhr.statusText + " :: " + xhr.responseText;
+            log(request + ' >>> ' + response);
+        }
+
+        api = {
+            inputMode: "in",
+            outputMode: "out",
+            enabledState: "Enabled",
+            _post: function (url, payload) {
+                const json = JSON.stringify(payload);
+                const xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+                    _logPost(json, this);
+                    reload();
+                };
+                xhr.open("POST", url);
+                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xhr.send(json);
+            },
+            _setInputPinState: function (device, pin, url) {
+                this._post(url, {"device_name": device, "pin_name": pin});
+            },
+            enableInputPin(device, pin) {
+                this._setInputPinState(device, pin, "io/activate_device_input_pin");
+            },
+            disableInputPin(device, pin) {
+                this._setInputPinState(device, pin, "io/deactivate_device_input_pin");
+            },
+            fix: function (channel) {
+                this._post("rewiring/fix_channel_mode", {"channel": channel});
+            },
+            remove: function (device, pin) {
+                this._post("rewiring/disconnect_device_pin", {"device_name": device, "pin_name": pin});
+            },
+            add: function (device, pin, pinMode, channel) {
+                var post_data = {
+                    "device_name": device,
+                    "pin_name": pin,
+                    "channel": channel
+                 };
+                if (pinMode === api.inputMode) {
+                    this._post("rewiring/connect_device_input_pin", post_data);
+                } else {
+                    this._post("rewiring/connect_device_output_pin", post_data);
+                }
+            },
+            getPinState: function (device, pin, onLoad) {
+                const xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+                    const reply = JSON.parse(this.responseText);
+                    onLoad(reply.state);
+                }
+                xhr.open(
+                    "GET",
+                    "io/device_pin_is_enabled?device_name=" + encodeURIComponent(device) +
+                    "&pin_name=" + encodeURIComponent(pin),
+                    );
+                xhr.send();
+            },
+            listConnections: function (onLoad) {
+                const xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+                    const reply = JSON.parse(this.responseText);
+                    for (const elem of reply) {
+                        if (elem.hasOwnProperty("device_name")) {
+                            onLoad({
+                                connected: true,
+                                device: elem["device_name"],
+                                pin: elem["pin_name"],
+                                pinMode: elem["pin_mode"],
+                                channel: elem["channel"],
+                                channelMode: elem["channel_mode"],
+                            });
+                        } else {
+                            onLoad({
+                                connected: false,
+                                channel: elem["channel"],
+                                channelMode: elem["channel_mode"],
+                            });
+                        }
+                    }
+                }
+                xhr.open("GET", "rewiring/list_connections");
+                xhr.send();
+            },
+        };
+    </script>
+    <style>
+        body {
+            padding: 1em;
+        }
+
+        table {
+            border-spacing: 0;
+        }
+
+        td {
+            border-top-width: 1px;
+            border-right-width: 0;
+            border-left-width: 0;
+            border-bottom-width: 0;
+            border-style: solid;
+        }
+
+        th, td {
+            padding: 0.5em 0.25em;
+        }
+
+        #reload-place {
+            margin: 0.5em 0.25em;
+        }
+    </style>
+</head>
+<body>
+<div style="display: none">
+    <table id="template">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Device</th>
+            <th>Pin</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Channel</th>
+            <th></th>
+            <th>State</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="repeated">
+            <td>
+                <button class="add">Add</button>
+                <button class="remove">Remove</button>
+            </td>
+            <td class="device">
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <input type="text" class="device_input"/>
+            </td>
+            <td class="pin">
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <input type="text" class="pin_input"/>
+            </td>
+            <td class="pin_mode" style="text-align: right">
+                <!--suppress HtmlFormInputWithoutLabel -->
+                <select class="pin_mode_input">
+                    <option value="IN">IN</option>
+                    <option value="OUT">OUT</option>
+                </select>
+            </td>
+            <td class="pin_mode_icon" style="padding-right: 0"></td>
+            <td class="channel_mode_icon" style="padding-left: 0"></td>
+            <td class="channel_mode"></td>
+            <td>
+                <button class="fix">Fix</button>
+            </td>
+            <td class="channel" style="text-align: center"></td>
+            <td class="state_icon" style="text-align: center"></td>
+            <td class="state"></td>
+            <td>
+                <button class="enable">Enable</button>
+            </td>
+            <td>
+                <button class="disable">Disable</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<h1>IO</h1>
+<div id="table-place"></div>
+<div id="reload-place">
+    Ctrl+R or F5 reload data. Shift+Ctrl+R or Ctrl+F5 reload the page.
+    <a id="reload" href="javascript:">Reload now.</a>
+</div>
+<h2>Log</h2>
+<pre id="log-place"></pre>
+<script>
+    const logPlace = document.getElementById("log-place");
+
+    function log(line) {
+        logPlace.innerText += line + "\n";
+    }
+
+    const tableTemplate = document.getElementById("template");
+    const tablePlace = document.getElementById("table-place");
+    const icons = {
+        left: "&#9665;",
+        right: "&#9655;",
+        on: "&#9788;",
+        off: "",
+    };
+
+    function reload() {
+        const table = tableTemplate.cloneNode(true);
+        tablePlace.innerHTML = "";
+        tablePlace.appendChild(table);
+        const rowTemplate = table.getElementsByClassName("repeated")[0];
+        const rowParent = rowTemplate.parentElement;
+        rowParent.removeChild(rowTemplate);  // Detach from DOM
+        api.listConnections(function (data) {
+            function find(key) {
+                return row.getElementsByClassName(key)[0];
+            }
+
+            const row = rowTemplate.cloneNode(true);
+            rowParent.appendChild(row);
+            const enableButton = find("enable");
+            const disableButton = find("disable");
+            const fixButton = find("fix");
+            find("channel").innerHTML = data.channel;
+            if (data.channelMode === api.inputMode) {
+                find("channel_mode").innerHTML = "IN";
+            } else {
+                find("channel_mode").innerHTML = "OUT";
+            };
+            find("channel_mode_icon").innerHTML = data.channelMode === api.inputMode ? icons.right : icons.left;
+            fixButton.onclick = function () {
+                api.fix(data.channel);
+            };
+            if (!data.connected) {
+                enableButton.remove();
+                disableButton.remove();
+                row.style.backgroundColor = "#d3d3d3";
+                find("remove").remove();
+                const targetPinModeValue = data.channelMode === api.inputMode ? "OUT" : "IN";
+                const pinModeInput = find("pin_mode_input");
+                const pinModeOptions = pinModeInput.children;
+                for (let i = 0; i < pinModeOptions.length; i++) {
+                    pinModeOptions[i].selected = pinModeOptions[i].value === targetPinModeValue;
+                }
+                find("add").onclick = function () {
+                    const pinMode = pinModeInput.value === "IN" ? api.inputMode : api.outputMode;
+                    api.add(find("device_input").value, find("pin_input").value, pinMode, data.channel);
+                };
+                fixButton.remove();
+            } else {
+                find("add").remove();
+                find("remove").onclick = function () {
+                    api.remove(data.device, data.pin);
+                };
+                find("device").innerHTML = data.device;
+                find("pin").innerHTML = data.pin;
+                if (data.pinMode === api.inputMode) {
+                    find("pin_mode").innerHTML = "IN";
+                } else {
+                    find("pin_mode").innerHTML = "OUT";
+                };
+                find("pin_mode_icon").innerHTML = data.pinMode === api.inputMode ? icons.left : icons.right;
+                const mismatch = (data.pinMode === api.inputMode) === (data.channelMode === api.inputMode);
+                if (mismatch) {
+                    row.style.backgroundColor = "#fcc";
+                } else {
+                    fixButton.remove();
+                }
+                enableButton.onclick = function () {
+                    api.enableInputPin(data.device, data.pin);
+                };
+                disableButton.onclick = function () {
+                    api.disableInputPin(data.device, data.pin);
+                };
+                if (data.channelMode === api.inputMode) {
+                    enableButton.remove();
+                    disableButton.remove();
+                }
+                api.getPinState(data.device, data.pin, function (state) {
+                    find("state").innerHTML = state.toUpperCase();
+                    if (state === api.enabledState) {
+                        find("state_icon").innerHTML = icons.on;
+                        if (!mismatch) {
+                            row.style.backgroundColor = "#ffffe0";
+                        }
+                        if (data.channelMode !== api.inputMode) {
+                            enableButton.disabled = true;
+                            disableButton.disabled = false;
+                        }
+                    } else {
+                        find("state_icon").innerHTML = icons.off;
+                        if (!mismatch) {
+                            row.style.backgroundColor = "#f0f8ff";
+                        }
+                        if (data.channelMode !== api.inputMode) {
+                            enableButton.disabled = mismatch;
+                            disableButton.disabled = true;
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    reload();
+    onkeydown = function (e) {
+        if (e.ctrlKey && e.key === 'r' || !e.ctrlKey && e.key === 'F5') {
+            e.preventDefault();
+            reload();
+        }
+    }
+    document.getElementById("reload").onclick = reload;
+</script>
+</body>
+</html>

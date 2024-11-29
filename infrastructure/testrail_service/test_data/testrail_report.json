@@ -1,0 +1,14 @@
+{
+    "run_id": 8531,
+    "uri": "/api/v2/add_results/8531",
+    "data": {
+        "results": [
+            {
+                "test_id": 371906,
+                "status_id": 8,
+                "comment": "[failed](https://us.nxft.dev/runs/?run_vms_url=https%3A%2F%2Fartifactory.us.nxteam.dev%2Fartifactory%2Fbuild-vms-develop%2Fvms_6.0%2F608%2Fdefault%2Fdistrib%2F&run_ft_revision=c235b10759c0a5e7286b33c481deab51432d7ab0&args=tests%2Fcameras_and_storages%2Fvms_benchmark%2Ftest_take_camera_recording_settings.py%3A%3Atest_ubuntu18_win10_v0): [-m tests.cameras_and_storages.vms_benchmark.test_take_camera_recording_settings test_ubuntu18_win10_v0](https://gitlab.nxvms.dev/ft/ft/-/blob/c235b10759c0a5e7286b33c481deab51432d7ab0/tests/cameras_and_storages/vms_benchmark/test_take_camera_recording_settings.py#L29)\n[passed](https://us.nxft.dev/runs/?run_vms_url=https%3A%2F%2Fartifactory.us.nxteam.dev%2Fartifactory%2Fbuild-vms-develop%2Fvms_6.0%2F608%2Fdefault%2Fdistrib%2F&run_ft_revision=c235b10759c0a5e7286b33c481deab51432d7ab0&args=tests%2Fcameras_and_storages%2Fvms_benchmark%2Ftest_take_camera_recording_settings.py%3A%3Atest_ubuntu18_ubuntu18_v0): [-m tests.cameras_and_storages.vms_benchmark.test_take_camera_recording_settings test_ubuntu18_ubuntu18_v0](https://gitlab.nxvms.dev/ft/ft/-/blob/c235b10759c0a5e7286b33c481deab51432d7ab0/tests/cameras_and_storages/vms_benchmark/test_take_camera_recording_settings.py#L24)\n\n[VMS Build](https://artifactory.us.nxteam.dev/artifactory/build-vms-develop/vms_6.0/608/default/distrib/)\n",
+                "version": "6.0.0.608 (926c4b745cde)"
+            }
+        ]
+    }
+}

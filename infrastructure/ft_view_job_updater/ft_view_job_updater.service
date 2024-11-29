@@ -1,0 +1,16 @@
+[Unit]
+Description=Push task updates from message broker to corresponding FT View job
+After=syslog.target
+After=network.target
+StartLimitBurst=10
+StartLimitIntervalSec=1
+
+[Service]
+WorkingDirectory=%h/ft_view_job_updater/ft
+Environment=FT_UNIT_NAME=%N
+ExecStart=%h/ft_view_job_updater/ft/infrastructure/.venv/bin/python3 -m infrastructure.ft_view_job_updater
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

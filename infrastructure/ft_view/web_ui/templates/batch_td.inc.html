@@ -1,0 +1,95 @@
+{% import "filter.macros.html" as filter %}
+{% import "time_format.macros.html" as format_time with context %}
+{% import "sha.macros.html" as sha with context %}
+<tr>
+    <td class="narrow">
+        <small>
+            <a href="/{{ query_string(**batch.cmdline) }}">
+                {{ format_time.coarse(batch.created_at) }}
+            </a>
+        </small>
+    </td>
+    <td>
+        {{- batch.data['opt.--tag'] -}}
+        {{- filter.filter('opt.--tag', batch.data['opt.--tag']) -}}
+    </td>
+    <td>
+        {{- sha.sha(batch.data, 'env.COMMIT', 'git.env.COMMIT.url') -}}
+        {{- filter.filter('env.COMMIT', batch.data['env.COMMIT']) -}}
+    </td>
+    {% with data=batch.data %}{% include "vms_td.inc.html" %}{% endwith %}
+    {% with data=batch.data %}{% include "cloud_or_web_admin_td.inc.html" %}{% endwith %}
+        {% if (batch.data.get('count.pending') or 0) %}
+        <td class="number-field pending">
+            <a href="/{{ query_string(order='pending', **batch.cmdline) }}" style="color: inherit;">
+                {{ (batch.data.get('count.pending') or 0) }}
+            </a>
+        </td>
+    {% else %}
+        <td class="number-field"></td>
+    {% endif %}
+    {% if (batch.data.get('count.running') or 0) %}
+        <td class="number-field running">
+            <a href="/{{ query_string(order='pending', **batch.cmdline) }}" style="color: inherit;">
+                {{ (batch.data.get('count.running') or 0) }}
+            </a>
+        </td>
+    {% else %}
+        <td class="number-field"></td>
+    {% endif %}
+    {% if batch.data.get('count.failed') or 0 %}
+        <td class="number-field failed">
+            <a href="/{{ query_string(**batch.cmdline) }}">
+                {{ batch.data.get('count.failed') or 0 }}
+            </a>
+        </td>
+    {% else %}
+        <td class="number-field"></td>
+    {% endif %}
+    {% if batch.data.get('count.skipped') or 0 %}
+        <td class="number-field skipped">
+            {{ batch.data.get('count.skipped') or 0 }}
+        </td>
+    {% else %}
+        <td class="number-field"></td>
+    {% endif %}
+    {% if batch.data.get('count.passed') or 0 %}
+        <td class="number-field passed">
+            {{ batch.data.get('count.passed') or 0 }}
+        </td>
+    {% else %}
+        <td class="number-field"></td>
+    {% endif %}
+
+    <td class="number-field">
+        <a href="/{{ query_string(order='name', **batch.cmdline) }}" style="color: inherit">
+            {{ batch.job_count }}
+        </a>
+    </td>
+    <td style="width: 1%; white-space: nowrap">
+        <button
+                class="debug"
+                onclick="navigator.clipboard.writeText('{{ batch.cmdline_script }}')"
+                title="Copy cmdline as a terminal command"
+        >
+            CMD
+        </button>
+        <button
+                class="debug"
+                onclick="navigator.clipboard.writeText('{{ batch.cmdline | tojson | forceescape }}')"
+                title="Copy cmdline JSON for Python or SQL scripts"
+        >
+            JSON
+        </button>
+        <form class="debug" method="post" action="/batches/jobs/recalculate" style="display: inline">
+            <script>jsonToForm(document.currentScript.parentElement, '{{ batch.cmdline | tojson }}')</script>
+            <button
+                    class="debug"
+                    type="submit"
+                    title="Recalculate and update batch counters"
+            >
+                Recalc
+            </button>
+        </form>
+    </td>
+</tr>

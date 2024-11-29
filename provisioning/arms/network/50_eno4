@@ -1,0 +1,4 @@
+auto eno4
+allow-hotplug eno4
+iface eno4 inet static
+    address 192.168.10.2/24

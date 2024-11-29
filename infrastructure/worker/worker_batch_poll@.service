@@ -1,0 +1,7 @@
+[Unit]
+Description=Worker %i for batch poll
+
+[Service]
+WorkingDirectory=%h/worker_batch_poll@/ft
+Environment=FT_UNIT_NAME=%N
+ExecStart=%h/worker_batch_poll@/ft/infrastructure/.venv/bin/python3 -m infrastructure.worker ft:tasks_batch_poll ft:gitlab_job_updates

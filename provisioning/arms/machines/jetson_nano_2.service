@@ -1,0 +1,11 @@
+[Unit]
+Description=Jetson Nano 2 worker
+
+[Install]
+WantedBy=default.target
+
+[Service]
+WorkingDirectory=%h/machines/jetson_nano_2
+ExecStart=%h/machines/jetson_nano_2/arms/.venv/bin/python3 -m arms.beg_ft002.jetson_nano_2
+Restart=on-failure
+RestartSec=10

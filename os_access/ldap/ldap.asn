@@ -1,0 +1,107 @@
+-- Partial ASN1 LDAP message schema to encode/decode LDAP messages using ASN1.
+-- Full schema is not needed for now. To get full schema check links below.
+-- https://cwiki.apache.org/confluence/display/DIRxSRVx10/Ldap+ASN.1+Codec
+-- https://ldapwiki.com
+LDAP-V3 DEFINITIONS
+        IMPLICIT TAGS ::= --pragma {packagePrefix: "ldapd.common.ber"}
+        BEGIN
+        LDAPMessage ::= SEQUENCE {
+                messageID       MessageID,
+                protocolOp      CHOICE {
+                        bindRequest     BindRequest,
+                        bindResponse    BindResponse,
+                        unbindRequest   UnbindRequest,
+                        extendedReq     ExtendedRequest,
+                        extendedResp    ExtendedResponse },
+                 controls       [0] Controls OPTIONAL }
+        MessageID ::= INTEGER (0 .. maxInt)
+        maxInt INTEGER ::= 2147483647 -- (2^^31 - 1) --
+        LDAPString ::= OCTET STRING
+        LDAPOID ::= OCTET STRING
+        LDAPDN ::= LDAPString
+        LDAPResult ::= SEQUENCE {
+                resultCode      ENUMERATED {
+                             success                      (0),
+                             operationsError              (1),
+                             protocolError                (2),
+                             timeLimitExceeded            (3),
+                             sizeLimitExceeded            (4),
+                             compareFalse                 (5),
+                             compareTrue                  (6),
+                             authMethodNotSupported       (7),
+                             strongAuthRequired           (8),
+                                        -- 9 reserved --
+                             referral                     (10),  -- new
+                             adminLimitExceeded           (11),  -- new
+                             unavailableCriticalExtension (12),  -- new
+                             confidentialityRequired      (13),  -- new
+                             saslBindInProgress           (14),  -- new
+                             noSuchAttribute              (16),
+                             undefinedAttributeType       (17),
+                             inappropriateMatching        (18),
+                             constraintViolation          (19),
+                             attributeOrValueExists       (20),
+                             invalidAttributeSyntax       (21),
+                                        -- 22-31 unused --
+                             noSuchObject                 (32),
+                             aliasProblem                 (33),
+                             invalidDNSyntax              (34),
+                             -- 35 reserved for undefined isLeaf --
+                             aliasDereferencingProblem    (36),
+                                        -- 37-47 unused --
+                             inappropriateAuthentication  (48),
+                             invalidCredentials           (49),
+                             insufficientAccessRights     (50),
+                             busy                         (51),
+                             unavailable                  (52),
+                             unwillingToPerform           (53),
+                             loopDetect                   (54),
+                                        -- 55-63 unused --
+                             namingViolation              (64),
+                             objectClassViolation         (65),
+                             notAllowedOnNonLeaf          (66),
+                             notAllowedOnRDN              (67),
+                             entryAlreadyExists           (68),
+                             objectClassModsProhibited    (69),
+                                        -- 70 reserved for CLDAP --
+                             affectsMultipleDSAs          (71), -- new
+                                        -- 72-79 unused --
+                             other                        (80) },
+                             -- 81-90 reserved for APIs --
+                matchedDN       LDAPDN,
+                errorMessage    LDAPString,
+                referral        [3] Referral OPTIONAL }
+        Referral ::= SEQUENCE OF LDAPURL
+        LDAPURL ::= LDAPString -- limited to characters permitted in URLs
+        Controls ::= SEQUENCE OF Control
+        Control ::= SEQUENCE {
+                controlType             LDAPOID,
+                criticality             BOOLEAN DEFAULT FALSE,
+                controlValue            OCTET STRING OPTIONAL }
+        BindRequest ::= [APPLICATION 0] SEQUENCE {
+                version                 INTEGER (1 .. 127),
+                name                    LDAPDN,
+                authentication          AuthenticationChoice }
+        AuthenticationChoice ::= CHOICE {
+                simple                  [0] OCTET STRING,
+                                         -- 1 and 2 reserved
+                sasl                    [3] SaslCredentials }
+        SaslCredentials ::= SEQUENCE {
+                mechanism               LDAPString,
+                credentials             OCTET STRING OPTIONAL }
+        BindResponse ::= [APPLICATION 1] SEQUENCE {
+             COMPONENTS OF LDAPResult,
+             serverSaslCreds    [7] OCTET STRING OPTIONAL }
+        UnbindRequest ::= [APPLICATION 2] NULL
+        ExtendedRequest ::= [APPLICATION 23] SEQUENCE {
+                requestName      [0] LDAPOID,
+                requestValue     [1] OCTET STRING OPTIONAL }
+        ExtendedResponse ::= [APPLICATION 24] SEQUENCE {
+                COMPONENTS OF LDAPResult,
+                responseName     [10] LDAPOID OPTIONAL,
+                response         [11] OCTET STRING OPTIONAL }
+        PasswdModifyRequestValue ::= SEQUENCE {
+            userIdentity    [0]  OCTET STRING OPTIONAL,
+            oldPasswd       [1]  OCTET STRING OPTIONAL,
+            newPasswd       [2]  OCTET STRING OPTIONAL }
+        END

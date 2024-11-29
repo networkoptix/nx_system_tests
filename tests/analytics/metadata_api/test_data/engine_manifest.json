@@ -1,0 +1,32 @@
+{
+    "typeLibrary":
+    {
+        "objectTypes":
+        [
+            {
+                "id": "metadata.api.stub.object.type",
+                "name": "Metadata API stub Object Type"
+            }
+        ]
+    },
+    "deviceAgentSettingsModel":
+    {
+        "type": "Settings",
+        "items":
+        [
+            {
+                "type": "CheckBox",
+                "name": "checkbox.set_settings",
+                "caption": "Test Device Agent setSettings",
+                "defaultValue": false
+            },
+            {
+                "type": "CheckBox",
+                "name": "checkbox.active_settings",
+                "caption": "Test Device Agent Active Settings",
+                "defaultValue": false,
+                "isActive": true
+            }
+        ]
+    }
+}

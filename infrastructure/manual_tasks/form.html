@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manual Tasks</title>
+    <style>
+        td {
+            padding: 0.2em;
+        }
+    </style>
+</head>
+<body>
+<form action="/run" method="post" target="_blank">
+    <fieldset>
+        <legend>Run FT/GUI Test</legend>
+        <input type="hidden" name="task_type" value="run_test">
+        <table>
+            <tr>
+                <td>
+                    <label for="ft_commit">FT Commit:</label>
+                </td>
+                <td>
+                    <input id="ft_commit" required size="120" name="ft_commit" type="text" value="master">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="distrib_url_test">Distrib URL (optional, if applicable): </label>
+                </td>
+                <td>
+                    <input id="distrib_url_test" size="120" name="distrib_url" type="url" pattern="^https://.*/distrib/$" title="must start with 'https://' and end with '/distrib/'">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="cloud_host">Cloud Host (optional, if applicable): </label>
+                </td>
+                <td>
+                    <input id="cloud_host" size="120" name="cloud_host" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="test_id">Test: </label>
+                </td>
+                <td>
+                    <input id="test_id" required size="120" name="test_id" type="text" pattern="^(tests/.+\.py::test_\w+|tests/gui/.+\.py|tests/(cloud_portal|web_admin|mobile)/(.+)?test_.+\.py)$">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <label>Sample GUI test: <input id="sample_gui_test" size="80" type="text" disabled value="tests/gui/authorization/test_connect_and_live_camera_and_logout.py"></label>
+                    <br>
+                    <label>Sample Mediaserver test: <input id="sample_mediaserver_test" size="80" type="text" disabled value="tests/single_server/audit_log/test_rename_server.py::test_ubuntu22_v4plus"></label>
+                    <br>
+                    <label>Sample Cloud Portal test: <input id="sample_cloud_portal_test" size="80" type="text" disabled value="tests/cloud_portal/test_misc.py"></label>
+                    <br>
+                    <label>Sample Mobile Client test: <input id="sample_mobile_client_test" size="80" type="text" disabled value="tests/mobile/test_6648_connect_to_system.py"></label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Count:
+                </td>
+                <td>
+                    <input type="radio" id="count_1" name="count" value="1" checked>
+                    <label for="count_1">1</label>
+                    <input type="radio" id="count_10" name="count" value="10">
+                    <label for="count_10">10</label>
+                    <input type="radio" id="count_50" name="count" value="50">
+                    <label for="count_50">50</label>
+                    <input type="radio" id="count_100" name="count" value="100">
+                    <label for="count_100">100</label>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <button type="submit">Submit</button>
+    </fieldset>
+</form>
+<form action="/vms-snapshot" method="post">
+    <fieldset>
+        <legend>Create Mediaserver Snapshot</legend>
+        <input type="hidden" name="task_type" value="create_snapshot">
+        <input type="hidden" name="component" value="mediaserver">
+        <table>
+            <tr>
+                <td>
+                    <label for="branch">FT Commit:</label>
+                </td>
+                <td>
+                    <input id="branch" required size="30" name="branch" type="text" value="master">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="distrib_url_snapshot">Distrib URL: </label>
+                </td>
+                <td>
+                    <input id="distrib_url_snapshot" required size="120" name="distrib_url" type="url" pattern="^https://.*/distrib/$" title="must start with 'https://' and end with '/distrib/'">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="os_name">OS Name:</label>
+                </td>
+                <td>
+                    <select id="os_name" required name="os_name">
+                        <option value="ubuntu18">Ubuntu 18</option>
+                        <option value="ubuntu20">Ubuntu 20</option>
+                        <option value="ubuntu22">Ubuntu 22</option>
+                        <option value="ubuntu24">Ubuntu 24</option>
+                        <option value="win10">Windows 10</option>
+                        <option value="win11">Windows 11</option>
+                        <option value="win2019">Windows Server 2019</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <button type="submit">Submit</button>
+    </fieldset>
+</form>
+<form action="/vms-snapshot" method="post">
+    <fieldset>
+        <legend>Create Client Snapshot</legend>
+        <input type="hidden" name="component" value="client">
+        <table>
+            <tr>
+                <td>
+                    <label for="branch">FT Commit:</label>
+                </td>
+                <td>
+                    <input id="branch" required size="30" name="branch" type="text" value="master">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="distrib_url_snapshot">Distrib URL: </label>
+                </td>
+                <td>
+                    <input id="distrib_url_snapshot" required size="120" name="distrib_url" type="url" pattern="^https://.*/distrib/$" title="must start with 'https://' and end with '/distrib/'">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="os_name">OS Name:</label>
+                </td>
+                <td>
+                    <select id="os_name" required name="os_name">
+                        <option value="win10">Windows 10</option>
+                        <option value="win11">Windows 11</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <button type="submit">Submit</button>
+    </fieldset>
+</form>
+<form action="/vms-snapshot" method="post">
+    <fieldset>
+        <legend>Create Bundle Snapshot</legend>
+        <input type="hidden" name="component" value="bundle">
+        <table>
+            <tr>
+                <td>
+                    <label for="branch">FT Commit:</label>
+                </td>
+                <td>
+                    <input id="branch" required size="30" name="branch" type="text" value="master">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="distrib_url_snapshot">Distrib URL: </label>
+                </td>
+                <td>
+                    <input id="distrib_url_snapshot" required size="120" name="distrib_url" type="url" pattern="^https://.*/distrib/$" title="must start with 'https://' and end with '/distrib/'">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="os_name">OS Name:</label>
+                </td>
+                <td>
+                    <select id="os_name" required name="os_name">
+                        <option value="win10">Windows 10</option>
+                        <option value="win11">Windows 11</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <button type="submit">Submit</button>
+    </fieldset>
+</form>
+<form action="/base-snapshot" method="post">
+    <fieldset>
+        <legend>Build base image</legend>
+        <table>
+            <tr>
+                <td>
+                    <label for="build_branch">FT Commit:</label>
+                </td>
+                <td>
+                    <input id="build_branch" required size="30" name="branch" type="text" value="master">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="build_os_name">OS Name:</label>
+                </td>
+                <td>
+                    <select id="build_os_name" required name="os_name">
+                        <option value="ubuntu18">Ubuntu 18</option>
+                        <option value="ubuntu20">Ubuntu 20</option>
+                        <option value="ubuntu22">Ubuntu 22</option>
+                        <option value="ubuntu24">Ubuntu 24</option>
+                        <option value="chrome">Chrome</option>
+                        <option value="openldap">OpenLDAP</option>
+                        <option value="win10">Windows 10</option>
+                        <option value="win11">Windows 11</option>
+                        <option value="win2019">Windows Server 2019</option>
+                        <option value="active_directory">Active Directory</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <button type="submit">Submit</button>
+    </fieldset>
+</form>
+</body>
+</html>

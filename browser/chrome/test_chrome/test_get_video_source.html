@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <video id="tag-source" width="640" height="480" src="first_source.mp4" controls>Your browser does not support the video tag.</video>
+    <video id="videos-source" width="640" height="480" controls>
+      <source src="second_source.mp4" type="video/mp4">
+      <source src="third_source.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+    </video>
+    <video id="mixed-source" width="640" height="480" src="first_source.mp4" controls>
+      <source src="second_source.mp4" type="video/mp4">
+      <source src="third_source.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+    </video>
+    <video id="sourceless" width="640" height="480" controls>Your browser does not support the video tag.</video>
+  </body>
+</html>

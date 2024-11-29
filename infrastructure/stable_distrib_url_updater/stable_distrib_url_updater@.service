@@ -1,0 +1,11 @@
+[Unit]
+Description=Stable distrib URL service update for %i
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/stable_distrib_url_updater/ft
+Environment=FT_UNIT_NAME=%N
+ExecStart=%h/stable_distrib_url_updater/ft/infrastructure/.venv/bin/python3 -m infrastructure.stable_distrib_url_updater %i
+
+[Install]
+WantedBy=default.target

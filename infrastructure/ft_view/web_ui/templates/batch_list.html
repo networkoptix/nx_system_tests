@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% import "filter.macros.html" as filter %}
+{% set title = "Batches" %}
+{% block content %}
+    {% include 'days.block.inc.html' %}
+    <fieldset class="page-action-block">
+        <legend>Tags</legend>
+        <nav>
+            <ul>
+                <li>GUI{{- filter.filter('opt.--tag', 'gui-smoke-test') -}}</li>
+                <li>FT{{- filter.filter('opt.--tag', 'gitlab') -}}</li>
+                <li>Cloud{{- filter.filter('opt.--tag', 'cloud_portal_gitlab') -}}</li>
+                <li>WebAdmin{{- filter.filter('opt.--tag', 'web-admin-gitlab') -}}</li>
+                <li>Mobile{{- filter.filter('opt.--tag', 'mobile-gitlab') -}}</li>
+            </ul>
+            <ul>
+                <li>FT Nightly{{- filter.filter('opt.--tag', 'dir:tests/') -}}</li>
+            </ul>
+        </nav>
+    </fieldset>
+    {% include "user_filter.block.inc.html" %}
+    {% with equal_key='opt.--installers-url' %}
+        {% include 'builds.inc.html' %}
+    {% endwith %}
+    <br class="page-action-clear">
+    <table style="width: 100%">
+        <thead>
+        {% include 'batch_th.inc.html' %}
+        </thead>
+        <tbody>
+        {% for batch in batches %}
+            {% include 'batch_td.inc.html' %}
+        {% endfor %}
+        </tbody>
+    </table>
+    {% include 'filters.block.inc.html' %}
+    {%- if batches | length == 1 -%}
+        <h2>Batch details</h2>
+        {%- set batch = batches[0] -%}
+        {%- include "batch_actions.inc.html" -%}
+        {%- include "job_list.inc.html" -%}
+    {%- endif -%}
+{% endblock %}

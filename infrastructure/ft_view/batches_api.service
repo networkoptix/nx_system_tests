@@ -1,0 +1,15 @@
+[Unit]
+Description=FT View API to take single batch job
+After=syslog.target
+After=network.target
+StartLimitBurst=10
+StartLimitIntervalSec=60
+
+[Service]
+WorkingDirectory=%h/batches_api/ft
+ExecStart=%h/batches_api/ft/infrastructure/ft_view/.venv/bin/python -m infrastructure.ft_view.batches_api
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

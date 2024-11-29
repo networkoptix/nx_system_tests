@@ -1,0 +1,38 @@
+<fieldset class="page-action-block">
+    <legend>Duration</legend>
+    <div style="font-size: x-small;">
+    <svg
+            height="8em"
+            width="60em"
+            viewBox="0 0 {{ duration_statistics.histogram | length }} {{ duration_statistics.height }}"
+            preserveAspectRatio="none"
+            shape-rendering="crispEdges"
+    >
+        <g style="transform-origin: center; transform: scale(1, -1)">
+            {% for bin in duration_statistics.histogram %}
+                {% set x = loop.index0 %}
+                {% set offset = namespace(offset=0) %}{# Workaround. Otherwise, Jinja "resets" offset on every iteration. #}
+                {% for tag in duration_statistics.tags %}
+                    <rect
+                            x="{{ x }}"
+                            y="{{ offset.offset }}"
+                            width="1"
+                            height="{{ bin.height(tag) }}"
+                            fill="{{ '#3A911E' if tag == 'passed' else ('#D70000' if tag == 'failed' else 'grey') }}"
+                    ></rect>
+                    {% set offset.offset = offset.offset + bin.height(tag) %}
+                {% endfor %}
+            {% endfor %}
+        </g>
+    </svg>
+    <div style="display: flex; justify-content: space-between; height: 1em; font-size: larger">
+        <div>0s</div>
+        {% for percent, accumulation in duration_statistics.percentiles.percentiles('passed', [50, 80, 95, 100]).items() %}
+            <div title="{{ percent }}% of the stages shown had a shorter duration">
+                T<sub>{{ percent }}%</sub>={{ '%.0f' | format(accumulation) }}s
+            </div>
+        {% endfor %}
+        <div>{{ duration_statistics.upper_limit }}s</div>
+    </div>
+    </div>
+</fieldset>

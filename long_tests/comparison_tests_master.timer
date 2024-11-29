@@ -1,0 +1,10 @@
+[Unit]
+Description=Launch comparison tests for master
+
+[Timer]
+Unit=comparison_tests@master.service
+OnCalendar=Mon *-*-* 02:00:00 UTC
+Persistent=false
+
+[Install]
+WantedBy=timers.target

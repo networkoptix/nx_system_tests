@@ -1,0 +1,832 @@
+{
+  "id": 4167933,
+  "token": "fake_token",
+  "allow_git_fetch": true,
+  "job_info": {
+    "id": 4167933,
+    "name": "GUI Tests",
+    "stage": "ft",
+    "project_id": 2,
+    "project_name": "Nx Monorepo",
+    "time_in_queue_seconds": 5,
+    "project_jobs_running_on_instance_runners_count": "+Inf"
+  },
+  "git_info": {
+    "repo_url": "https://gitlab-ci-token:fake_token@gitlab.nxvms.dev/dev/nx.git",
+    "ref": "refs/merge-requests/22883/head",
+    "sha": "af3d2deaa8b1bddabb7424ad85be162710280d2d",
+    "before_sha": "0000000000000000000000000000000000000000",
+    "ref_type": "branch",
+    "refspecs": [
+      "+refs/pipelines/218217:refs/pipelines/218217"
+    ],
+    "depth": 50
+  },
+  "runner_info": {
+    "timeout": 10800,
+    "runner_session_url": null
+  },
+  "variables": [
+    {
+      "key": "CI_PIPELINE_ID",
+      "value": "218217",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PIPELINE_URL",
+      "value": "https://gitlab.nxvms.dev/dev/nx/-/pipelines/218217",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_JOB_ID",
+      "value": "4167933",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_JOB_URL",
+      "value": "https://gitlab.nxvms.dev/dev/nx/-/jobs/4167933",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_JOB_TOKEN",
+      "value": "fake_token",
+      "public": false,
+      "masked": true
+    },
+    {
+      "key": "CI_JOB_STARTED_AT",
+      "value": "2023-12-04T14:06:46+03:00",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_REGISTRY_USER",
+      "value": "gitlab-ci-token",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_REGISTRY_PASSWORD",
+      "value": "fake_token",
+      "public": false,
+      "masked": true
+    },
+    {
+      "key": "CI_REPOSITORY_URL",
+      "value": "https://gitlab-ci-token:fake_token@gitlab.nxvms.dev/dev/nx.git",
+      "public": false,
+      "masked": false
+    },
+    {
+      "key": "CI_JOB_JWT",
+      "value": "eyJraWQiOiJNYkJfRjQwbjh6anVKdXRiRkFOU2J4bGhWN3YxUEZMOElJOVBhamh2cHZFIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJuYW1lc3BhY2VfaWQiOiI2IiwibmFtZXNwYWNlX3BhdGgiOiJkZXYiLCJwcm9qZWN0X2lkIjoiMiIsInByb2plY3RfcGF0aCI6ImRldi9ueCIsInVzZXJfaWQiOiIxMTkiLCJ1c2VyX2xvZ2luIjoic2t1ZHJ5YXNob3YiLCJ1c2VyX2VtYWlsIjoic2t1ZHJ5YXNob3ZAbmV0d29ya29wdGl4LmNvbSIsInBpcGVsaW5lX2lkIjoiMjE4MjE3IiwicGlwZWxpbmVfc291cmNlIjoibWVyZ2VfcmVxdWVzdF9ldmVudCIsImpvYl9pZCI6IjQxNjc5MzMiLCJyZWYiOiJ4L1ZNUy00MjY3OF92bXNfNi4wIiwicmVmX3R5cGUiOiJicmFuY2giLCJyZWZfcGF0aCI6InJlZnMvaGVhZHMveC9WTVMtNDI2Nzhfdm1zXzYuMCIsInJlZl9wcm90ZWN0ZWQiOiJmYWxzZSIsImp0aSI6IjI2ZTFjOGZhLTBhNjgtNDg5ZS1iMjhjLTBkNDAwZjRkNmQzYyIsImlzcyI6ImdpdGxhYi5ueHZtcy5kZXYiLCJpYXQiOjE3MDE2ODgwMDcsIm5iZiI6MTcwMTY4ODAwMiwiZXhwIjoxNzAxNjk4ODA3LCJzdWIiOiJqb2JfNDE2NzkzMyJ9.d67W3sD3Rr1aSe2fVA8FLlJbHmSTdP1qBvpudQHlkoCZBldqpYrjjy8bHbEjQiPwr3LlEfs6k1OLdFwtnbnbfZ3KtJIv-9iXUOBKuuFTIuqTbwUz4yMQ3hVPFSAoL2vM7m85_wbbWQsenIZSXn_PpMnlG7dXpCeYcJWte7F8NS_yi08vbuOHjSR9bPBF_YCjTqREfbbqFOTvczU0ykg7NTVSiLKuiEg-qbCwOI-UsAT0ramjLoVpbGdwmR_LaHXfCeA9dPoQsVMWCfb8aFG80QrTYXWcWrJVc6YWN9boaN9aSermjLQ4_kyDzkqeop0aZyiuukhBLO6E9LQyC-JTew",
+      "public": false,
+      "masked": true
+    },
+    {
+      "key": "CI_JOB_JWT_V1",
+      "value": "eyJraWQiOiJNYkJfRjQwbjh6anVKdXRiRkFOU2J4bGhWN3YxUEZMOElJOVBhamh2cHZFIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJuYW1lc3BhY2VfaWQiOiI2IiwibmFtZXNwYWNlX3BhdGgiOiJkZXYiLCJwcm9qZWN0X2lkIjoiMiIsInByb2plY3RfcGF0aCI6ImRldi9ueCIsInVzZXJfaWQiOiIxMTkiLCJ1c2VyX2xvZ2luIjoic2t1ZHJ5YXNob3YiLCJ1c2VyX2VtYWlsIjoic2t1ZHJ5YXNob3ZAbmV0d29ya29wdGl4LmNvbSIsInBpcGVsaW5lX2lkIjoiMjE4MjE3IiwicGlwZWxpbmVfc291cmNlIjoibWVyZ2VfcmVxdWVzdF9ldmVudCIsImpvYl9pZCI6IjQxNjc5MzMiLCJyZWYiOiJ4L1ZNUy00MjY3OF92bXNfNi4wIiwicmVmX3R5cGUiOiJicmFuY2giLCJyZWZfcGF0aCI6InJlZnMvaGVhZHMveC9WTVMtNDI2Nzhfdm1zXzYuMCIsInJlZl9wcm90ZWN0ZWQiOiJmYWxzZSIsImp0aSI6IjI2ZTFjOGZhLTBhNjgtNDg5ZS1iMjhjLTBkNDAwZjRkNmQzYyIsImlzcyI6ImdpdGxhYi5ueHZtcy5kZXYiLCJpYXQiOjE3MDE2ODgwMDcsIm5iZiI6MTcwMTY4ODAwMiwiZXhwIjoxNzAxNjk4ODA3LCJzdWIiOiJqb2JfNDE2NzkzMyJ9.d67W3sD3Rr1aSe2fVA8FLlJbHmSTdP1qBvpudQHlkoCZBldqpYrjjy8bHbEjQiPwr3LlEfs6k1OLdFwtnbnbfZ3KtJIv-9iXUOBKuuFTIuqTbwUz4yMQ3hVPFSAoL2vM7m85_wbbWQsenIZSXn_PpMnlG7dXpCeYcJWte7F8NS_yi08vbuOHjSR9bPBF_YCjTqREfbbqFOTvczU0ykg7NTVSiLKuiEg-qbCwOI-UsAT0ramjLoVpbGdwmR_LaHXfCeA9dPoQsVMWCfb8aFG80QrTYXWcWrJVc6YWN9boaN9aSermjLQ4_kyDzkqeop0aZyiuukhBLO6E9LQyC-JTew",
+      "public": false,
+      "masked": true
+    },
+    {
+      "key": "CI_JOB_JWT_V2",
+      "value": "eyJraWQiOiJNYkJfRjQwbjh6anVKdXRiRkFOU2J4bGhWN3YxUEZMOElJOVBhamh2cHZFIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJuYW1lc3BhY2VfaWQiOiI2IiwibmFtZXNwYWNlX3BhdGgiOiJkZXYiLCJwcm9qZWN0X2lkIjoiMiIsInByb2plY3RfcGF0aCI6ImRldi9ueCIsInVzZXJfaWQiOiIxMTkiLCJ1c2VyX2xvZ2luIjoic2t1ZHJ5YXNob3YiLCJ1c2VyX2VtYWlsIjoic2t1ZHJ5YXNob3ZAbmV0d29ya29wdGl4LmNvbSIsInBpcGVsaW5lX2lkIjoiMjE4MjE3IiwicGlwZWxpbmVfc291cmNlIjoibWVyZ2VfcmVxdWVzdF9ldmVudCIsImpvYl9pZCI6IjQxNjc5MzMiLCJyZWYiOiJ4L1ZNUy00MjY3OF92bXNfNi4wIiwicmVmX3R5cGUiOiJicmFuY2giLCJyZWZfcGF0aCI6InJlZnMvaGVhZHMveC9WTVMtNDI2Nzhfdm1zXzYuMCIsInJlZl9wcm90ZWN0ZWQiOiJmYWxzZSIsInJ1bm5lcl9pZCI6NjE1LCJydW5uZXJfZW52aXJvbm1lbnQiOiJzZWxmLWhvc3RlZCIsInNoYSI6ImFmM2QyZGVhYThiMWJkZGFiYjc0MjRhZDg1YmUxNjI3MTAyODBkMmQiLCJwcm9qZWN0X3Zpc2liaWxpdHkiOiJpbnRlcm5hbCIsImNpX2NvbmZpZ19yZWZfdXJpIjoiZ2l0bGFiLm54dm1zLmRldi9kZXYvbngvLy5naXRsYWItY2kueW1sQHJlZnMvaGVhZHMveC9WTVMtNDI2Nzhfdm1zXzYuMCIsImNpX2NvbmZpZ19zaGEiOiJhZjNkMmRlYWE4YjFiZGRhYmI3NDI0YWQ4NWJlMTYyNzEwMjgwZDJkIiwianRpIjoiYjI1ZjM5NTEtZTM1NC00ZDY4LTk5OTgtYjI0NDFjOTgzNzllIiwiaXNzIjoiaHR0cHM6Ly9naXRsYWIubnh2bXMuZGV2IiwiaWF0IjoxNzAxNjg4MDA3LCJuYmYiOjE3MDE2ODgwMDIsImV4cCI6MTcwMTY5ODgwNywic3ViIjoicHJvamVjdF9wYXRoOmRldi9ueDpyZWZfdHlwZTpicmFuY2g6cmVmOngvVk1TLTQyNjc4X3Ztc182LjAiLCJhdWQiOiJodHRwczovL2dpdGxhYi5ueHZtcy5kZXYifQ.RePt6-QWe0aPrXUounmbTs9SJuTj3PE1Nk5b41NfHgWAVTtI3l4cmESlT1YzU6ktpojgg__eL2rnh4Cq6I1a6EQwjWvCQ_pqgVu7z2pMI-9RXcOLJQPz-EX45V4YyRLQQ86OoMIWTdsQMCr_NVHTxvYko67-aIaTUC6YD-2-BhBK2YP8hhV2LLQN_b-iSUoDmm_JwDNe2cIw2ecO34kfVAB2dxyHFb6Lim9bbJHOkmqbPd8MHNCpLB8xwRCI6bY5rMQkuppDih5rX_9AjuOcy0bQj3qrtJcCrkU8utRGqIqZK83gULamhVopc_UkjINbLIvRRKUN22l_hqS9L4PVyQ",
+      "public": false,
+      "masked": true
+    },
+    {
+      "key": "CI_JOB_NAME",
+      "value": "GUI Tests",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_JOB_NAME_SLUG",
+      "value": "gui-tests",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_JOB_STAGE",
+      "value": "ft",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_NODE_TOTAL",
+      "value": "1",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI",
+      "value": "true",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "GITLAB_CI",
+      "value": "true",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_SERVER_URL",
+      "value": "https://gitlab.nxvms.dev",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_SERVER_HOST",
+      "value": "gitlab.nxvms.dev",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_SERVER_PORT",
+      "value": "443",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_SERVER_PROTOCOL",
+      "value": "https",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_SERVER_SHELL_SSH_HOST",
+      "value": "gitlab.nxvms.dev",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_SERVER_SHELL_SSH_PORT",
+      "value": "22",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_SERVER_NAME",
+      "value": "GitLab",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_SERVER_VERSION",
+      "value": "16.5.2-ee",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_SERVER_VERSION_MAJOR",
+      "value": "16",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_SERVER_VERSION_MINOR",
+      "value": "5",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_SERVER_VERSION_PATCH",
+      "value": "2",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_SERVER_REVISION",
+      "value": "54c8732b102",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "GITLAB_FEATURES",
+      "value": "audit_events,blocked_issues,board_iteration_lists,code_owners,code_review_analytics,elastic_search,full_codequality_report,group_activity_analytics,group_bulk_edit,group_webhooks,issuable_default_templates,issue_weights,iterations,ldap_group_sync,member_lock,merge_request_approvers,milestone_charts,multiple_issue_assignees,multiple_ldap_servers,multiple_merge_request_assignees,multiple_merge_request_reviewers,project_merge_request_analytics,protected_refs_for_users,push_rules,repository_mirrors,resource_access_token,seat_link,usage_quotas,visual_review_app,wip_limits,zoekt_code_search,blocked_work_items,description_diffs,send_emails_from_admin_area,repository_size_limit,maintenance_mode,scoped_issue_board,contribution_analytics,adjourned_deletion_for_projects_and_groups,admin_audit_log,auditor_user,blocking_merge_requests,board_assignee_lists,board_milestone_lists,ci_cd_projects,ci_namespace_catalog,ci_secrets_management,cluster_agents_ci_impersonation,cluster_agents_user_impersonation,cluster_deployments,code_owner_approval_required,code_suggestions,commit_committer_check,commit_committer_name_check,compliance_framework,custom_compliance_frameworks,cross_project_pipelines,custom_file_templates,custom_file_templates_for_namespace,custom_project_templates,cycle_analytics_for_groups,cycle_analytics_for_projects,db_load_balancing,default_branch_protection_restriction_in_groups,default_project_deletion_protection,delete_unconfirmed_users,dependency_proxy_for_packages,disable_name_update_for_users,disable_personal_access_tokens,domain_verification,epics,extended_audit_events,external_authorization_service_api_management,feature_flags_related_issues,feature_flags_code_references,file_locks,geo,generic_alert_fingerprinting,git_two_factor_enforcement,github_integration,group_allowed_email_domains,group_coverage_reports,group_forking_protection,group_milestone_project_releases,group_project_templates,group_repository_analytics,group_saml,group_scoped_ci_variables,ide_schema_config,incident_metric_upload,incident_sla,instance_level_scim,jira_issues_integration,ldap_group_sync_filter,merge_pipelines,merge_request_performance_metrics,admin_merge_request_approvers_rules,merge_trains,metrics_reports,multiple_alert_http_integrations,multiple_approval_rules,multiple_group_issue_boards,object_storage,microsoft_group_sync,operations_dashboard,package_forwarding,pages_size_limit,pages_multiple_versions,productivity_analytics,project_aliases,protected_environments,reject_non_dco_commits,reject_unsigned_commits,remote_development,saml_group_sync,service_accounts,scoped_labels,smartcard_auth,ssh_certificates,swimlanes,target_branch_rules,type_of_work_analytics,minimal_access_role,unprotection_restrictions,ci_project_subscriptions,incident_timeline_view,oncall_schedules,escalation_policies,export_user_permissions,zentao_issues_integration,coverage_check_approval_rule,issuable_resource_links,group_protected_branches,group_level_merge_checks_setting,oidc_client_groups_claim,disable_deleting_account_for_users,group_ip_restriction,issues_analytics,password_complexity,group_wikis,email_additional_text",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PROJECT_ID",
+      "value": "2",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PROJECT_NAME",
+      "value": "nx",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PROJECT_TITLE",
+      "value": "Nx Monorepo",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PROJECT_DESCRIPTION",
+      "value": "Main NX mono-repository with almost everything you need in your life",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PROJECT_PATH",
+      "value": "dev/nx",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PROJECT_PATH_SLUG",
+      "value": "dev-nx",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PROJECT_NAMESPACE",
+      "value": "dev",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PROJECT_NAMESPACE_ID",
+      "value": "6",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PROJECT_ROOT_NAMESPACE",
+      "value": "dev",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PROJECT_URL",
+      "value": "https://gitlab.nxvms.dev/dev/nx",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PROJECT_VISIBILITY",
+      "value": "internal",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PROJECT_REPOSITORY_LANGUAGES",
+      "value": "c++,c,html,qml,go",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PROJECT_CLASSIFICATION_LABEL",
+      "value": null,
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_DEFAULT_BRANCH",
+      "value": "master",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_CONFIG_PATH",
+      "value": ".gitlab-ci.yml",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PAGES_DOMAIN",
+      "value": "pages.nxvms.dev",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PAGES_URL",
+      "value": "https://dev.pages.nxvms.dev/nx",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_REGISTRY",
+      "value": "registry.nxvms.dev",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_REGISTRY_IMAGE",
+      "value": "registry.nxvms.dev/dev/nx",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_API_V4_URL",
+      "value": "https://gitlab.nxvms.dev/api/v4",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_API_GRAPHQL_URL",
+      "value": "https://gitlab.nxvms.dev/api/graphql",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_TEMPLATE_REGISTRY_HOST",
+      "value": "registry.gitlab.com",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PIPELINE_IID",
+      "value": "125957",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PIPELINE_SOURCE",
+      "value": "merge_request_event",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PIPELINE_CREATED_AT",
+      "value": "2023-12-04T13:41:17+03:00",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_PIPELINE_NAME",
+      "value": null,
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_COMMIT_SHA",
+      "value": "af3d2deaa8b1bddabb7424ad85be162710280d2d",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_COMMIT_SHORT_SHA",
+      "value": "af3d2dea",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_COMMIT_BEFORE_SHA",
+      "value": "0000000000000000000000000000000000000000",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_COMMIT_REF_NAME",
+      "value": "x/VMS-42678_vms_6.0",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_COMMIT_REF_SLUG",
+      "value": "x-vms-42678-vms-6-0",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_COMMIT_MESSAGE",
+      "value": "VMS-42678: WebRTC: Check remote certificate fingerprint in DTLS handshake\n\n\n(cherry picked from commit 10cbaa6bb55251f73bebef17b8fa736d57de8dc3)\n",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_COMMIT_TITLE",
+      "value": "VMS-42678: WebRTC: Check remote certificate fingerprint in DTLS handshake",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_COMMIT_DESCRIPTION",
+      "value": "\n\n(cherry picked from commit 10cbaa6bb55251f73bebef17b8fa736d57de8dc3)",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_COMMIT_REF_PROTECTED",
+      "value": "false",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_COMMIT_TIMESTAMP",
+      "value": "2023-12-04T10:40:52+00:00",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_COMMIT_AUTHOR",
+      "value": "Sergey Kudryashov <skudryashov@networkoptix.com>",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_EVENT_TYPE",
+      "value": "detached",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_SOURCE_BRANCH_SHA",
+      "value": "",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_TARGET_BRANCH_SHA",
+      "value": "",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_DIFF_ID",
+      "value": "511762",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_DIFF_BASE_SHA",
+      "value": "67e73701056aeac8d268086c87b6858128dac04b",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_ID",
+      "value": "37332",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_IID",
+      "value": "22883",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_REF_PATH",
+      "value": "refs/merge-requests/22883/head",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_PROJECT_ID",
+      "value": "2",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_PROJECT_PATH",
+      "value": "dev/nx",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_PROJECT_URL",
+      "value": "https://gitlab.nxvms.dev/dev/nx",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_TARGET_BRANCH_NAME",
+      "value": "vms_6.0",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_TARGET_BRANCH_PROTECTED",
+      "value": "true",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_TITLE",
+      "value": "VMS-42678: (master->vms_6.0) WebRTC: Check remote certificate fingerprint in DTLS handshake",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_ASSIGNEES",
+      "value": "workflow-robocat and skudryashov",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_SQUASH_ON_MERGE",
+      "value": "false",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_SOURCE_PROJECT_ID",
+      "value": "496",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_SOURCE_PROJECT_PATH",
+      "value": "skudryashov/nx",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_SOURCE_PROJECT_URL",
+      "value": "https://gitlab.nxvms.dev/skudryashov/nx",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_SOURCE_BRANCH_NAME",
+      "value": "x/VMS-42678_vms_6.0",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_SOURCE_BRANCH_PROTECTED",
+      "value": "false",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_MERGE_REQUEST_APPROVED",
+      "value": "true",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_OPEN_MERGE_REQUESTS",
+      "value": "dev/nx!22883",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_RUNNER_ID",
+      "value": "615",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_RUNNER_DESCRIPTION",
+      "value": "ft",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CI_RUNNER_TAGS",
+      "value": "[\"batches_gui\"]",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "GIT_STRATEGY",
+      "value": "none",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "PROJECT",
+      "value": "vms",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CLEAN_BUILD",
+      "value": "false",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CMAKE_PARAMETERS",
+      "value": "-DdeveloperBuild=OFF -DwithMobileClient=OFF -DwithAnalyticsServer=OFF -DproductType=all",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "NO_PCH_CMAKE_PARAMETERS",
+      "value": "-DenablePrecompiledHeaders=OFF -DwithDistributions=OFF -DwithUnitTestsArchive=OFF",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "GITLAB_USER_LOGIN",
+      "value": "skudryashov",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "JENKINS_JOB_PARAMETERS",
+      "value": "BUILD_DESCRIPTION=\"Triggered by gitlab user skudryashov\" BRANCH=$$TARGET_BRANCH_NAME NX_VMS_COMMIT=af3d2deaa8b1bddabb7424ad85be162710280d2d BUILD_IDENTITY=$$BUILD_IDENTITY BUILD_IDENTITY_FOR_UPDATE=$$BUILD_IDENTITY_FOR_UPDATE GITLAB_PIPELINE_ID=218217 GITLAB_JOB_ID=4167933 GITLAB_JOB_PROJECT=dev/nx GITLAB_PIPELINE_URL=https://gitlab.nxvms.dev/dev/nx/-/pipelines/218217 GITLAB_JOB_URL=https://gitlab.nxvms.dev/dev/nx/-/jobs/4167933 GITLAB_MERGE_REQUEST_DIFF_BASE_SHA=67e73701056aeac8d268086c87b6858128dac04b GITLAB_MR_IID=22883 GITLAB_REFSPEC=$$REFSPEC",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "DOCKER_REGISTRY",
+      "value": "docker.us.nxteam.dev",
+      "public": false,
+      "masked": false
+    },
+    {
+      "key": "CODE_CHECK_IMAGE",
+      "value": "docker.us.nxteam.dev/nx/code-check",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "CODE_CHECK_IMAGE_TAG",
+      "value": "0.2",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "LOCATION",
+      "value": "us",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "GITLAB_USER_ID",
+      "value": "119",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "GITLAB_USER_EMAIL",
+      "value": "skudryashov@networkoptix.com",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "GITLAB_USER_NAME",
+      "value": "Sergey Kudryashov",
+      "public": true,
+      "masked": false
+    },
+    {
+      "key": "DISTRIB_URL",
+      "value": "https://artifactory.us.nxteam.dev/artifactory/build-vms-gitlab/vms_6.0/43230/default/distrib",
+      "public": false,
+      "masked": false
+    },
+    {
+      "key": "DISTRIB_URL",
+      "value": "https://artifactory.us.nxteam.dev/artifactory/build-vms-gitlab/vms_6.0/43230/default/distrib",
+      "public": false,
+      "masked": false
+    },
+    {
+      "key": "VAULT_AUTH_PATH",
+      "value": "jwt-gitlab-eu",
+      "public": false,
+      "masked": false
+    },
+    {
+      "key": "HAL_REDIS_HOST",
+      "value": "hal-redis-master.hal",
+      "public": false,
+      "masked": false
+    },
+    {
+      "key": "ANSIBLE_HASHI_VAULT_AUTH_METHOD",
+      "value": "jwt",
+      "public": false,
+      "masked": false
+    },
+    {
+      "key": "ANSIBLE_HASHI_VAULT_ROLE_ID",
+      "value": "gitlab",
+      "public": false,
+      "masked": false
+    },
+    {
+      "key": "ANSIBLE_HASHI_VAULT_MOUNT_POINT",
+      "value": "jwt-gitlab-eu",
+      "public": false,
+      "masked": false
+    },
+    {
+      "key": "ANSIBLE_HASHI_VAULT_JWT",
+      "value": "eyJraWQiOiJNYkJfRjQwbjh6anVKdXRiRkFOU2J4bGhWN3YxUEZMOElJOVBhamh2cHZFIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJuYW1lc3BhY2VfaWQiOiI2IiwibmFtZXNwYWNlX3BhdGgiOiJkZXYiLCJwcm9qZWN0X2lkIjoiMiIsInByb2plY3RfcGF0aCI6ImRldi9ueCIsInVzZXJfaWQiOiIxMTkiLCJ1c2VyX2xvZ2luIjoic2t1ZHJ5YXNob3YiLCJ1c2VyX2VtYWlsIjoic2t1ZHJ5YXNob3ZAbmV0d29ya29wdGl4LmNvbSIsInBpcGVsaW5lX2lkIjoiMjE4MjE3IiwicGlwZWxpbmVfc291cmNlIjoibWVyZ2VfcmVxdWVzdF9ldmVudCIsImpvYl9pZCI6IjQxNjc5MzMiLCJyZWYiOiJ4L1ZNUy00MjY3OF92bXNfNi4wIiwicmVmX3R5cGUiOiJicmFuY2giLCJyZWZfcGF0aCI6InJlZnMvaGVhZHMveC9WTVMtNDI2Nzhfdm1zXzYuMCIsInJlZl9wcm90ZWN0ZWQiOiJmYWxzZSIsImp0aSI6IjI2ZTFjOGZhLTBhNjgtNDg5ZS1iMjhjLTBkNDAwZjRkNmQzYyIsImlzcyI6ImdpdGxhYi5ueHZtcy5kZXYiLCJpYXQiOjE3MDE2ODgwMDcsIm5iZiI6MTcwMTY4ODAwMiwiZXhwIjoxNzAxNjk4ODA3LCJzdWIiOiJqb2JfNDE2NzkzMyJ9.d67W3sD3Rr1aSe2fVA8FLlJbHmSTdP1qBvpudQHlkoCZBldqpYrjjy8bHbEjQiPwr3LlEfs6k1OLdFwtnbnbfZ3KtJIv-9iXUOBKuuFTIuqTbwUz4yMQ3hVPFSAoL2vM7m85_wbbWQsenIZSXn_PpMnlG7dXpCeYcJWte7F8NS_yi08vbuOHjSR9bPBF_YCjTqREfbbqFOTvczU0ykg7NTVSiLKuiEg-qbCwOI-UsAT0ramjLoVpbGdwmR_LaHXfCeA9dPoQsVMWCfb8aFG80QrTYXWcWrJVc6YWN9boaN9aSermjLQ4_kyDzkqeop0aZyiuukhBLO6E9LQyC-JTew",
+      "public": false,
+      "masked": false
+    },
+    {
+      "key": "ANSIBLE_HASHI_VAULT_ADDR",
+      "value": "https://vault.nxvms.dev",
+      "public": false,
+      "masked": false
+    },
+    {
+      "key": "VAULT_SERVER_URL",
+      "value": "https://vault.us.nxteam.dev",
+      "public": false,
+      "masked": false
+    }
+  ],
+  "steps": [
+    {
+      "name": "script",
+      "script": [
+        "gui-smoke-test"
+      ],
+      "timeout": 10800,
+      "when": "on_success",
+      "allow_failure": false
+    }
+  ],
+  "hooks": [],
+  "image": {
+    "name": "nx/ci:1.22",
+    "entrypoint": null,
+    "ports": [],
+    "pull_policy": null
+  },
+  "services": [],
+  "artifacts": null,
+  "cache": [],
+  "credentials": [
+    {
+      "type": "registry",
+      "url": "registry.nxvms.dev",
+      "username": "gitlab-ci-token",
+      "password": "fake_token"
+    }
+  ],
+  "features": {
+    "trace_sections": true,
+    "failure_reasons": [
+      "unknown_failure",
+      "script_failure",
+      "api_failure",
+      "stuck_or_timeout_failure",
+      "runner_system_failure",
+      "missing_dependency_failure",
+      "runner_unsupported",
+      "stale_schedule",
+      "job_execution_timeout",
+      "archived_failure",
+      "unmet_prerequisites",
+      "scheduler_failure",
+      "data_integrity_failure",
+      "forward_deployment_failure",
+      "user_blocked",
+      "project_deleted",
+      "ci_quota_exceeded",
+      "pipeline_loop_detected",
+      "no_matching_runner",
+      "trace_size_exceeded",
+      "builds_disabled",
+      "environment_creation_failure",
+      "deployment_rejected",
+      "failed_outdated_deployment_job",
+      "protected_environment_failure",
+      "insufficient_bridge_permissions",
+      "downstream_bridge_project_not_found",
+      "invalid_bridge_trigger",
+      "upstream_bridge_project_not_found",
+      "insufficient_upstream_permissions",
+      "bridge_pipeline_is_child_pipeline",
+      "downstream_pipeline_creation_failed",
+      "secrets_provider_not_found",
+      "reached_max_descendant_pipelines_depth",
+      "ip_restriction_failure",
+      "reached_max_pipeline_hierarchy_size"
+    ]
+  },
+  "dependencies": [
+    {
+      "id": 4167914,
+      "name": "linux-x64:build",
+      "token": "fake_token"
+    },
+    {
+      "id": 4167923,
+      "name": "Ubuntu 18",
+      "token": "fake_token"
+    },
+    {
+      "id": 4167924,
+      "name": "Ubuntu 20",
+      "token": "fake_token"
+    },
+    {
+      "id": 4167915,
+      "name": "windows-x64:build",
+      "token": "fake_token"
+    }
+  ],
+  "secrets": {}
+}

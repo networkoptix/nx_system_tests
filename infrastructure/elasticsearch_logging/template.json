@@ -1,0 +1,68 @@
+{
+  "template": {
+    "mappings": {
+      "dynamic": true,
+      "numeric_detection": false,
+      "date_detection": true,
+      "dynamic_date_formats": [
+        "strict_date_optional_time",
+        "yyyy/MM/dd HH:mm:ss Z||yyyy/MM/dd Z"
+      ],
+      "_source": {
+        "enabled": true,
+        "includes": [],
+        "excludes": []
+      },
+      "_routing": {
+        "required": false
+      },
+      "dynamic_templates": [],
+      "properties": {
+        "level_name": {
+          "type": "keyword"
+        },
+        "message": {
+          "type": "text"
+        },
+        "message_args": {
+          "type": "nested"
+        },
+        "message_time": {
+          "type": "date",
+          "format": "strict_date_optional_time"
+        },
+        "run_ft_revision": {
+          "type": "keyword"
+        },
+        "run_hostname": {
+          "type": "keyword"
+        },
+        "run_started_at_iso": {
+          "type": "date",
+          "format": "strict_date_optional_time"
+        },
+        "run_username": {
+          "type": "keyword"
+        },
+        "stage_name": {
+          "type": "keyword"
+        },
+        "stage_started_at_iso": {
+          "type": "date",
+          "format": "strict_date_optional_time"
+        },
+        "thread_name": {
+          "type": "keyword"
+        }
+      }
+    },
+    "aliases": {
+      "ft-logs": {
+        "is_write_index": true
+      }
+    }
+  },
+  "index_patterns": [
+    "ft-logs-*"
+  ]
+}

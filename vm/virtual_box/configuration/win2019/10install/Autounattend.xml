@@ -1,0 +1,166 @@
+<unattend xmlns="urn:schemas-microsoft-com:unattend" xmlns:cpi="urn:schemas-microsoft-com:cpi" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
+    <servicing />
+    <settings pass="specialize">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
+            <ComputerName>noptix-w81</ComputerName>
+            <RegisteredOrganization>Microsoft</RegisteredOrganization>
+            <TimeZone>Russian Standard Time</TimeZone>
+        </component>
+        <component name="Microsoft-Windows-Security-SPP-UX" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+                   xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
+            <SkipAutoActivation>true</SkipAutoActivation>
+        </component>
+    </settings>
+    <settings pass="windowsPE">
+        <component language="neutral" name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" versionScope="nonSxS">
+            <SetupUILanguage>
+                <UILanguage>en-US</UILanguage>
+                <WillShowUI>Never</WillShowUI>
+            </SetupUILanguage>
+            <InputLocale>0409:00000409</InputLocale>
+            <SystemLocale>en-US</SystemLocale>
+            <UILanguage>en-US</UILanguage>
+            <UILanguageFallback>en-US</UILanguageFallback>
+            <UserLocale>en-US</UserLocale>
+        </component>
+        <component language="neutral" name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" versionScope="nonSxS">
+            <DiskConfiguration>
+                <Disk wcm:action="add">
+                    <CreatePartitions>
+                        <CreatePartition wcm:action="add">
+                            <Order>1</Order>
+                            <Size>32768</Size>
+                            <Type>Primary</Type>
+                        </CreatePartition>
+                    </CreatePartitions>
+                    <DiskID>0</DiskID>
+                    <ModifyPartitions>
+                        <ModifyPartition wcm:action="add">
+                            <Order>1</Order>
+                            <Active>true</Active>
+                            <Extend>false</Extend>
+                            <Format>NTFS</Format>
+                            <Letter>C</Letter>
+                            <PartitionID>1</PartitionID>
+                        </ModifyPartition>
+                    </ModifyPartitions>
+                    <WillWipeDisk>true</WillWipeDisk>
+                </Disk>
+                <WillShowUI>Never</WillShowUI>
+            </DiskConfiguration>
+            <UserData>
+                <AcceptEula>true</AcceptEula>
+            </UserData>
+            <ImageInstall>
+                <OSImage>
+                    <WillShowUI>Never</WillShowUI>
+                    <InstallToAvailablePartition>true</InstallToAvailablePartition>
+                    <InstallFrom>
+                        <MetaData wcm:action="add">
+                            <Key>/IMAGE/NAME</Key>
+                            <Value>Windows Server 2019 SERVERSTANDARD</Value>
+                        </MetaData>
+                    </InstallFrom>
+                </OSImage>
+            </ImageInstall>
+        </component>
+    </settings>
+    <settings pass="oobeSystem">
+        <component language="neutral" name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" versionScope="nonSxS">
+            <Reseal>
+                <Mode>Audit</Mode>
+            </Reseal>
+        </component>
+    </settings>
+    <settings pass="auditUser">
+        <component language="neutral" name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" versionScope="nonSxS">
+            <Reseal>
+                <Mode>Audit</Mode>
+                <ForceShutdownNow>true</ForceShutdownNow>
+            </Reseal>
+            <RunSynchronous>
+                <!-- Enable autorun script for next stages -->
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>REG ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /v StartupRun /d "D:\StartupRun.cmd 1>>C:\Snapshot.log 2>&amp;1" /f</Path>
+                    <Order>1</Order>
+                </RunSynchronousCommand>
+                <!-- Disable Windows Search service -->
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>sc config "wsearch" start=disabled</Path>
+                    <Order>2</Order>
+                </RunSynchronousCommand>
+                <!-- Disable System Resources Analyze service -->
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>sc config "sysmain" start=disabled</Path>
+                    <Order>3</Order>
+                </RunSynchronousCommand>
+                <!-- Disable Connected User Experiences and Telemetry service -->
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>sc config "diagtrack" start=disabled</Path>
+                    <Order>4</Order>
+                </RunSynchronousCommand>
+                <!-- Disable Universal Windows Platform service -->
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>sc config "appxsvc" start=disabled</Path>
+                    <Order>5</Order>
+                </RunSynchronousCommand>
+                <!-- Windows Update service -->
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>sc config "wuauserv" start=disabled</Path>
+                    <Order>6</Order>
+                </RunSynchronousCommand>
+                <!-- Disable Windows automatic maintenance -->
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>REG ADD HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenance /v MaintenanceDisabled /t REG_DWORD /d 1 /f</Path>
+                    <Order>8</Order>
+                </RunSynchronousCommand>
+                <!-- Disable Windows scheduled defragmentation and defragsvc -->
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>sc config "defragsvc" start=disabled</Path>
+                    <Order>9</Order>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>schtasks /Change /TN "Microsoft\Windows\Defrag\ScheduledDefrag" /Disable</Path>
+                    <Order>10</Order>
+                </RunSynchronousCommand>
+                <!-- Disable first logon animation -->
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>REG ADD "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" /v EnableFirstLogonAnimation /t REG_DWORD /d 0 /f</Path>
+                    <Order>11</Order>
+                </RunSynchronousCommand>
+                <!-- Turn off multicast name resolution. By default, MDNS service listen port 5353.
+                Mediaserver binds to it at the same time without any notification hence breaking the
+                camera's DNS-SD discovery feature, when using unicast addresses. Using unicast for DNS-SD
+                is a workaround for cases when multicast address cannot be used because of networking
+                schemes, that cannot forward non-unicast traffic (e.g. VBox intnet).
+                (Yes, this is a workaround for another workaround to work.) -->
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient" /v EnableMulticast /t REG_DWORD /d 0 /f</Path>
+                    <Order>12</Order>
+                </RunSynchronousCommand>
+                <!-- Disable Windows Defender software to decrease a VM load -->
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>REG ADD "HKLM\software\policies\microsoft\windows defender" /v DisableAntiSpyware /t REG_DWORD /d 1 /f</Path>
+                    <Order>13</Order>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>REG ADD "HKLM\software\policies\microsoft\windows defender\Real-Time Protection" /v DisableRealtimeMonitoring /t REG_DWORD /d 1 /f</Path>
+                    <Order>14</Order>
+                </RunSynchronousCommand>
+                <!-- Enable Microsoft iSCSI Initiator service -->
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>sc config "msiscsi" start=auto</Path>
+                    <Order>15</Order>
+                </RunSynchronousCommand>
+            </RunSynchronous>
+        </component>
+    </settings>
+    <settings pass="auditSystem">
+        <component language="neutral" name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" versionScope="nonSxS">
+            <Reseal>
+                <Mode>Audit</Mode>
+            </Reseal>
+        </component>
+    </settings>
+    <cpi:offlineImage cpi:source="" />
+</unattend>

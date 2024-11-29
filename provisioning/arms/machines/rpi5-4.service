@@ -1,0 +1,11 @@
+[Unit]
+Description=RPI5-4 worker
+
+[Install]
+WantedBy=default.target
+
+[Service]
+WorkingDirectory=%h/machines/rpi5_4
+ExecStart=%h/machines/rpi5_4/arms/.venv/bin/python3 -m arms.beg_ft002.rpi5_4
+Restart=on-failure
+RestartSec=10

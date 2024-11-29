@@ -1,0 +1,16 @@
+[Unit]
+Description=Systemd command proxy
+After=syslog.target
+After=network.target
+StartLimitBurst=30
+StartLimitIntervalSec=1
+
+[Service]
+WorkingDirectory=%h/monitoring/ft
+Environment=FT_UNIT_NAME=%N
+ExecStart=%h/monitoring/ft/infrastructure/.venv/bin/python3 -m infrastructure.monitoring.command_proxy
+Restart=always
+RestartSec=200m
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,17 @@
+<component name="ProjectDictionaryState">
+  <dictionary name="postgresql">
+    <words>
+      <w>libpq</w>
+      <w>passfile</w>
+      <w>pgpass</w>
+      <w>pgpassfile</w>
+      <w>pgpassword</w>
+      <w>pgtrgm</w>
+      <w>pguser</w>
+      <w>plpgsql</w>
+      <w>trgm</w>
+      <w>tsquery</w>
+      <w>tsvector</w>
+    </words>
+  </dictionary>
+</component>

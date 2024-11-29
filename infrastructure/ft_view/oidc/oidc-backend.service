@@ -1,0 +1,16 @@
+[Unit]
+Description=OIDC Backend
+After=syslog.target
+After=network.target
+StartLimitBurst=10
+StartLimitIntervalSec=60
+
+[Service]
+WorkingDirectory=/home/ft/oidc/ft
+Environment=PYTHONPATH=.
+ExecStart=/usr/bin/python3 infrastructure/ft_view/oidc/oidc.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,14 @@
+{
+  "cmdline": {
+    "env.MACHINERY": "http://sc-ft003:8050/batches-ft/",
+    "env.COMMIT": "stable",
+    "exe": "python",
+    "args": "-m run_single_test",
+    "opt.--installers-url": "https://artifactory.us.nxteam.dev/artifactory/build-vms-develop/master/36124/default/distrib/"
+  },
+  "revision": "stable",
+  "stage": "run_single_test.py",
+  "vms": "https://artifactory.us.nxteam.dev/artifactory/build-vms-develop/master/36124/default/distrib/",
+  "machinery": "http://sc-ft003:8050/batches-ft/",
+  "job_run_id": "20231213150020831022"
+}

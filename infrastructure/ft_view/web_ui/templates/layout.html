@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>{{ title }} - FT View</title>
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg?v={{ static_version }}">
+    <link rel="stylesheet" type="text/css" href="/static/header.css?v={{ static_version }}">
+    <link rel="stylesheet" type="text/css" href="/static/nav.css?v={{ static_version }}">
+    <link rel="stylesheet" type="text/css" href="/static/tables.css?v={{ static_version }}">
+    <link rel="stylesheet" type="text/css" href="/static/text.css?v={{ static_version }}">
+    <link rel="stylesheet" type="text/css" href="/static/staircase.css?v={{ static_version }}">
+    <link rel="stylesheet" type="text/css" href="/static/highlight.css?v={{ static_version }}">
+    <link rel="stylesheet" type="text/css" href="/static/links.css?v={{ static_version }}">
+    <script type="application/javascript" src="/static/accent.js?v={{ static_version }}"></script>
+    <script type="application/javascript" src="/static/debug.js?v={{ static_version }}"></script>
+    <script type="application/javascript" src="/static/links.js?v={{ static_version }}"></script>
+    <script type="application/javascript" src="/static/highlight.js?v={{ static_version }}"></script>
+    <script type="application/javascript" src="/static/staircase.js?v={{ static_version }}"></script>
+    <script type="application/javascript" src="/static/form.js?v={{ static_version }}"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+<aside>
+    <ul>
+        <li class="debug">
+            <span>
+                {{ ft_view_git }}
+            </span>
+        </li>
+        <li class="debug">
+            <span>Uptime {{ uptime }}</span>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            {% if request.headers.user is defined %}
+                {{ request.headers.user }}
+            {% else %}
+                Anonymous
+            {% endif %}
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <span>Timezone {{ time_zone }}</span>
+        </li>
+    </ul>
+</aside>
+<header>
+    <ul>
+        <li><a href="/">Batches</a></li>
+        <li><a href="/locations/" class="debug">Locations</a></li>
+        <li><a href="http://sc-ft003:9080/">Manual Tasks</a></li>
+        <li><a href="/stats/">Statistics</a></li>
+        <li><a href="https://sc-ft003.nxft.dev/~ft/.cache/nxft-doc/master.html">Doc</a></li>
+        <li><a href="https://sc-ft002.nxft.dev/long_tests/task_list">Comparison tests</a></li>
+    </ul>
+</header>
+<main>
+    <h1>{{ title }}</h1>
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

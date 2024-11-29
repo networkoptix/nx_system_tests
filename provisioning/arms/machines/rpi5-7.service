@@ -1,0 +1,11 @@
+[Unit]
+Description=RPI5-7 worker
+
+[Install]
+WantedBy=default.target
+
+[Service]
+WorkingDirectory=%h/machines/rpi5_7
+ExecStart=%h/machines/rpi5_7/arms/.venv/bin/python3 -m arms.beg_ft002.rpi5_7
+Restart=on-failure
+RestartSec=10
